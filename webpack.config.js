@@ -11,10 +11,10 @@ module.exports = {
     output: {
         // the target directory for all output files
         // must be an absolute path (use the Node.js path module)
-        path: path.resolve(__dirname, 'build'),
-        publicPath: '/build/',
+        path: path.resolve(__dirname, 'dist'),
+        publicPath: '/dist/',
         // the filename template for entry chunks
-        filename: 'app.bundle.js',
+        filename: 'app.min.js',
     },
 
     module: {
@@ -28,20 +28,12 @@ module.exports = {
                 test: /\.(sass|scss)$/,
                 loader: ExtractTextPlugin.extract(['css-loader', 'sass-loader'])
             },
-            // {
-            //     test: /\.scss$/,
-            //     use: [
-            //         'style-loader',
-            //         'css-loader',
-            //         'sass-loader'
-            //     ],
-            // }
         ],
     },
 
     plugins: Object.assign([
             new ExtractTextPlugin({ // define where to save the file
-                filename: 'app.bundle.css',
+                filename: 'app.min.css',
                 allChunks: true,
                 disable: inBuild
             }),
