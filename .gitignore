@@ -1,8 +1,11 @@
 # Dependency directory
-node_modules
+/node_modules
 
 # Source maps
 *.js.map
 
 # Files marked with gitigx
 *gitigx*
+
+# ignore editor directory
+/.idea
