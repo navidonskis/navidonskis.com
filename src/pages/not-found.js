@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Layout from '../components/Layout';
+import Layout from '../components/layout';
 import PropTypes from 'prop-types';
 
 const propTypes = {
@@ -12,7 +12,7 @@ class NotFound extends Component {
         let pathname = this.props.location.pathname;
 
         return (
-            <Layout className="not-found">
+            <Layout className="not-found" title="Page not found" description="">
                 <h1>Page Not Found</h1>
 
                 <p>The path <code>{pathname}</code> did not match any routes.</p>

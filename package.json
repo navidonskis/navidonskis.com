@@ -16,9 +16,11 @@
     "@material/auto-init": "^0.24.0",
     "@material/layout-grid": "^0.24.0",
     "@material/textfield": "^0.24.0",
+    "md-to-react": "^0.2.1",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-helmet": "^5.2.0",
     "react-interactive": "^0.8.1",
     "react-markdown": "^2.5.1",
     "react-router-dom": "^4.2.2"
