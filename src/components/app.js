@@ -4,7 +4,26 @@ import Home from '../pages/home';
 import About from '../pages/about';
 import NotFound from '../pages/not-found';
 
+import mdcAutoInit from '@material/auto-init';
+import {MDCTextfield} from '@material/textfield';
+import {MDCRipple, MDCRippleFoundation, util} from '@material/ripple';
+
 class App extends Component {
+
+    state = {
+        initialize: false
+    };
+
+    componentDidMount() {
+        if (false === this.state.initialize) {
+            mdcAutoInit.register('MDCTextfield', MDCTextfield);
+            mdcAutoInit.register('MDCRipple', MDCRipple);
+            mdcAutoInit.register('MDCRippleFoundation', MDCRippleFoundation);
+
+            this.setState({initialize: true});
+        }
+    }
+
     render() {
         return (
             <Switch>

@@ -5,7 +5,7 @@ class Home extends Component {
     render() {
         return (
             <Layout className="home">
-                <h1>Home</h1>
+                <h1 className="mdc-typography--display1">{'Home'}</h1>
             </Layout>
         );
     }

@@ -1,0 +1,51 @@
+.header {
+  height: 92px;
+  background-color: #ffffff;
+  padding-top: 0;
+  padding-bottom: 0;
+  line-height: 92px;
+
+  a, a:visited {
+    color: #303030;
+  }
+
+  &__logo {
+    a {
+      font-weight: bold;
+      text-transform: uppercase;
+      display: block;
+      font-size: 14px;
+    }
+  }
+
+  &__navigation {
+    a {
+      font-weight: 400;
+      display: inline-block;
+      padding: 0 25px;
+      position: relative;
+      font-size: 14px;
+
+      &:not(.mdc-button) {
+        &:after {
+          transition: all .3s;
+          position: absolute;
+          content: '';
+          width: 0%;
+          left: 50%;
+        }
+
+        &.active,
+        &:hover {
+          &:after {
+            background-color: #138df1;
+            width: 50%;
+            height: 2px;
+            bottom: 35%;
+            left: 25%;
+          }
+        }
+      }
+    }
+  }
+}

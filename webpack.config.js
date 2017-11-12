@@ -1,7 +1,25 @@
 const webpack = require('webpack');
 const path = require('path');
+const glob = require('glob');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const inBuild = process.argv.indexOf('-p') === 1;
+const GENERATE_SOURCE_MAPS = !inBuild;
+
+const CSS_LOADER_CONFIG = [
+    {
+        loader: 'css-loader',
+        options: {
+            sourceMap: GENERATE_SOURCE_MAPS,
+        },
+    },
+    {
+        loader: 'sass-loader',
+        options: {
+            sourceMap: GENERATE_SOURCE_MAPS,
+            includePaths: glob.sync('node_modules').map((d) => path.join(__dirname, d)),
+        },
+    },
+];
 
 module.exports = {
     // Here the application starts executing
@@ -26,7 +44,10 @@ module.exports = {
             },
             { // sass / scss loader for webpack
                 test: /\.(sass|scss)$/,
-                loader: ExtractTextPlugin.extract(['css-loader', 'sass-loader'])
+                loader: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: CSS_LOADER_CONFIG,
+                })
             },
         ],
     },

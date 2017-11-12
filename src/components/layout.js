@@ -32,7 +32,7 @@ class Layout extends Component {
         const defaults = getDefaults(this.props);
 
         return (
-            <div className={this.props.className}>
+            <div className={`layout ${this.props.className}`}>
                 <Helmet>
                     <title>{defaults.title}</title>
                     <meta name="twitter:site" content={defaults.twitterUsername}/>
@@ -41,14 +41,9 @@ class Layout extends Component {
                     <meta name="og:description" content={defaults.description}/>
                 </Helmet>
 
-                <Header>
-                    <Link to="/">{'Home'}</Link>
-                    <Link to="/blog">{'Blog'}</Link>
-                    <Link to="/about">{'About'}</Link>
-                    <Link to="/contacts">{'Contacts'}</Link>
-                </Header>
+                <Header/>
 
-                <main className="container">{this.props.children}</main>
+                <main className="mdc-layout-grid">{this.props.children}</main>
 
                 <Footer>
                     <p>&copy; <Link to="https://www.navidonskis.com" target={'_blank'}>navidonskis.com</Link></p>

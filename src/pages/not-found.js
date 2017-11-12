@@ -13,7 +13,7 @@ class NotFound extends Component {
 
         return (
             <Layout className="not-found" title="Page not found" description="">
-                <h1>Page Not Found</h1>
+                <h1 className="mdc-typography--display1">{'Page Not Found'}</h1>
 
                 <p>The path <code>{pathname}</code> did not match any routes.</p>
             </Layout>
