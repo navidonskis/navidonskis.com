@@ -7,7 +7,7 @@ const GENERATE_SOURCE_MAPS = !inBuild;
 
 const CSS_LOADER_CONFIG = [
     {
-        loader: 'css-loader',
+        loader: 'css-loader?url=false',
         options: {
             sourceMap: GENERATE_SOURCE_MAPS,
         },
@@ -16,7 +16,7 @@ const CSS_LOADER_CONFIG = [
         loader: 'sass-loader',
         options: {
             sourceMap: GENERATE_SOURCE_MAPS,
-            includePaths: glob.sync('node_modules').map((d) => path.join(__dirname, d)),
+            includePaths: glob.sync('node_modules').map((d) => path.join(__dirname, d))
         },
     },
 ];
@@ -40,7 +40,11 @@ module.exports = {
             {
                 test: /\.js$/,
                 // exclude: /node_modules/,
-                loader: 'babel-loader'
+                include: [
+                    path.resolve(__dirname, "src"),
+                    path.resolve(__dirname, "node_modules/@material"),
+                ],
+                loader: 'babel-loader',
             },
             { // sass / scss loader for webpack
                 test: /\.(sass|scss)$/,

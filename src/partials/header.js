@@ -12,10 +12,10 @@ class Header extends Component {
                     </div>
                     <nav
                         className="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-6 mdc-layout-grid--align-right header__navigation">
-                        <NavLink to="/blog" activeClassName="active">{'Blog'}</NavLink>
                         <NavLink to="/about" activeClassName="active">{'About'}</NavLink>
+                        <NavLink to="/blog" activeClassName="active">{'Blog'}</NavLink>
                         <NavLink to="/contacts"
-                                 className="mdc-button mdc-button--raised mdc-ripple-upgraded"
+                                 className="mdc-button mdc-button--raised"
                                  activeClassName="active">{'Contacts'}</NavLink>
                     </nav>
                 </div>

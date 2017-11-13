@@ -43,7 +43,9 @@ class Layout extends Component {
 
                 <Header/>
 
-                <main className="mdc-layout-grid">{this.props.children}</main>
+                <main>{this.props.children}</main>
+
+                {/*className="mdc-layout-grid"*/}
 
                 <Footer>
                     <p>&copy; <Link to="https://www.navidonskis.com" target={'_blank'}>navidonskis.com</Link></p>
