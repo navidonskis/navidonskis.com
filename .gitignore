@@ -9,3 +9,4 @@
 
 # ignore editor directory
 /.idea
+.DS_Store
