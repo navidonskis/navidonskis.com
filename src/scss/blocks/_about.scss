@@ -1,45 +1,41 @@
 @import "~@material/typography/mixins";
 
 .about-block {
-  background: url(~/dist/images/background-01.jpg) no-repeat center top;
-  background-size: cover;
-  height: 605px;
-  display: flex;
-  align-items: center;
+	background: url(~/dist/images/background-01.jpg) no-repeat center top;
+	background-size: cover;
+	height: 605px;
+	display: flex;
+	align-items: center;
 
-  &--container {
+	&--container {
+		width: 100%;
+	}
 
-    //display: inline-flex;
-    width: 100%;
-  }
+	&--title {
+		@include mdc-typography('display1');
+	}
 
-  &--title {
-    @include mdc-typography('display1');
-    margin-bottom: 45px;
-    position: relative;
+	&--content {
+		max-width: 790px;
 
-    &:after {
-      content: '';
-      height: 4px;
-      width: 37px;
-      background-color: #ffffff;
-      position: absolute;
-      left: 0;
-      bottom: -20px;
-    }
-  }
+		p {
+			font-size: 16px;
+			line-height: 24px;
+		}
+	}
 
-  &--content {
-    max-width: 790px;
+	h1, p {
+		color: #ffffff;
+		font-weight: 300;
+	}
 
-    p {
-      font-size: 16px;
-      line-height: 24px;
-    }
-  }
+	&--cta {
+		padding: 24px 0px;
 
-  h1, p {
-    color: #ffffff;
-    font-weight: 300;
-  }
+		.about-block--cta-button {
+			&:not(:last-child) {
+				margin-right: 30px;
+			}
+		}
+	}
 }

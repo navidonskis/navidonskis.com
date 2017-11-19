@@ -1,3 +1,35 @@
+$mdc-typography-styles: (
+		display1: (
+				font-size: 38px,
+				line-height: 42px
+		),
+		display2: (
+				font-size: 28px,
+				line-height: 42px
+		)
+);
+
 a, a:visited {
-  text-decoration: none;
+	text-decoration: none;
+}
+
+.heading-line {
+	margin-bottom: 45px;
+	position: relative;
+
+	&:after {
+		content: '';
+		height: 4px;
+		width: 37px;
+		background-color: #ffffff;
+		position: absolute;
+		left: 0;
+		bottom: -20px;
+	}
+
+	&--secondary {
+		&:after {
+			background-color: #107ad1;
+		}
+	}
 }

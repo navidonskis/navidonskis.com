@@ -2,9 +2,9 @@
 @import "components/reset";
 
 html, body {
-  height: 100%;
-  background-color: #f2f2f2;
-  font-family: 'Montserrat', sans-serif;
+	height: 100%;
+	background-color: #f2f2f2;
+	font-family: 'Montserrat', sans-serif;
 }
 
 @import "~@material/layout-grid/mdc-layout-grid";
@@ -14,5 +14,7 @@ html, body {
 
 @import "components/header";
 @import "components/typography";
+@import "components/button";
 
 @import "blocks/about";
+@import "blocks/latest-posts";

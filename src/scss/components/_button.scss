@@ -1,0 +1,27 @@
+.mdc-button {
+	&--white:not(:disabled) {
+		background-color: #FFF;
+		color: #138df1;
+		box-shadow: none;
+		transition: all .3s;
+
+		&:hover,
+		&:focus {
+			background-color: #F4F4F4;
+		}
+	}
+
+	&--transparent:not(:disabled) {
+		color: #FFF;
+		background-color: transparent;
+		box-shadow: none;
+		border: 1px solid #FFF;
+		transition: all .3s;
+
+		&:hover,
+		&:focus {
+			background-color: #FFF;
+			color: #138df1;
+		}
+	}
+}

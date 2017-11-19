@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 
 const blockData = {
     title: "About me",
@@ -12,9 +13,16 @@ class About extends Component {
         return (
             <section className="content-block about-block">
                 <div className="about-block--container mdc-layout-grid">
-                    <h1 className="about-block--title">{blockData.title}</h1>
+                    <h1 className="about-block--title heading-line">{blockData.title}</h1>
                     <div className="about-block--content mdc-layout-grid__cell">
                         <p>{blockData.content}</p>
+
+                        <div className="about-block--cta">
+                            <Link to="/contacts"
+                                  className="about-block--cta-button mdc-button mdc-button--raised mdc-button--white">{'Contact me'}</Link>
+                            <Link to="/resume"
+                                  className="about-block--cta-button mdc-button mdc-button--raised mdc-button--transparent">{'Read resume'}</Link>
+                        </div>
                     </div>
                 </div>
             </section>

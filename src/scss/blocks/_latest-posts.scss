@@ -1,0 +1,6 @@
+.latest-posts-block {
+	&--title {
+		@include mdc-typography('display2');
+		white-space: nowrap;
+	}
+}
