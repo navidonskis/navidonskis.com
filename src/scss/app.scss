@@ -3,14 +3,17 @@
 
 html, body {
 	height: 100%;
-	background-color: #f2f2f2;
+	background-color: #ffffff;
 	font-family: 'Montserrat', sans-serif;
 }
+
+$mdc-theme-primary: #107ad1;
 
 @import "~@material/layout-grid/mdc-layout-grid";
 @import "~@material/typography/mdc-typography";
 @import "~@material/button/mdc-button";
 @import "~@material/theme/mdc-theme";
+@import "~@material/card/mdc-card";
 
 @import "components/header";
 @import "components/typography";
@@ -18,3 +21,4 @@ html, body {
 
 @import "blocks/about";
 @import "blocks/latest-posts";
+@import "blocks/no-script";

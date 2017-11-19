@@ -9,7 +9,25 @@
     <script type="text/javascript" src="/dist/history.query.js"></script>
 </head>
 <body>
-<div id="root"></div>
+<div id="root">
+    <noscript class="no-script">
+        <div class="mdc-layout-grid">
+            <div class="mdc-card mdc-layout-grid__cell">
+                <section class="mdc-card__primary">
+                    <h1 class="mdc-card__title mdc-card__title--large heading-line heading-line--secondary">Javascript
+                        required</h1>
+                </section>
+                <section class="mdc-card__supporting-text">
+                    <p>We're sorry, but web site doesn't work properly without Javascript enabled.</p>
+                </section>
+
+                <section class="mdc-card__actions">
+                    <a class="mdc-button mdc-button--unelevated" href="/">Reload</a>
+                </section>
+            </div>
+        </div>
+    </noscript>
+</div>
 <script src="/dist/app.min.js"></script>
 </body>
 </html>
