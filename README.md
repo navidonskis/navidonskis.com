@@ -10,4 +10,5 @@
  - Finish blog page
  - Add blog implementation
  - When we can use, change CNAME to navidonskis.com domain name and forward
+ - check with https://frontendchecklist.io/
  - ...
