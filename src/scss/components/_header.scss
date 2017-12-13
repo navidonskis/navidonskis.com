@@ -6,6 +6,11 @@
 	line-height: 92px;
 	padding: 0 24px;
 	overflow: hidden;
+	position: relative;
+
+	&__container {
+		@include layout-max-width;
+	}
 
 	a, a:visited {
 		font-size: 14px;

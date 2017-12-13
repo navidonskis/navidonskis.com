@@ -9,6 +9,10 @@
 
 	&--container {
 		width: 100%;
+		@include layout-max-width;
+		@include layout-breakpoint-min(1440px) {
+			padding: 0;
+		};
 	}
 
 	&--title {

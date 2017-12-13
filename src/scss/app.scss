@@ -1,13 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700');
-@import "components/reset";
-
-html, body {
-	height: 100%;
-	background-color: #ffffff;
-	font-family: 'Montserrat', sans-serif;
-}
-
-$mdc-theme-primary: #107ad1;
+// override MDC variables
+@import "variables";
 
 @import "~@material/layout-grid/mdc-layout-grid";
 @import "~@material/typography/mdc-typography";
@@ -15,7 +7,9 @@ $mdc-theme-primary: #107ad1;
 @import "~@material/theme/mdc-theme";
 @import "~@material/card/mdc-card";
 
+@import "mixins";
 @import "components/header";
+@import "components/footer";
 @import "components/typography";
 @import "components/button";
 

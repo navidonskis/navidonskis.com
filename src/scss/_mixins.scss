@@ -1,0 +1,23 @@
+@mixin layout-max-width($max-width: null) {
+	$max: 1440px !default;
+	box-sizing: border-box;
+	margin: 0 auto;
+
+	@if $max-width {
+		$max: $max-width;
+	}
+
+	max-width: $max;
+}
+
+@mixin layout-breakpoint-min($min-width) {
+	@media screen and (min-width: $min-width) {
+		@content
+	}
+}
+
+@mixin layout-breakpoint-max($min-width) {
+	@media screen and (max-width: $min-width) {
+		@content
+	}
+}

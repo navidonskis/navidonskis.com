@@ -1,4 +1,8 @@
-.latest-posts-block {
+.latest-posts {
+	&__container {
+		@include layout-max-width;
+	}
+
 	&--title {
 		@include mdc-typography('display2');
 		white-space: nowrap;
