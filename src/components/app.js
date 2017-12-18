@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Switch, Route} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import Home from '../pages/home';
 import About from '../pages/about';
 import NotFound from '../pages/not-found';
@@ -7,6 +7,7 @@ import NotFound from '../pages/not-found';
 import mdcAutoInit from '@material/auto-init';
 import {MDCTextfield} from '@material/textfield';
 import {MDCRipple, MDCRippleFoundation, util} from '@material/ripple';
+import {AnimatedSwitch} from 'react-router-transition';
 
 class App extends Component {
 
@@ -26,11 +27,16 @@ class App extends Component {
 
     render() {
         return (
-            <Switch>
+            <AnimatedSwitch
+                atEnter={{ opacity: 0 }}
+                atLeave={{ opacity: 0 }}
+                atActive={{ opacity: 1 }}
+                className="switch-wrapper"
+            >
                 <Route exact path="/" component={Home}/>
                 <Route exact path="/about" component={About}/>
                 <Route path="*" component={NotFound}/>
-            </Switch>
+            </AnimatedSwitch>
         );
     }
 }

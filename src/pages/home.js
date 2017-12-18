@@ -6,7 +6,7 @@ class Home extends Component {
     render() {
         return (
             <Layout className="home">
-                <About/>
+                <About id="about-block"/>
                 <LatestPosts/>
             </Layout>
         );

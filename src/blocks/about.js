@@ -11,7 +11,7 @@ const blockData = {
 class About extends Component {
     render() {
         return (
-            <section className="content-block about-block">
+            <section className="content-block about-block" {...this.props}>
                 <div className="about-block--container mdc-layout-grid">
                     <h1 className="about-block--title heading-line">{blockData.title}</h1>
                     <div className="about-block--content mdc-layout-grid__cell">
