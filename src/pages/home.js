@@ -8,7 +8,7 @@ class Home extends Component {
             <Layout className="home">
                 <About id="about-block"/>
                 <LatestPosts/>
-                <CurrentPlace link="https://goo.gl/mdXy2c" zoomLevel={11} />
+                <CurrentPlace link="https://goo.gl/mdXy2c" />
             </Layout>
         );
     }

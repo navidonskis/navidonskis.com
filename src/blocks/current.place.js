@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {withScriptjs, withGoogleMap, GoogleMap} from "react-google-maps"
+import mapsStyles from './maps.styles.json';
 
 class CurrentPlace extends Component {
 
@@ -11,8 +12,8 @@ class CurrentPlace extends Component {
             city: this.props.city || 'Vilnius',
             country: this.props.country || 'Lithuania',
             googleMapKey: 'AIzaSyDxxj3YKFpifdlYP1ImXZTm9rCwwHoqcnU',
-            zoomLevel: this.props.zoomLevel || 10,
-            coordinates: this.props.coordinates || {lat: 54.7000902, lng: 24.9727564},
+            zoomLevel: this.props.zoomLevel || 13,
+            coordinates: this.props.coordinates || {lat: 54.6903488, lng: 25.2550229},
             height: this.props.height || 200
         };
     }
@@ -34,12 +35,12 @@ class CurrentPlace extends Component {
                 </p>
             );
         };
-
         const MAP = withScriptjs(withGoogleMap((props) => {
             return (
                 <GoogleMap
                     defaultZoom={this.state.zoomLevel}
                     defaultCenter={this.state.coordinates}
+                    defaultOptions={{styles: mapsStyles}}
                 />
             );
         }));
@@ -49,7 +50,7 @@ class CurrentPlace extends Component {
                 <div className="current-place__container">
                     <div className="mdc-layout-grid">
                         <div className="mdc-layout-grid__inner">
-                            <div className="mdc-layout-grid__cell mdc-layout-grid__cell--span-1"></div>
+                            <div className="mdc-layout-grid__cell mdc-layout-grid__cell--span-2"></div>
                             <div className="mdc-layout-grid__cell mdc-layout-grid__cell--span-8">
                                 {CurrentLocated()}
                             </div>
