@@ -1,0 +1,34 @@
+.current-place {
+
+	&__container {
+		background-color: rgba(15, 101, 175, 0.73);
+		width: 100%;
+		position: absolute;
+		z-index: 10;
+		height: 200px;
+		line-height: 150px;
+
+		p, a, a:visited {
+			font-size: 16px;
+			font-weight: 500;
+			color: #FFFFFF;
+
+			span {
+				background-color: #FFFFFF;
+				color: #138df1;
+				text-transform: uppercase;
+				padding: 5px 10px;
+				margin: 0 5px;
+				transition: all .3s;
+			}
+		}
+
+		a:hover, a:focus {
+			span {
+				border: 1px solid #FFFFFF;
+				background-color: transparent;
+				color: #FFFFFF;
+			}
+		}
+	}
+}
