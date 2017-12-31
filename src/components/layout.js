@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import Header from '../partials/header';
 import Footer from '../partials/footer';
 import {Helmet} from "react-helmet";
+import ContactForm from '../components/contact.form';
 
 const getDefaults = (props) => {
     let getTitle = () => {
@@ -70,7 +71,8 @@ class Layout extends Component {
                             <h2 className="heading-line heading-line--secondary">{'Contact me'}</h2>
 
                             <img src="/dist/images/profile.jpg" alt="Donatas Navidonskis" className="image__rounded"/>
-                            <p className="footer__content">If you want to hire me, fill in the form or use one of the contact details below.</p>
+                            <p className="footer__content">
+                                If you want to hire me, fill in the form or use one of the contact details below.</p>
 
                             <div className="inline-items">
                                 {networks.map((item, index) => {
@@ -84,8 +86,7 @@ class Layout extends Component {
                             </div>
                         </div>
                         <div className="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
-                            <p>&copy; <Link to="https://www.navidonskis.com" target={'_blank'}>navidonskis.com</Link>
-                            </p>
+                            <ContactForm/>
                         </div>
                     </div>
                 </Footer>

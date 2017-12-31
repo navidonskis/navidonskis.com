@@ -7,6 +7,7 @@ import NotFound from '../pages/not-found';
 import mdcAutoInit from '@material/auto-init';
 import {MDCTextfield} from '@material/textfield';
 import {MDCRipple, MDCRippleFoundation, util} from '@material/ripple';
+import {MDCFormField, MDCFormFieldFoundation} from '@material/form-field';
 import {AnimatedSwitch} from 'react-router-transition';
 
 class App extends Component {
@@ -17,9 +18,11 @@ class App extends Component {
 
     componentDidMount() {
         if (false === this.state.initialize) {
-            mdcAutoInit.register('MDCTextfield', MDCTextfield);
+            mdcAutoInit.register('MDCTextField', MDCTextfield);
             mdcAutoInit.register('MDCRipple', MDCRipple);
             mdcAutoInit.register('MDCRippleFoundation', MDCRippleFoundation);
+            mdcAutoInit.register('MDCFormField', MDCFormField);
+            mdcAutoInit.register('MDCFormFieldFoundation', MDCFormFieldFoundation);
 
             this.setState({initialize: true});
         }
