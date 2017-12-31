@@ -8,9 +8,11 @@ class LatestPosts extends Component {
             <section className="content-block latest-posts mdc-layout-grid" id="latest-posts">
                 <div className="latest-posts__container">
                     <div className="mdc-layout-grid__inner">
-                        <h2 className="latest-posts--title heading-line heading-line--secondary">{'Latest posts'}</h2>
+                        <h2 className="latest-posts--title heading-line heading-line--secondary">{'Recent posts'}</h2>
 
-
+                        <div className="latest-posts__items">
+                            <div className="latest-posts__item"></div>
+                        </div>
                     </div>
                 </div>
             </section>

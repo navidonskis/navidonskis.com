@@ -1,7 +1,7 @@
 .current-place {
 
 	&__container {
-		background-color: rgba(16, 105, 180, 0.80);
+		background-color: rgba(16, 105, 180, 0.9);
 		width: 100%;
 		position: absolute;
 		z-index: 10;
@@ -9,7 +9,7 @@
 		line-height: 150px;
 
 		p, a, a:visited {
-			font-size: 16px;
+			font-size: 14px;
 			font-weight: 500;
 			color: #FFFFFF;
 

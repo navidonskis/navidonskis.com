@@ -22,7 +22,25 @@ const getDefaults = (props) => {
         description: getDescription(),
         title: getTitle() + 'navidonskis.com',
         twitterUsername: '@navidonskis.com',
-        siteName: 'navidonskis.com'
+        siteName: 'navidonskis.com',
+        socialNetworks: [
+            {
+                type: 'linkedin',
+                url: 'https://www.linkedin.com/in/navidonskis'
+            },
+            {
+                type: 'facebook',
+                url: 'https://www.facebook.com/donatas.navidonskis'
+            },
+            {
+                type: 'twitter',
+                url: 'https://twitter.com/navidonskis'
+            },
+            {
+                type: 'github',
+                url: 'https://github.com/doniz'
+            }
+        ]
     };
 };
 
@@ -30,6 +48,7 @@ class Layout extends Component {
 
     render() {
         const defaults = getDefaults(this.props);
+        const networks = defaults.socialNetworks;
 
         return (
             <div className={`layout ${this.props.className}`}>
@@ -45,10 +64,30 @@ class Layout extends Component {
 
                 <main>{this.props.children}</main>
 
-                {/*className="mdc-layout-grid"*/}
-
                 <Footer>
-                    <p>&copy; <Link to="https://www.navidonskis.com" target={'_blank'}>navidonskis.com</Link></p>
+                    <div className="mdc-layout-grid__inner">
+                        <div className="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+                            <h2 className="heading-line heading-line--secondary">{'Contact me'}</h2>
+
+                            <img src="/dist/images/profile.jpg" alt="Donatas Navidonskis" className="image__rounded"/>
+                            <p className="footer__content">If you want to hire me, fill in the form or use one of the contact details below.</p>
+
+                            <div className="inline-items">
+                                {networks.map((item, index) => {
+                                    return (
+                                        <a rel="me" target="_blank" href={item.url} className="inline-items__item"
+                                           key={index} title={item.type}>
+                                            <i className={`icons icons__${item.type}`}></i>
+                                        </a>
+                                    )
+                                })}
+                            </div>
+                        </div>
+                        <div className="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+                            <p>&copy; <Link to="https://www.navidonskis.com" target={'_blank'}>navidonskis.com</Link>
+                            </p>
+                        </div>
+                    </div>
                 </Footer>
             </div>
         );

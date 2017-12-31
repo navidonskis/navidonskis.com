@@ -1,0 +1,12 @@
+.inline-items {
+	margin: 22px auto;
+	max-width: 40%;
+
+	&__item {
+		display: inline-block;
+
+		&:not(:last-child) {
+			margin-right: 15px;
+		}
+	}
+}
