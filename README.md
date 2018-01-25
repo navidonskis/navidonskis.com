@@ -3,8 +3,10 @@
 # Personal Site with React.js
 
 Hello, my name is Donatas Navidonskis. I'm Software Engineer from Lithuania. Here is my personal website at public repository.
-The idea was to create my own web site (the big reload). So i decide to do it within `React` and to learn that kind of awesome framework. And also to host at [github pages](https://pages.github.com/).
+The idea was to create my own web site (the big reload). So i decide to do it with `React` framework and learn that kind of awesome framework. 
 
-## License and Maintainers
+Thank you Github for great tool of [github pages](https://pages.github.com/).
 
-[The 3-Clause BSD License](./LICENSE) | Copyright 2017 Donatas Navidonskis <donatas(at)navidonskis.com>
+## License
+
+[The 3-Clause BSD License](./LICENSE)
