@@ -25,6 +25,7 @@
     "@material/textfield": "^0.24.0",
     "@material/theme": "^0.24.0",
     "@material/typography": "^0.3.0",
+    "glob": "^7.1.2",
     "md-to-react": "^0.2.1",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",

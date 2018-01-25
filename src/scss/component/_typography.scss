@@ -1,3 +1,4 @@
+
 $mdc-typography-styles: (
 		display1: (
 				font-size: 38px,
@@ -11,8 +12,15 @@ $mdc-typography-styles: (
 		)
 );
 
+html, body {
+	height: 100%;
+	background-color: #ffffff;
+	font-family: 'Montserrat', sans-serif;
+}
+
 a, a:visited {
 	text-decoration: none;
+	color: $mdc-theme-primary;
 }
 
 .heading-line {

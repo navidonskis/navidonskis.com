@@ -1,0 +1,79 @@
+.header {
+  width: 100%;
+  z-index: 30;
+  background: #fff;
+  position: absolute;
+  height: 112px;
+  line-height: 112px;
+
+  @include layout-breakpoint-min(1025px) {
+    padding: 0 0 0;
+    position: absolute;
+  }
+  @include layout-breakpoint-min(767px) {
+    padding: 0 0 16px;
+    position: fixed;
+  }
+
+  &__container {
+    left: 0;
+    padding: 0 20px;
+    position: relative;
+    transition: padding 800ms cubic-bezier(.645,.045,.355,1);
+
+    @include layout-max-width();
+    @include layout-breakpoint-min(1025px) {
+      padding: 0 60px;
+    }
+    @include layout-breakpoint-min(767px) {
+      padding: 0 30px;
+    }
+  }
+
+  $brandname-width: 132px;
+
+  &__brandname {
+    display: inline-block;
+    width: $brandname-width;
+
+    &--link {
+      font-size: 22px;
+      letter-spacing: 0;
+      font-weight: 400;
+      color: #5e5e5e;
+      text-decoration: none;
+      transition: color .3s;
+
+      &:hover,
+      &:focus {
+        color: #5e5e5e;
+      }
+    }
+  }
+
+  &__navigation {
+    display: inline-block;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    text-align: right;
+    width: calc(100% - #{$brandname-width});
+    
+    &--link {
+      padding: 0 25px;
+      display: inline-block;
+      font-weight: 300;
+
+      @include horizontal-link();
+
+      &:hover,
+      &:focus,
+      &.active {
+        &:after {
+          bottom: 30%;
+        }
+      }
+    }
+  }
+}

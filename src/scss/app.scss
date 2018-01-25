@@ -10,16 +10,6 @@
 @import "~@material/card/mdc-card";
 
 @import "mixins";
-@import "components/typography";
-@import "components/icons";
-@import "components/images";
-@import "components/inline-items";
-@import "components/switch-wrapper";
-@import "components/header";
-@import "components/footer";
-@import "components/button";
 
-@import "blocks/about";
-@import "blocks/latest-posts";
-@import "blocks/no-script";
-@import "blocks/current-place";
+@import "component/header";
+@import "component/typography";
