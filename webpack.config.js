@@ -64,12 +64,12 @@ module.exports = {
       disable: inBuild,
     }),
   ],
-        !inBuild ? [] : [
-          new webpack.optimize.UglifyJsPlugin({
-            output: {
-              comments: false,
-            },
-          }),
-        ],
-    ),
+    !inBuild ? [] : [
+      new webpack.optimize.UglifyJsPlugin({
+        output: {
+          comments: false,
+        },
+      }),
+    ],
+  ),
 };
