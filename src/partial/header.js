@@ -3,13 +3,23 @@ import { Link, NavLink } from 'react-router-dom';
 
 class Header extends React.Component {
 
-  state = {
-    opened: false,
-    toggleClass: '',
-  };
-
   constructor(props) {
     super(props);
+
+    this.state = {
+      opened: false,
+      toggleClass: '',
+      routes: [
+        {
+          url: '/about',
+          title: 'About',
+        },
+        {
+          url: '/blog',
+          title: 'Blog',
+        },
+      ],
+    };
 
     this.toggleMenu = this.toggleMenu.bind(this);
   }
@@ -30,19 +40,35 @@ class Header extends React.Component {
   }
 
   render() {
+    const BrandLink = () => (
+      <div className="header__brandname">
+        <Link to="/" className="header__brandname--link">
+          {'navidonskis'}
+        </Link>
+      </div>
+    );
+
+    const NavigationOptions = {
+      className: 'header__navigation--link',
+      activeClassName: 'active',
+    };
+
     return (
       <header className="header" role="banner" {...this.props}>
         <div className="header__container">
-          <div className="header__brandname">
-            <Link to="/" className="header__brandname--link">
-              {'navidonskis'}
-            </Link>
-          </div>
+          <BrandLink />
           <nav className={`header__navigation ${this.state.toggleClass}`}>
-            <div className="header__navigation--overlay" />
-            <NavLink to="#" className="header__navigation--toggle-menu" onClick={this.toggleMenu}>. . .</NavLink>
-            <NavLink to="/about" className="header__navigation--link" activeClassName="active">{'About'}</NavLink>
-            <NavLink to="/blog" className="header__navigation--link" activeClassName="active">{'Blog'}</NavLink>
+            <div className="header__navigation--overlay" onClick={this.toggleMenu} />
+            <NavLink to="#" className="header__toggle-menu" onClick={this.toggleMenu}>
+              <div className="header__toggle-menu--container">
+                <span />
+                <span />
+                <span />
+              </div>
+            </NavLink>
+            {this.state.routes.map((item, index) => (
+              <NavLink to={item.url} {...NavigationOptions} key={index}>{item.title}</NavLink>
+            ))}
           </nav>
         </div>
       </header>
