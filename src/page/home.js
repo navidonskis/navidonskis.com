@@ -5,9 +5,7 @@ class Home extends React.Component {
 
   render() {
     return (
-      <Layout>
-        <h1>n</h1>
-      </Layout>
+      <Layout />
     );
   }
 }
