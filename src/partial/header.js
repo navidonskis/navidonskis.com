@@ -57,7 +57,7 @@ class Header extends React.Component {
       <header className="header" role="banner" {...this.props}>
         <div className="header__container">
           <BrandLink />
-          <nav className={`header__navigation ${this.state.toggleClass}`}>
+          <nav className={`header__navigation ${this.state.toggleClass}`} itemScope itemType="http://schema.org/SiteNavigationElement">
             <div className="header__navigation--overlay" onClick={this.toggleMenu} />
             <NavLink to="#" className="header__toggle-menu" onClick={this.toggleMenu}>
               <div className="header__toggle-menu--container">
@@ -67,7 +67,9 @@ class Header extends React.Component {
               </div>
             </NavLink>
             {this.state.routes.map((item, index) => (
-              <NavLink to={item.url} {...NavigationOptions} key={index}>{item.title}</NavLink>
+              <NavLink to={item.url} {...NavigationOptions} key={index} itemProp="url">
+                <span itemProp="name">{item.title}</span>
+              </NavLink>
             ))}
           </nav>
         </div>
