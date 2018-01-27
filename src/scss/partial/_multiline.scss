@@ -1,0 +1,33 @@
+$negative: -.5em;
+$positive: .5em;
+$background: #000;
+
+.padded-multiline {
+  text-transform: uppercase;
+  color: #FFFFFF;
+  width: calc(100% - 40px);
+  // text-indent: -1em;
+  margin: 0 20px;
+  font-size: 2.6vw;
+  transition: all .8s;
+  
+  @media screen and (min-width: 57em){
+    font-size: 29px;
+  }
+
+  > span {
+    position: relative;
+    background: $background;
+    transition: all .8s;
+    box-shadow:
+      $negative $negative 0 $background,
+      $positive $negative 0 $background,
+      $negative $positive 0 $background,
+      $positive $positive 0 $background;
+    > span {
+      font-weight: 500;
+      transition: all .8s;
+      line-height: 2.8em;
+    }
+  }
+}

@@ -57,7 +57,7 @@ class Header extends React.Component {
       <header className="header" role="banner" {...this.props}>
         <div className="header__container">
           <BrandLink />
-          <nav className={`header__navigation ${this.state.toggleClass}`} itemScope itemType="http://schema.org/SiteNavigationElement">
+          <nav className={`header__navigation ${this.state.toggleClass}`} itemScope itemType="https://schema.org/SiteNavigationElement">
             <div className="header__navigation--overlay" onClick={this.toggleMenu} />
             <NavLink to="#" className="header__toggle-menu" onClick={this.toggleMenu}>
               <div className="header__toggle-menu--container">
