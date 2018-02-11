@@ -5,10 +5,15 @@
   }
 
   &--title {
-    font-size: 40px;
-    line-height: 60px;
+    font-size: 60px;
+    line-height: 90px;
     font-family: 'Lora', serif;
-    color: #FFF;
+    color: #000000;
+    word-break: break-word;
+    
+    @include layout-breakpoint-min(960px) {
+      width: 70%;
+    }
 
     a, a:visited {
       letter-spacing: 1px;
