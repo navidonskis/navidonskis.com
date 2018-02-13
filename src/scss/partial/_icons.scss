@@ -7,34 +7,34 @@
 	background: linear-gradient(transparent, transparent), url(~/dist/images/sprite.svg);
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	//transition: all .3s;
+	// transition: all .3s;
 
 	&__linkedin {
-		background-position: 0 0;
+		background-position: 0 #{-32px * 3};
 		width: 32px;
 		height: 32px;
 	}
 
 	&__twitter {
-		background-position: -32px 0px;
+		background-position: -32px #{-32px * 3};
 		width: 32px;
 		height: 32px;
 	}
 
 	&__googleplus {
-		background-position: #{-32px * 2} 0px;
+		background-position: #{-32px * 2}  #{-32px * 3};
 		width: 32px;
 		height: 32px;
 	}
 
 	&__facebook {
-		background-position: #{-32px * 3} 0;
+		background-position: #{-32px * 3}  #{-32px * 3};
 		width: 32px;
 		height: 32px;
 	}
 
 	&__github {
-		background-position: #{-32px * 4} 0;
+		background-position: #{-32px * 5} #{-32px * 3};
 		width: 32px;
 		height: 32px;
 	}
@@ -75,10 +75,10 @@ a:hover, a:focus {
 		}
 
 		&__github {
-			background-position: #{-32px * 4} -32px;
+			background-position: #{-32px * 5} -32px;
 
 			&.icons__colored {
-				background-position: #{-32px * 4} #{-32px * 2};
+				background-position: #{-32px * 5} #{-32px * 2};
 			}
 		}
 	}

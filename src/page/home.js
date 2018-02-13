@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Layout from '../component/layout';
-import SwappedSkills from '../component/swapped.skills';
+import SwapWords from '../component/swap.words';
 
 class Home extends React.Component {
 
@@ -9,7 +9,7 @@ class Home extends React.Component {
       <Layout className="home">
         <div className="home__container">
           <h2 className="home--title">
-            Hello, my name is Donatas and I'm a <SwappedSkills timeout={5000} /> from
+            Hello, my name is Donatas and I'm a <SwapWords /> from
             <a href="https://goo.gl/mdXy2c" target="_blank" rel="noopener noreferrer">Vilnius, Lithuania</a>
           </h2>
         </div>

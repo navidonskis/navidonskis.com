@@ -2,9 +2,9 @@
   width: 100%;
   background: #fff;
   position: fixed;
-  bottom: 10px;
-  height: 142px;
-  line-height: 142px;
+  bottom: 0;
+  height: 71px;
+  line-height: 71px;
 
   @include layout-breakpoint-min(1025px) {
     padding: 0 0 0;
@@ -27,6 +27,13 @@
     }
     @include layout-breakpoint-min(767px) {
       padding: 0 30px;
+    }
+  }
+
+  .social {
+    a {
+      display: inline-block;
+      margin: 0 10px 0 0;
     }
   }
 }
