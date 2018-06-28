@@ -1,35 +1,35 @@
 .main {
-  position: relative;
-  vertical-align: middle;
-  z-index: 20;
-  color: #222228;
-  background: #fff;
-  padding: 55px 0 20px 0;
+	position: relative;
+	vertical-align: middle;
+	z-index: 20;
+	color: #222228;
+	background: #fff;
+	padding: 55px 0 20px 0;
 
-  @include layout-breakpoint-min(767px) {
-    padding: 0 0;
-  }
+	@include layout-breakpoint-min(767px) {
+		padding: 0 0;
+	}
 
-  &__layout {
-    left: 0;
-    padding: 0 20px;
-    position: relative;
-    transition: all 800ms cubic-bezier(.645,.045,.355,1);
+	&__layout {
+		left: 0;
+		padding: 0 20px;
+		position: relative;
+		transition: all 800ms cubic-bezier(.645, .045, .355, 1);
 
-    @include layout-max-width();
-    @include layout-breakpoint-min(767px) {
-      height: 100%;
-      padding: 0 30px;
-    }
-  }
+		@include layout-max-width();
+		@include layout-breakpoint-min(767px) {
+			height: 100%;
+			padding: 0 30px;
+		}
+	}
 
-  &__container {
-    display: inline-block;
-    line-height: normal;
-    padding-top: 100px;
+	&__container {
+		display: inline-block;
+		line-height: normal;
+		padding-top: 100px;
 
-    @include layout-breakpoint-max(767px) {
-      padding-top: 20px;
-    }
-  }
+		@include layout-breakpoint-max(767px) {
+			padding-top: 20px;
+		}
+	}
 }

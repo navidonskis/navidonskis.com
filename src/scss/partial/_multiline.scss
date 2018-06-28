@@ -1,23 +1,23 @@
 $background: #000;
 
 .padded-multiline {
-  color: #FFFFFF;
+	color: #FFFFFF;
 
-  > span {
-    position: relative;
-    background: $background;
-    transition: all .5s;
-  }
+	> span {
+		position: relative;
+		background: $background;
+		transition: all .5s;
+	}
 
-  &.hide {
-    > span {
-      opacity: 0;
-    }
-  }
+	&.hide {
+		> span {
+			opacity: 0;
+		}
+	}
 
-  &.show {
-    > span {
-      opacity: 1;
-    }
-  }
+	&.show {
+		> span {
+			opacity: 1;
+		}
+	}
 }

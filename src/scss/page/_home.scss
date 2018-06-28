@@ -1,34 +1,34 @@
 .home {
 
-  &__container {
-    margin-top: 20vh;
-  }
+	&__container {
+		margin-top: 20vh;
+	}
 
-  &--title {
-    font-size: 32px;
-    line-height: 48px;
-    font-family: 'Lora', serif;
-    color: #000000;
-    word-break: break-word;
+	&--title {
+		font-size: 32px;
+		line-height: 48px;
+		font-family: 'Lora', serif;
+		color: #000000;
+		word-break: break-word;
 
-    @include layout-breakpoint-min(960px) {
-      font-size: 48px;
-      line-height: 68px;
-    }
+		@include layout-breakpoint-min(960px) {
+			font-size: 48px;
+			line-height: 68px;
+		}
 
-    a, a:visited {
-      transition: color .3s;
-      position: relative;
-      font-style: italic;
-      box-shadow: inset 0 -1px 0 #fff, inset 0 -1.5px 0 #000000;
-      transition: all .3s;
+		a, a:visited {
+			transition: color .3s;
+			position: relative;
+			font-style: italic;
+			box-shadow: inset 0 -1px 0 #fff, inset 0 -1.5px 0 #000000;
+			transition: all .3s;
 
-      &:hover,
-      &:focus,
-      &.active {
-        box-shadow: inset 0 -1px 0 #fff, inset 0 -1.5px 0 #5e5e5e;
-        color: #5e5e5e;
-      }
-    }
-  }
+			&:hover,
+			&:focus,
+			&.active {
+				box-shadow: inset 0 -1px 0 #fff, inset 0 -1.5px 0 #5e5e5e;
+				color: #5e5e5e;
+			}
+		}
+	}
 }

@@ -24,28 +24,28 @@
 
 @mixin horizontal-link() {
 	letter-spacing: 1px;
-  transition: color .3s;
-  position: relative;
+	transition: color .3s;
+	position: relative;
 
-  &:after {
-    transition: all 400ms cubic-bezier(0.18, 0.89, 0.32, 1.28);
-    position: absolute;
-    content: "";
-    width: 0;
-    left: 50%;
-  }
+	&:after {
+		transition: all 400ms cubic-bezier(0.18, 0.89, 0.32, 1.28);
+		position: absolute;
+		content: "";
+		width: 0;
+		left: 50%;
+	}
 
-  &:hover,
-  &:focus,
-  &.active {
-    color: #5e5e5e;
+	&:hover,
+	&:focus,
+	&.active {
+		color: #5e5e5e;
 
-    &:after {
-      background-color: #5e5e5e;
-      width: 60%;
-      height: 1px;
-      bottom: 25%;
-      left: 20%;
-    }
-  }
+		&:after {
+			background-color: #5e5e5e;
+			width: 60%;
+			height: 1px;
+			bottom: 25%;
+			left: 20%;
+		}
+	}
 }

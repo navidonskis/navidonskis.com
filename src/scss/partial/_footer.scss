@@ -1,39 +1,39 @@
 .footer {
-  width: 100%;
-  background: #fff;
-  position: fixed;
-  bottom: 0;
-  height: 71px;
-  line-height: 71px;
+	width: 100%;
+	background: #fff;
+	position: fixed;
+	bottom: 0;
+	height: 71px;
+	line-height: 71px;
 
-  @include layout-breakpoint-min(1025px) {
-    padding: 0 0 0;
-    position: absolute;
-  }
-  @include layout-breakpoint-min(767px) {
-    padding: 0 0 16px;
-    position: fixed;
-  }
+	@include layout-breakpoint-min(1025px) {
+		padding: 0 0 0;
+		position: absolute;
+	}
+	@include layout-breakpoint-min(767px) {
+		padding: 0 0 16px;
+		position: fixed;
+	}
 
-  &__container {
-    left: 0;
-    padding: 0 20px;
-    position: relative;
-    transition: padding 800ms cubic-bezier(.645,.045,.355,1);
+	&__container {
+		left: 0;
+		padding: 0 20px;
+		position: relative;
+		transition: padding 800ms cubic-bezier(.645, .045, .355, 1);
 
-    @include layout-max-width();
-    @include layout-breakpoint-min(1025px) {
-      padding: 0 60px;
-    }
-    @include layout-breakpoint-min(767px) {
-      padding: 0 30px;
-    }
-  }
+		@include layout-max-width();
+		@include layout-breakpoint-min(1025px) {
+			padding: 0 60px;
+		}
+		@include layout-breakpoint-min(767px) {
+			padding: 0 30px;
+		}
+	}
 
-  .social {
-    a {
-      display: inline-block;
-      margin: 0 10px 0 0;
-    }
-  }
+	.social {
+		a {
+			display: inline-block;
+			margin: 0 10px 0 0;
+		}
+	}
 }

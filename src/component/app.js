@@ -1,20 +1,23 @@
-import * as React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import React, {Component} from 'react';
+import {Router, Route} from 'react-router-dom';
 import Home from '../page/home';
+import Blog from "../page/blog";
+import createBrowserHistory from 'history/createBrowserHistory'
 
-class App extends React.Component {
+const history = createBrowserHistory();
 
-  state = {
-    boot: false,
-  };
+class App extends Component {
 
-  render() {
-    return (
-      <Switch>
-        <Route exact path="/" component={Home} />
-      </Switch>
-    );
-  }
+    render() {
+        return (
+            <Router history={history}>
+                <div>
+                    <Route exact path="/" component={Home}/>
+                    <Route path="/blog" component={Blog}/>
+                </div>
+            </Router>
+        );
+    }
 }
 
 export default App;
