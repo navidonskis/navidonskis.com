@@ -11,7 +11,7 @@ class Header extends Component {
             toggleClass: '',
             routes: [
                 {
-                    url: '/',
+                    url: '/about',
                     title: 'About',
                 },
                 {
