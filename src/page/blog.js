@@ -6,9 +6,7 @@ class Blog extends Component {
     render() {
         return (
             <Layout className="blog">
-                <div className="blog__container">
-                    <h1 className="blog--title">Blog</h1>
-                </div>
+                <h1 className="mdc-typography--headline2">Blog</h1>
             </Layout>
         );
     }

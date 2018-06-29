@@ -1,6 +1,6 @@
 // override MDC variables
 @import "variables";
-// @import "~@material/layout-grid/mdc-layout-grid";
+@import "~@material/layout-grid/mdc-layout-grid";
 @import "~@material/typography/mdc-typography";
 // @import "~@material/button/mdc-button";
 // @import "~@material/form-field/mdc-form-field";
@@ -12,6 +12,5 @@
 @import "partial/header";
 @import "partial/footer";
 @import "partial/main";
-@import "partial/multiline";
 @import "partial/icons";
 @import "page/home";
