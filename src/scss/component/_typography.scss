@@ -1,13 +1,29 @@
 $mdc-typography-styles: (
 		display1: (
-				font-size: 38px,
-				line-height: 42px
+				font-size: 48px,
+				line-height: 42px,
+				padding: 10px 0,
+				font-weight: 300
 		),
 		display2: (
-				font-size: 28px,
+				font-size: 38px,
 				line-height: 42px,
 				font-weight: 300,
-				color: #333333
+				color: #333333,
+				padding: 10px 0
+		),
+		headline1: (
+				font-size: 48px,
+				line-height: 42px,
+				padding: 10px 0,
+				font-weight: 300
+		),
+		headline2: (
+				font-size: 38px,
+				line-height: 42px,
+				font-weight: 300,
+				color: #333333,
+				padding: 10px 0
 		)
 );
 

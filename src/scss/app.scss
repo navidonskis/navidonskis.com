@@ -1,5 +1,7 @@
 // override MDC variables
 @import "variables";
+@import "mixins";
+@import "component/typography";
 @import "~@material/layout-grid/mdc-layout-grid";
 @import "~@material/typography/mdc-typography";
 // @import "~@material/button/mdc-button";
@@ -7,8 +9,6 @@
 // @import "~@material/textfield/mdc-textfield";
 // @import "~@material/theme/mdc-theme";
 // @import "~@material/card/mdc-card";
-@import "mixins";
-@import "component/typography";
 @import "partial/header";
 @import "partial/footer";
 @import "partial/main";
