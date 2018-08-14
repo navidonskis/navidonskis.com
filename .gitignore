@@ -1,16 +1,9 @@
-# Dependency directory
-/node_modules
+# Include your project-specific ignores in this file
+# Read about how to use .gitignore: https://help.github.com/articles/ignoring-files
 
-# Source maps
-*.js.map
-
-# Files marked with gitigx
-*gitigx*
-
-# ignore editor directory
-/.idea
-.DS_Store
-package-lock.json
+coverage
+dist
+docs/dist
+node_modules
 npm-debug.log
-
-src/blog/
+.idea
