@@ -1,0 +1,22 @@
+.navigation {
+	width: 100%;
+	text-align: right;
+
+	a, a:visited {
+		color: $text-color-grey;
+		text-decoration: none;
+	}
+
+	a:hover, a:active, a:focus, a.active {
+		color: #000000;
+	}
+
+	&--link {
+		margin: 0 30px;
+	}
+
+	@include tablet-and-greater {
+		padding: 0.8rem 2rem 1.25rem;
+		margin-bottom: 1.5rem;
+	}
+}

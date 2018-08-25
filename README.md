@@ -2,8 +2,7 @@
 
 # Personal website
 
-Static web site with HTML5, SASS and ES6.
-Thank you Github for great tool of [github pages](https://pages.github.com/).
+React static personal web site. Thank you Github for great tool of [github pages](https://pages.github.com/).
 
 ## License
 

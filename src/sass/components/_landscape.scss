@@ -1,0 +1,58 @@
+.landscape {
+	border: none;
+	padding: 0;
+	margin: 0;
+
+	&--background {
+		background-size: cover;
+		background-position-x: 50%;
+		background-repeat: no-repeat;
+		bottom: 0;
+		top: 0;
+		left: 0;
+		padding: 0;
+		position: fixed;
+		width: calc(50% - #{$sides-desktop});
+		z-index: 5;
+	}
+
+	&__overlay {
+		width: 100%;
+		height: 100%;
+
+		&:after {
+			background-color: rgba(255, 255, 255, 0.56);
+			content: '';
+			position: fixed;
+			width: calc(50% - #{$sides-desktop});
+			height: 100%;
+			top: 0;
+			z-index: 5;
+			left: 0;
+		}
+	}
+
+	@include tablet-and-less {
+		&__overlay {
+			position: relative;
+
+			&:after {
+				position: absolute;
+				width: 100%;
+			}
+		}
+
+		&--background {
+			position: relative;
+			padding-top: 50%;
+			width: 100%;
+			background-position-y: 50%;
+		}
+	}
+}
+
+@include tablet-and-less {
+	.about .landscape--background {
+		background-position-y: 10%;
+	}
+}
