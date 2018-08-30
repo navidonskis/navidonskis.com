@@ -4,11 +4,7 @@ class Main extends Component {
   render () {
     return (
       <main className="main" role="main">
-        <div className="main__container">
-          <div className="main--content">
-            {this.props.children}
-          </div>
-        </div>
+        {this.props.children}
       </main>
     );
   }

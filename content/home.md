@@ -1,36 +1,15 @@
 ---
 title: Donatas Navidonskis - Software Engineer
+description: Donatas Navidonskis is an Software Engineer focused on building web applications and infrastructure.
 ---
 
 # **Donatas Navidonskis** is an Software Engineer focused on building web applications and infrastructure.
 
 <hr/>
 
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-industry's standard dummy text ever since the 1500s, when an [unknown printer took a galley](/) of type
-and scrambled it to **make a type specimen book**. It has survived not only five centuries, but also the
-leap into electronic typesetting, remaining essentially unchanged.</p>
-<p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
-took a galley of type and scrambled it to make a type specimen book.</p>
-<p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining
-essentially unchanged.</p>
+Donatas currently work as Software Engineer at Boozt Fashion AB, highly motivated and result-oriented 
+professional. He's focused on infrastructure, cloud computing, cloud architecture. At the breakfast he 
+eating Docker or Kubernetes and for whole busy day he resting with Node.js, PHP, React.js, Golang or 
+some cookbook.
 
-<hr/>
-
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-industry's standard dummy text ever since the 1500s, when an [unknown printer took a galley](/) of type
-and scrambled it to **make a type specimen book**. It has survived not only five centuries, but also the
-leap into electronic typesetting, remaining essentially unchanged.</p>
-<p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
-took a galley of type and scrambled it to make a type specimen book.</p>
-<p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining
-essentially unchanged.</p>
-
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-industry's standard dummy text ever since the 1500s, when an [unknown printer took a galley](/) of type
-and scrambled it to **make a type specimen book**. It has survived not only five centuries, but also the
-leap into electronic typesetting, remaining essentially unchanged.</p>
-<p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
-took a galley of type and scrambled it to make a type specimen book.</p>
-<p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining
-essentially unchanged.</p>
+He lives with his wife and one children in Vilnius, Lithuania.
