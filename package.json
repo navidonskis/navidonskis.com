@@ -25,14 +25,15 @@
   "devDependencies": {
     "eslint-config-react-tools": "1.x.x",
     "extract-css-chunks-webpack-plugin": "^3.0.11",
-    "serve": "^6.1.0",
     "extract-text-webpack-plugin": "latest",
-    "prop-types": "latest"
+    "prop-types": "latest",
+    "react-ga": "^2.5.3",
+    "serve": "^6.1.0"
   },
   "scripts": {
     "start": "react-static start",
-    "stage": "rm -Rf dist/ docs/ && react-static build --staging && mv dist/ docs/",
-    "build": "rm -Rf dist/ docs/ && react-static build && mv dist/ docs/",
+    "stage": "./bin/build.sh --staging",
+    "build": "./bin/build.sh",
     "serve": "serve docs -p 3000",
     "lint": "eslint src/"
   }

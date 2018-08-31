@@ -7,7 +7,7 @@ chokidar.watch('content').on('all', () => reloadRoutes());
 
 export default {
   getSiteData: () => ({
-    title: 'React Static',
+    title: 'Donatas Navidonskis - Software Engineer',
   }),
   getRoutes: async () => {
     const { posts, home, about } = await jdown('content');
