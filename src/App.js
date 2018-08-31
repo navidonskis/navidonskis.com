@@ -12,6 +12,6 @@ const App = () => (
   </Router>
 );
 
-ReactGA.initialize('UA-72741925-1', { debug: true });
+ReactGA.initialize('UA-72741925-1');
 
 export default hot(module)(App);
