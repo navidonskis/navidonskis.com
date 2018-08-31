@@ -1,0 +1,23 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Donatas Navidonskis",
+  "url": "https://www.navidonskis.com",
+  "homeLocation": {
+    "Place": {
+      "address": "Vilnius, Lithuania"
+    }
+  },
+  "email": "donatas@navidonskis.com",
+  "telephone": "+37067078495",
+  "givenName": "Donatas",
+  "familyName": "Navidonskis",
+  "jobTitle": "Software Engineer",
+  "sameAs": [
+    "https://www.facebook.com/donatas.navidonskis",
+    "https://twitter.com/navidonskis",
+    "https://www.linkedin.com/in/navidonskis/",
+    "https://github.com/navidonskis/",
+    "https://github.com/doniz/"
+  ]
+}
