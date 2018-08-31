@@ -10,7 +10,7 @@ class Head extends Component {
       { name: 'twitter:site', content: '@navidonskis' },
       { name: 'twitter:creator', content: '@navidonskis' },
       { name: 'og:type', content: 'website' },
-      { name: 'og:url', content: window.location },
+      { name: 'og:url', content: this.props.location },
     ];
   }
 
@@ -48,6 +48,28 @@ class Head extends Component {
         {meta && meta.map((item, index) =>
           <meta key={index} name={item.name} content={item.content}/>
         )}
+
+        {/*<link rel="canonical" href="{window.location}" />*/}
+        {/*<meta property="og:image:width" content="1200"/>*/}
+        {/*<meta property="og:image:height" content="630"/>*/}
+        {/*<meta property="og:url" content="https://www.veed.io/"/>*/}
+        {/*<meta property="og:title" content="VEED - Create, Edit & Share Videos Online for free"/>*/}
+        {/*<meta property="og:description"*/}
+        {/*content="Veed is a simple but powerfull video editor, try our free video editor to, resize video, trim video add loads more!"/>*/}
+        {/*<meta property="og:image" content="https://www.veed.io/fav/og-image.png"/>*/}
+        {/*<meta property="og:image:url" content="https://www.veed.io/fav/og-image.png"/>*/}
+
+        <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"/>
+        <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"/>
+        <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"/>
+        <link rel="manifest" href="/assets/manifest.json"/>
+        <link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#000000"/>
+        <link rel="shortcut icon" href="/assets/favicon.ico"/>
+        <meta name="apple-mobile-web-app-title" content="navidonskis"/>
+        <meta name="application-name" content="navidonskis"/>
+        <meta name="msapplication-config" content="/assets/browserconfig.xml"/>
+        <meta name="theme-color" content="#ffffff"/>
+        <script type="application/ld+json" src="/assets/structure-data.json"/>
       </Helmet>
     );
   }
@@ -56,6 +78,7 @@ class Head extends Component {
 Head.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
+  location: PropTypes.object,
 };
 
 export default Head;

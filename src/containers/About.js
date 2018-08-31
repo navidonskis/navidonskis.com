@@ -2,7 +2,7 @@ import React from 'react'
 import { withRouteData } from 'react-static'
 import convert from 'htmr'
 import Layout from './Layout';
-import bgImage from '../images/bg-02.jpg';
+import bgImage from '../assets/bg-02.jpg';
 
 export default withRouteData(({ about }) => {
   const { title, description, contents } = about;
@@ -13,4 +13,3 @@ export default withRouteData(({ about }) => {
     </Layout>
   );
 });
-

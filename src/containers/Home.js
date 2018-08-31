@@ -5,6 +5,8 @@ import Layout from './Layout';
 
 export default withRouteData(({ home }) => {
   const { title, description, contents } = home;
+  // const location = typeof window !== "undefined" && window.location || {};
+  // console.log(location);
 
   return (
     <Layout head={{ title, description }}>

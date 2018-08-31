@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import bgImage from '../../images/bg-01.jpg';
+import bgImage from '../../assets/bg-01.jpg';
 
 class Landscape extends Component {
   render () {
