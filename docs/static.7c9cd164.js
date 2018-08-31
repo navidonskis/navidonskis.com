@@ -653,7 +653,7 @@ var App = function App() {
   );
 };
 
-_reactGa2.default.initialize('UA-72741925-1', { debug: true });
+_reactGa2.default.initialize('UA-72741925-1');
 
 exports.default = (0, _reactHotLoader.hot)(module)(App);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
@@ -2191,4 +2191,4 @@ module.exports = __webpack_require__.p + "static/sprite.8c860238.svg";
 /***/ })
 /******/ ]);
 });
-//# sourceMappingURL=static.2f49de15.js.map
+//# sourceMappingURL=static.7c9cd164.js.map
