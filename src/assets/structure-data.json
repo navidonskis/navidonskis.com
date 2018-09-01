@@ -4,6 +4,7 @@
   "name": "Donatas Navidonskis",
   "url": "https://www.navidonskis.com",
   "homeLocation": {
+    "type": "Person",
     "address": "Vilnius, Lithuania"
   },
   "email": "donatas@navidonskis.com",

@@ -1661,7 +1661,7 @@ exports.default = Head;
 /* 27 */
 /***/ (function(module, exports) {
 
-module.exports = {"@context":"https://schema.org","@type":"Person","name":"Donatas Navidonskis","url":"https://www.navidonskis.com","homeLocation":{"address":"Vilnius, Lithuania"},"email":"donatas@navidonskis.com","telephone":"+37067078495","givenName":"Donatas","familyName":"Navidonskis","jobTitle":"Software Engineer","sameAs":["https://www.facebook.com/donatas.navidonskis","https://twitter.com/navidonskis","https://www.linkedin.com/in/navidonskis/","https://github.com/navidonskis/","https://github.com/doniz/"]}
+module.exports = {"@context":"https://schema.org","@type":"Person","name":"Donatas Navidonskis","url":"https://www.navidonskis.com","homeLocation":{"type":"Person","address":"Vilnius, Lithuania"},"email":"donatas@navidonskis.com","telephone":"+37067078495","givenName":"Donatas","familyName":"Navidonskis","jobTitle":"Software Engineer","sameAs":["https://www.facebook.com/donatas.navidonskis","https://twitter.com/navidonskis","https://www.linkedin.com/in/navidonskis/","https://github.com/navidonskis/","https://github.com/doniz/"]}
 
 /***/ }),
 /* 28 */
@@ -2206,4 +2206,4 @@ module.exports = __webpack_require__.p + "static/sprite.8c860238.svg";
 /***/ })
 /******/ ]);
 });
-//# sourceMappingURL=static.d136f597.js.map
+//# sourceMappingURL=static.ceb1d1b1.js.map
