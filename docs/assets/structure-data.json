@@ -4,9 +4,7 @@
   "name": "Donatas Navidonskis",
   "url": "https://www.navidonskis.com",
   "homeLocation": {
-    "Place": {
-      "address": "Vilnius, Lithuania"
-    }
+    "address": "Vilnius, Lithuania"
   },
   "email": "donatas@navidonskis.com",
   "telephone": "+37067078495",
