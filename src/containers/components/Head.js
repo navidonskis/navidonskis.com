@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Head as Helmet } from 'react-static';
 import PropTypes from 'prop-types';
+import structuredData from '../../assets/structure-data';
 
 class Head extends Component {
 
@@ -41,6 +42,7 @@ class Head extends Component {
    */
   render () {
     const meta = this.getMeta();
+    const data = JSON.stringify(structuredData);
 
     return (
       <Helmet>
@@ -69,7 +71,7 @@ class Head extends Component {
         <meta name="application-name" content="navidonskis"/>
         <meta name="msapplication-config" content="/assets/browserconfig.xml"/>
         <meta name="theme-color" content="#ffffff"/>
-        <script type="application/ld+json" src="/assets/structure-data.json"/>
+        <script type="application/ld+json">{data}</script>
       </Helmet>
     );
   }
