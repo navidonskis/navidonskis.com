@@ -1,6 +1,6 @@
 ---
 title: Donatas Navidonskis - Software Engineer
-description: Donatas Navidonskis is an Software Engineer focused on building web applications and infrastructure.
+description: Donatas currently work as Software Engineer at Boozt Fashion AB, highly motivated and result-oriented professional. He's focused on web applications and infrastructure, cloud computing, cloud architecture. Certified Google Cloud Platform engineer and bachelor of network/administration.
 ---
 
 # **Donatas Navidonskis** is an Software Engineer focused on building web applications and infrastructure.
