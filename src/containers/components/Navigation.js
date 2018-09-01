@@ -9,6 +9,7 @@ class Navigation extends Component {
 
     this.handleClick = this.handleClick.bind(this);
     this.handleMobileClick = this.handleMobileClick.bind(this);
+    this.handleOverflowBody = this.handleOverflowBody.bind(this);
     this.navigation = React.createRef();
 
     this.state = {
@@ -16,16 +17,14 @@ class Navigation extends Component {
     };
   }
 
-  handleMobileClick () {
-    const openHandler = !this.state.open;
-
-    if (openHandler) {
-      document.body.className = 'mobile-menu';
-    } else {
-      document.body.className = '';
+  handleOverflowBody () {
+    if (typeof document !== 'undefined') {
+      document.body.className = this.state.open ? 'mobile-menu' : '';
     }
+  }
 
-    this.setState({ open: openHandler });
+  handleMobileClick () {
+    this.setState({ open: !this.state.open });
   }
 
   handleClick () {
@@ -33,9 +32,13 @@ class Navigation extends Component {
       category: 'Navigation',
       action: 'Clicked Link',
     });
+
+    this.handleOverflowBody();
   }
 
   render () {
+    this.handleOverflowBody();
+
     return (
       <nav ref={this.navigation} role="navigation" className={`navigation ${this.state.open && ('navigation--open')}`}
            itemScope itemType="https://schema.org/SiteNavigationElement">

@@ -49,6 +49,12 @@
 			background-position-y: 50%;
 		}
 	}
+
+	@include layout-breakpoint-max(545px) {
+		&--background {
+			padding-top: 100%;
+		}
+	}
 }
 
 @include tablet-and-less {

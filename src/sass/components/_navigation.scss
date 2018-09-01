@@ -28,7 +28,7 @@
 	@include tablet-and-less {
 		&--button {
 			cursor: pointer;
-			position: fixed;
+			position: absolute;
 			top: 22px;
 			right: 0;
 		}
