@@ -19,8 +19,9 @@
     "react-hot-loader": "^4.0.0-beta.21",
     "react-router": "^4.2.0",
     "react-static": "^5.9.7",
+    "react-static-routes": "latest",
     "sass-loader": "^7.1.0",
-    "react-static-routes": "latest"
+    "sitemap-generator": "^8.3.0"
   },
   "devDependencies": {
     "eslint-config-react-tools": "1.x.x",
