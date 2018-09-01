@@ -1863,7 +1863,7 @@ var Navigation = function (_Component) {
         ),
         _react2.default.createElement(
           _reactStatic.NavLink,
-          { to: '/about', className: 'navigation--link', onClick: this.handleClick },
+          { to: '/about/', className: 'navigation--link', onClick: this.handleClick },
           _react2.default.createElement(
             'span',
             { itemProp: 'name' },
@@ -2206,4 +2206,4 @@ module.exports = __webpack_require__.p + "static/sprite.8c860238.svg";
 /***/ })
 /******/ ]);
 });
-//# sourceMappingURL=static.2c95575a.js.map
+//# sourceMappingURL=static.1173a88f.js.map

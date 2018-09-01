@@ -23,7 +23,7 @@ class Navigation extends Component {
         <NavLink exact to="/" className="navigation--link" onClick={this.handleClick}>
           <span itemProp="name">Home</span>
         </NavLink>
-        <NavLink to="/about" className="navigation--link" onClick={this.handleClick}>
+        <NavLink to="/about/" className="navigation--link" onClick={this.handleClick}>
           <span itemProp="name">About</span>
         </NavLink>
         {/*<NavLink to="/blog" className="navigation--link">*/}
