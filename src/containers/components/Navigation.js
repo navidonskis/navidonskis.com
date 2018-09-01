@@ -8,6 +8,24 @@ class Navigation extends Component {
     super(props);
 
     this.handleClick = this.handleClick.bind(this);
+    this.handleMobileClick = this.handleMobileClick.bind(this);
+    this.navigation = React.createRef();
+
+    this.state = {
+      open: false,
+    };
+  }
+
+  handleMobileClick () {
+    const openHandler = !this.state.open;
+
+    if (openHandler) {
+      document.body.className = 'mobile-menu';
+    } else {
+      document.body.className = '';
+    }
+
+    this.setState({ open: openHandler });
   }
 
   handleClick () {
@@ -19,7 +37,11 @@ class Navigation extends Component {
 
   render () {
     return (
-      <nav role="navigation" className="navigation" itemScope itemType="https://schema.org/SiteNavigationElement">
+      <nav ref={this.navigation} role="navigation" className={`navigation ${this.state.open && ('navigation--open')}`}
+           itemScope itemType="https://schema.org/SiteNavigationElement">
+        <svg width="16" height="14" className="navigation--button" onClick={this.handleMobileClick}>
+          <path d="M12 6v2H0V6zm4-6v2H0V0zm0 12v2H0v-2z" fill="currentColor" fillRule="evenodd"/>
+        </svg>
         <NavLink exact to="/" className="navigation--link" onClick={this.handleClick}>
           <span itemProp="name">Home</span>
         </NavLink>

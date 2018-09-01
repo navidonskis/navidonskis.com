@@ -30,7 +30,7 @@
 	@include tablet-and-less {
 		background-color: #FFF;
 		z-index: 15;
-		width: calc(100% - #{$sides-mobile});
+		width: calc(100% - #{$sides-mobile * 2});
 		height: 30px;
 		margin: 0;
 		padding: 1rem $sides-mobile;
