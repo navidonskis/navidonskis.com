@@ -14,7 +14,7 @@ I’m a husband, father, software/system engineer and amateur runner. In 2013, w
 <section role="contentinfo" id="professional-biography">
     <h2>Professional Biography</h2>
     
-    <p>Donatas currently work as Software Engineer at Boozt Fashion AB, highly motivated and result-oriented professional. He's focused on web applications and infrastructure, cloud computing, cloud architecture. Certified Google Cloud Platform engineer and bachelor of network/administration.</p>
+    <p>Donatas currently work as Software Engineer at Boozt Fashion AB, highly motivated and result-oriented professional. He's focused on web applications and infrastructure, cloud computing, cloud architecture, automation, containerization. Certified Google Cloud Platform engineer and bachelor of network/administration.</p>
     <p>At the breakfast he eating Docker or Kubernetes and resting with Node.js, PHP, React.js, Golang or some cookbook for whole busy day.</p>
     <p>He lives with his wife and one children in Vilnius, Lithuania.</p>
 </section>
@@ -26,6 +26,7 @@ I’m a husband, father, software/system engineer and amateur runner. In 2013, w
         <p>
             <span class="tagname">Docker</span>
             <span class="tagname">Kubernetes</span>
+            <span class="tagname">Automation</span>
             <span class="tagname">Amazon Web Services</span>
             <span class="tagname">Canary Releases</span>
             <span class="tagname">Microservice</span>
@@ -41,7 +42,6 @@ I’m a husband, father, software/system engineer and amateur runner. In 2013, w
             <span class="tagname">Jenkins</span>
             <span class="tagname">Rundeck</span>
             <span class="tagname">Phabricator</span>
-            <span class="tagname">Capistrano</span>
             <span class="tagname">BotFramework</span>
         </p>
         <hr>

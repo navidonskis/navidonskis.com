@@ -1,0 +1,7 @@
+.list-projects {
+	&__item {
+		list-style-type: circle;
+		color: $text-color;
+		margin: 0 20px 0;
+	}
+}

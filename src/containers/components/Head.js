@@ -54,8 +54,6 @@ class Head extends Component {
         {/*<link rel="canonical" href="{window.location}" />*/}
         {/*<meta property="og:image:width" content="1200"/>*/}
         {/*<meta property="og:image:height" content="630"/>*/}
-        {/*<meta property="og:url" content="https://www.veed.io/"/>*/}
-        {/*<meta property="og:title" content="VEED - Create, Edit & Share Videos Online for free"/>*/}
         {/*<meta property="og:description"*/}
         {/*content="Veed is a simple but powerfull video editor, try our free video editor to, resize video, trim video add loads more!"/>*/}
         {/*<meta property="og:image" content="https://www.veed.io/fav/og-image.png"/>*/}

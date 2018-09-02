@@ -398,6 +398,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
@@ -418,19 +420,122 @@ var _bg2 = _interopRequireDefault(_bg);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = (0, _reactStatic.withRouteData)(function (_ref) {
-  var about = _ref.about;
-  var title = about.title,
-      description = about.description,
-      contents = about.contents;
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var About = function (_Component) {
+  _inherits(About, _Component);
+
+  function About(props) {
+    _classCallCheck(this, About);
+
+    var _this = _possibleConstructorReturn(this, (About.__proto__ || Object.getPrototypeOf(About)).call(this, props));
+
+    _this.state = {
+      stars: [],
+      openSource: []
+    };
+    return _this;
+  }
+
+  _createClass(About, [{
+    key: 'githubFetch',
+    value: function githubFetch() {
+      var endpoint = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+      var uri = 'https://api.github.com';
+
+      return fetch(uri + '/' + endpoint).then(function (res) {
+        return res.json();
+      });
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      this.githubFetch('users/doniz/starred').then(function (result) {
+        return _this2.setState({ stars: result });
+      });
+      this.githubFetch('users/navidonskis/repos').then(function (result) {
+        var list = result.filter(function (item) {
+          return false === item.fork && item;
+        });
+        // fetch from other groups
+        _this2.githubFetch('users/qenv/repos').then(function (result) {
+          list = [].concat(_toConsumableArray(list), _toConsumableArray(result.filter(function (item) {
+            return false === item.fork && item;
+          })));
+
+          _this2.setState({ openSource: list });
+        });
+      });
+    }
+  }, {
+    key: 'getMapGithubProjects',
+    value: function getMapGithubProjects() {
+      var title = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+      var list = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+
+      return _react2.default.createElement(
+        'section',
+        { className: 'list-projects' },
+        _react2.default.createElement(
+          'h2',
+          null,
+          title
+        ),
+        _react2.default.createElement(
+          'ul',
+          { className: 'list-projects__container' },
+          list.map(function (repo, index) {
+            return _react2.default.createElement(
+              'li',
+              { className: 'list-projects__item', key: index },
+              _react2.default.createElement(
+                'a',
+                { href: repo.html_url, target: '_blank' },
+                repo.name
+              ),
+              repo.description && _react2.default.createElement(
+                'span',
+                { className: 'list-projects__item--desc' },
+                ' - ',
+                repo.description
+              )
+            );
+          })
+        )
+      );
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _props$about = this.props.about,
+          title = _props$about.title,
+          description = _props$about.description,
+          contents = _props$about.contents;
 
 
-  return _react2.default.createElement(
-    _Layout2.default,
-    { head: { title: title, description: description }, bg: _bg2.default, className: 'layout about' },
-    (0, _htmr2.default)(contents)
-  );
-});
+      return _react2.default.createElement(
+        _Layout2.default,
+        { head: { title: title, description: description }, bg: _bg2.default, className: 'layout about' },
+        (0, _htmr2.default)(contents),
+        this.getMapGithubProjects('Open Source Projects', this.state.openSource),
+        this.getMapGithubProjects('Latest Starred Projects', this.state.stars)
+      );
+    }
+  }]);
+
+  return About;
+}(_react.Component);
+
+exports.default = (0, _reactStatic.withRouteData)(About);
 
 /***/ }),
 /* 10 */
@@ -2111,7 +2216,7 @@ exports = module.exports = __webpack_require__(38)(false);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700);", ""]);
 
 // module
-exports.push([module.i, "html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline; }\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {\n  display: block; }\n\nbody {\n  line-height: 1; }\n\nol, ul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before, blockquote:after {\n  content: '';\n  content: none; }\n\nq:before, q:after {\n  content: '';\n  content: none; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\n.icons {\n  content: ' ';\n  background-size: 256px 96px;\n  background-repeat: no-repeat;\n  display: block;\n  background: url(" + escape(__webpack_require__(39)) + ");\n  background: linear-gradient(transparent, transparent), url(" + escape(__webpack_require__(40)) + ");\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n  .icons__linkedin {\n    background-position: 0 -96px;\n    width: 32px;\n    height: 32px; }\n  .icons__twitter {\n    background-position: -32px -96px;\n    width: 32px;\n    height: 32px; }\n  .icons__googleplus {\n    background-position: -64px -96px;\n    width: 32px;\n    height: 32px; }\n  .icons__facebook {\n    background-position: -96px -96px;\n    width: 32px;\n    height: 32px; }\n  .icons__github {\n    background-position: -160px -96px;\n    width: 32px;\n    height: 32px; }\n\na:hover .icons__linkedin, a:focus .icons__linkedin {\n  background-position: 0 -32px; }\n  a:hover .icons__linkedin.icons__colored, a:focus .icons__linkedin.icons__colored {\n    background-position: 0 -64px; }\n\na:hover .icons__twitter, a:focus .icons__twitter {\n  background-position: -32px -32px; }\n  a:hover .icons__twitter.icons__colored, a:focus .icons__twitter.icons__colored {\n    background-position: -32px -64px; }\n\na:hover .icons__googleplus, a:focus .icons__googleplus {\n  background-position: -64px -32px; }\n  a:hover .icons__googleplus.icons__colored, a:focus .icons__googleplus.icons__colored {\n    background-position: -64px -64px; }\n\na:hover .icons__facebook, a:focus .icons__facebook {\n  background-position: -96px -32px; }\n  a:hover .icons__facebook.icons__colored, a:focus .icons__facebook.icons__colored {\n    background-position: -96px -64px; }\n\na:hover .icons__github, a:focus .icons__github {\n  background-position: -160px -32px; }\n  a:hover .icons__github.icons__colored, a:focus .icons__github.icons__colored {\n    background-position: -160px -64px; }\n\nhtml, body, #root {\n  -webkit-text-size-adjust: 100%;\n  height: 100%; }\n\nbody {\n  animation: fadein 1s;\n  background-color: #ffffff;\n  color: #000000;\n  font-size: 17px;\n  font-weight: 300;\n  font-family: \"Montserrat\", sans-serif;\n  min-width: 320px;\n  margin: 0;\n  line-height: 28px;\n  -moz-osx-font-smoothing: grayscale;\n  -webkit-font-smoothing: antialiased; }\n\n::-moz-selection {\n  background: #b5ffeb; }\n\n::selection {\n  background: #b5ffeb; }\n\nh1 {\n  color: #a0a0a0;\n  font-size: 32px;\n  line-height: 36px; }\n\nh2 {\n  color: #a0a0a0;\n  font-size: 18px;\n  line-height: 28px;\n  font-weight: 400;\n  text-transform: uppercase; }\n\nh3 {\n  color: #a0a0a0;\n  font-size: 16px;\n  line-height: 24px;\n  font-weight: 400;\n  text-transform: uppercase; }\n\nh1, h2, h3, h4, h5, h6 {\n  padding: 15px 0 25px 0; }\n\nstrong {\n  color: #000000;\n  font-weight: 400; }\n\na, a:visited {\n  color: #015bff;\n  transition: color .3s; }\n\na:hover, a:focus, a:active {\n  color: #3e7ff6;\n  text-decoration: none; }\n\n.vertical-center {\n  align-items: center;\n  display: flex; }\n\np {\n  margin-bottom: 20px; }\n\nhr {\n  border: 0;\n  background-color: #dedede;\n  height: 1px;\n  margin-bottom: 25px; }\n\n.tagname {\n  display: inline-flex;\n  background-color: #b5ffeb;\n  padding: 5px 10px;\n  font-weight: 300;\n  margin: 3px;\n  white-space: pre-wrap; }\n  .tagname::-moz-selection {\n    background: #ffffff; }\n  .tagname::selection {\n    background: #ffffff; }\n\n.layout {\n  width: 50%;\n  margin-left: 50%; }\n  @media screen and (max-width: 986px) {\n    .layout {\n      width: 100%;\n      margin: 0 auto; } }\n\n.header {\n  display: flex;\n  align-content: stretch; }\n  .header--logo {\n    font-size: 24px;\n    font-weight: 400; }\n    .header--logo a, .header--logo a:visited {\n      color: #000000;\n      text-decoration: none; }\n    .header--logo a:hover, .header--logo a:focus, .header--logo a:active {\n      color: #505050; }\n  @media screen and (min-width: 987px) {\n    .header--logo {\n      position: fixed;\n      left: 3rem;\n      top: 1rem;\n      height: 3rem;\n      width: 12rem;\n      z-index: 6; } }\n  @media screen and (max-width: 986px) {\n    .header {\n      background-color: #FFF;\n      z-index: 15;\n      width: calc(100% - 4rem);\n      height: 30px;\n      margin: 0;\n      padding: 1rem 2rem; } }\n\n.navigation {\n  width: 100%;\n  text-align: right; }\n  .navigation a, .navigation a:visited {\n    color: #a0a0a0;\n    text-decoration: none; }\n  .navigation a:hover, .navigation a:active, .navigation a:focus, .navigation a.active {\n    color: #000000; }\n  .navigation--link, .navigation--button {\n    margin: 0 30px; }\n  @media screen and (min-width: 987px) {\n    .navigation {\n      padding: 0.8rem 2rem 1.25rem;\n      margin-bottom: 1.5rem; }\n      .navigation--button {\n        display: none; } }\n  @media screen and (max-width: 986px) {\n    .navigation--button {\n      cursor: pointer;\n      position: absolute;\n      top: 22px;\n      right: 0; }\n    .navigation--link {\n      display: none; }\n    .navigation--open {\n      display: flex;\n      flex-direction: column;\n      justify-content: center;\n      position: fixed;\n      left: 0;\n      top: 0;\n      bottom: 0;\n      right: 0;\n      background-color: #FFFFFF;\n      z-index: 9999;\n      overflow: hidden; }\n      .navigation--open .navigation--link {\n        display: flex;\n        font-size: 200%;\n        flex-direction: row;\n        padding: 5rem 0; }\n        .navigation--open .navigation--link > span {\n          margin: 0 auto; } }\n\n@media screen and (max-width: 986px) {\n  .mobile-menu {\n    overflow: hidden; } }\n\n.landscape {\n  border: none;\n  padding: 0;\n  margin: 0; }\n  .landscape--background {\n    background-size: cover;\n    background-position-x: 50%;\n    background-repeat: no-repeat;\n    bottom: 0;\n    top: 0;\n    left: 0;\n    padding: 0;\n    position: fixed;\n    width: calc(50% - 3rem);\n    z-index: 5; }\n  .landscape__overlay {\n    width: 100%;\n    height: 100%; }\n    .landscape__overlay:after {\n      background-color: rgba(255, 255, 255, 0.56);\n      content: '';\n      position: fixed;\n      width: calc(50% - 3rem);\n      height: 100%;\n      top: 0;\n      z-index: 5;\n      left: 0; }\n  @media screen and (max-width: 986px) {\n    .landscape__overlay {\n      position: relative; }\n      .landscape__overlay:after {\n        position: absolute;\n        width: 100%; }\n    .landscape--background {\n      position: relative;\n      padding-top: 50%;\n      width: 100%;\n      background-position-y: 50%; } }\n  @media screen and (max-width: 545px) {\n    .landscape--background {\n      padding-top: 100%; } }\n\n@media screen and (max-width: 986px) {\n  .about .landscape--background {\n    background-position-y: 10%; } }\n\n.main {\n  max-width: 45em;\n  margin-left: auto;\n  margin-right: auto;\n  padding: 1rem 2rem; }\n  @media screen and (max-width: 986px) {\n    .main {\n      max-width: 100%; } }\n\n.footer {\n  display: flex;\n  justify-content: space-between;\n  padding: 0 3rem;\n  margin: 1.5rem 0;\n  width: calc(100% - 6rem); }\n  .footer__networks {\n    left: 3rem;\n    z-index: 5; }\n    .footer__networks--link {\n      display: inline-block;\n      white-space: nowrap;\n      margin: 0 10px 0 0; }\n  .footer__info {\n    color: #666666;\n    font-size: 14px;\n    font-weight: 200;\n    border-top: 1px solid #dedede;\n    padding-top: 10px;\n    width: 100%; }\n    .footer__info--col {\n      margin: 0 20px;\n      position: relative;\n      white-space: nowrap; }\n      .footer__info--col:after {\n        content: '';\n        position: absolute;\n        width: 1px;\n        height: 100%;\n        background-color: #dedede;\n        right: -20px;\n        top: 0; }\n      .footer__info--col:first-child {\n        margin-left: 0; }\n      .footer__info--col:last-child {\n        margin-right: 0; }\n        .footer__info--col:last-child:after {\n          display: none; }\n      .footer__info--col a, .footer__info--col a:visited {\n        color: #666666;\n        text-decoration: underline; }\n      .footer__info--col a:hover, .footer__info--col a:focus, .footer__info--col a:active {\n        color: #000000;\n        text-decoration: none; }\n  @media screen and (min-width: 987px) {\n    .footer__networks {\n      bottom: 1rem;\n      position: fixed; } }\n  @media screen and (max-width: 986px) {\n    .footer {\n      padding: 0 2rem;\n      width: calc(100% - 4rem); }\n      .footer__networks {\n        position: absolute;\n        margin-top: 50%;\n        top: 0; }\n      .footer__info--col:after {\n        background-color: transparent; } }\n  @media screen and (max-width: 545px) {\n    .footer__info--col {\n      display: block;\n      margin: 0 auto; }\n    .footer__networks {\n      position: absolute;\n      margin-top: 100%;\n      top: 0; } }\n", ""]);
+exports.push([module.i, "html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline; }\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {\n  display: block; }\n\nbody {\n  line-height: 1; }\n\nol, ul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before, blockquote:after {\n  content: '';\n  content: none; }\n\nq:before, q:after {\n  content: '';\n  content: none; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\n.icons {\n  content: ' ';\n  background-size: 256px 96px;\n  background-repeat: no-repeat;\n  display: block;\n  background: url(" + escape(__webpack_require__(39)) + ");\n  background: linear-gradient(transparent, transparent), url(" + escape(__webpack_require__(40)) + ");\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n  .icons__linkedin {\n    background-position: 0 -96px;\n    width: 32px;\n    height: 32px; }\n  .icons__twitter {\n    background-position: -32px -96px;\n    width: 32px;\n    height: 32px; }\n  .icons__googleplus {\n    background-position: -64px -96px;\n    width: 32px;\n    height: 32px; }\n  .icons__facebook {\n    background-position: -96px -96px;\n    width: 32px;\n    height: 32px; }\n  .icons__github {\n    background-position: -160px -96px;\n    width: 32px;\n    height: 32px; }\n\na:hover .icons__linkedin, a:focus .icons__linkedin {\n  background-position: 0 -32px; }\n  a:hover .icons__linkedin.icons__colored, a:focus .icons__linkedin.icons__colored {\n    background-position: 0 -64px; }\n\na:hover .icons__twitter, a:focus .icons__twitter {\n  background-position: -32px -32px; }\n  a:hover .icons__twitter.icons__colored, a:focus .icons__twitter.icons__colored {\n    background-position: -32px -64px; }\n\na:hover .icons__googleplus, a:focus .icons__googleplus {\n  background-position: -64px -32px; }\n  a:hover .icons__googleplus.icons__colored, a:focus .icons__googleplus.icons__colored {\n    background-position: -64px -64px; }\n\na:hover .icons__facebook, a:focus .icons__facebook {\n  background-position: -96px -32px; }\n  a:hover .icons__facebook.icons__colored, a:focus .icons__facebook.icons__colored {\n    background-position: -96px -64px; }\n\na:hover .icons__github, a:focus .icons__github {\n  background-position: -160px -32px; }\n  a:hover .icons__github.icons__colored, a:focus .icons__github.icons__colored {\n    background-position: -160px -64px; }\n\nhtml, body, #root {\n  -webkit-text-size-adjust: 100%;\n  height: 100%; }\n\nbody {\n  animation: fadein 1s;\n  background-color: #ffffff;\n  color: #000000;\n  font-size: 17px;\n  font-weight: 300;\n  font-family: \"Montserrat\", sans-serif;\n  min-width: 320px;\n  margin: 0;\n  line-height: 28px;\n  -moz-osx-font-smoothing: grayscale;\n  -webkit-font-smoothing: antialiased; }\n\n::-moz-selection {\n  background: #b5ffeb; }\n\n::selection {\n  background: #b5ffeb; }\n\nh1 {\n  color: #a0a0a0;\n  font-size: 32px;\n  line-height: 36px; }\n\nh2 {\n  color: #a0a0a0;\n  font-size: 18px;\n  line-height: 28px;\n  font-weight: 400;\n  text-transform: uppercase; }\n\nh3 {\n  color: #a0a0a0;\n  font-size: 16px;\n  line-height: 24px;\n  font-weight: 400;\n  text-transform: uppercase; }\n\nh1, h2, h3, h4, h5, h6 {\n  padding: 15px 0 25px 0; }\n\nstrong {\n  color: #000000;\n  font-weight: 400; }\n\na, a:visited {\n  color: #015bff;\n  transition: color .3s; }\n\na:hover, a:focus, a:active {\n  color: #3e7ff6;\n  text-decoration: none; }\n\n.vertical-center {\n  align-items: center;\n  display: flex; }\n\np {\n  margin-bottom: 20px; }\n\nhr {\n  border: 0;\n  background-color: #dedede;\n  height: 1px;\n  margin-bottom: 25px; }\n\n.tagname {\n  display: inline-flex;\n  background-color: #b5ffeb;\n  padding: 5px 10px;\n  font-weight: 300;\n  margin: 3px;\n  white-space: pre-wrap; }\n  .tagname::-moz-selection {\n    background: #ffffff; }\n  .tagname::selection {\n    background: #ffffff; }\n\n.layout {\n  width: 50%;\n  margin-left: 50%; }\n  @media screen and (max-width: 986px) {\n    .layout {\n      width: 100%;\n      margin: 0 auto; } }\n\n.header {\n  display: flex;\n  align-content: stretch; }\n  .header--logo {\n    font-size: 24px;\n    font-weight: 400; }\n    .header--logo a, .header--logo a:visited {\n      color: #000000;\n      text-decoration: none; }\n    .header--logo a:hover, .header--logo a:focus, .header--logo a:active {\n      color: #505050; }\n  @media screen and (min-width: 987px) {\n    .header--logo {\n      position: fixed;\n      left: 3rem;\n      top: 1rem;\n      height: 3rem;\n      width: 12rem;\n      z-index: 6; } }\n  @media screen and (max-width: 986px) {\n    .header {\n      background-color: #FFF;\n      z-index: 15;\n      width: calc(100% - 4rem);\n      height: 30px;\n      margin: 0;\n      padding: 1rem 2rem; } }\n\n.navigation {\n  width: 100%;\n  text-align: right; }\n  .navigation a, .navigation a:visited {\n    color: #a0a0a0;\n    text-decoration: none; }\n  .navigation a:hover, .navigation a:active, .navigation a:focus, .navigation a.active {\n    color: #000000; }\n  .navigation--link, .navigation--button {\n    margin: 0 30px; }\n  @media screen and (min-width: 987px) {\n    .navigation {\n      padding: 0.8rem 2rem 1.25rem;\n      margin-bottom: 1.5rem; }\n      .navigation--button {\n        display: none; } }\n  @media screen and (max-width: 986px) {\n    .navigation--button {\n      cursor: pointer;\n      position: absolute;\n      top: 22px;\n      right: 0; }\n    .navigation--link {\n      display: none; }\n    .navigation--open {\n      display: flex;\n      flex-direction: column;\n      justify-content: center;\n      position: fixed;\n      left: 0;\n      top: 0;\n      bottom: 0;\n      right: 0;\n      background-color: #FFFFFF;\n      z-index: 9999;\n      overflow: hidden; }\n      .navigation--open .navigation--link {\n        display: flex;\n        font-size: 200%;\n        flex-direction: row;\n        padding: 5rem 0; }\n        .navigation--open .navigation--link > span {\n          margin: 0 auto; } }\n\n@media screen and (max-width: 986px) {\n  .mobile-menu {\n    overflow: hidden; } }\n\n.landscape {\n  border: none;\n  padding: 0;\n  margin: 0; }\n  .landscape--background {\n    background-size: cover;\n    background-position-x: 50%;\n    background-repeat: no-repeat;\n    bottom: 0;\n    top: 0;\n    left: 0;\n    padding: 0;\n    position: fixed;\n    width: calc(50% - 3rem);\n    z-index: 5; }\n  .landscape__overlay {\n    width: 100%;\n    height: 100%; }\n    .landscape__overlay:after {\n      background-color: rgba(255, 255, 255, 0.56);\n      content: '';\n      position: fixed;\n      width: calc(50% - 3rem);\n      height: 100%;\n      top: 0;\n      z-index: 5;\n      left: 0; }\n  @media screen and (max-width: 986px) {\n    .landscape__overlay {\n      position: relative; }\n      .landscape__overlay:after {\n        position: absolute;\n        width: 100%; }\n    .landscape--background {\n      position: relative;\n      padding-top: 50%;\n      width: 100%;\n      background-position-y: 50%; } }\n  @media screen and (max-width: 545px) {\n    .landscape--background {\n      padding-top: 100%; } }\n\n@media screen and (max-width: 986px) {\n  .about .landscape--background {\n    background-position-y: 10%; } }\n\n.main {\n  max-width: 45em;\n  margin-left: auto;\n  margin-right: auto;\n  padding: 1rem 2rem; }\n  @media screen and (max-width: 986px) {\n    .main {\n      max-width: 100%; } }\n\n.footer {\n  display: flex;\n  justify-content: space-between;\n  padding: 0 3rem;\n  margin: 1.5rem 0;\n  width: calc(100% - 6rem); }\n  .footer__networks {\n    left: 3rem;\n    z-index: 5; }\n    .footer__networks--link {\n      display: inline-block;\n      white-space: nowrap;\n      margin: 0 10px 0 0; }\n  .footer__info {\n    color: #666666;\n    font-size: 14px;\n    font-weight: 200;\n    border-top: 1px solid #dedede;\n    padding-top: 10px;\n    width: 100%; }\n    .footer__info--col {\n      margin: 0 20px;\n      position: relative;\n      white-space: nowrap; }\n      .footer__info--col:after {\n        content: '';\n        position: absolute;\n        width: 1px;\n        height: 100%;\n        background-color: #dedede;\n        right: -20px;\n        top: 0; }\n      .footer__info--col:first-child {\n        margin-left: 0; }\n      .footer__info--col:last-child {\n        margin-right: 0; }\n        .footer__info--col:last-child:after {\n          display: none; }\n      .footer__info--col a, .footer__info--col a:visited {\n        color: #666666;\n        text-decoration: underline; }\n      .footer__info--col a:hover, .footer__info--col a:focus, .footer__info--col a:active {\n        color: #000000;\n        text-decoration: none; }\n  @media screen and (min-width: 987px) {\n    .footer__networks {\n      bottom: 1rem;\n      position: fixed; } }\n  @media screen and (max-width: 986px) {\n    .footer {\n      padding: 0 2rem;\n      width: calc(100% - 4rem); }\n      .footer__networks {\n        position: absolute;\n        margin-top: 50%;\n        top: 0; }\n      .footer__info--col:after {\n        background-color: transparent; } }\n  @media screen and (max-width: 545px) {\n    .footer__info--col {\n      display: block;\n      margin: 0 auto; }\n    .footer__networks {\n      position: absolute;\n      margin-top: 100%;\n      top: 0; } }\n\n.list-projects__item {\n  list-style-type: circle;\n  color: #000000;\n  margin: 0 20px 0; }\n", ""]);
 
 // exports
 
@@ -2235,4 +2340,4 @@ module.exports = __webpack_require__.p + "static/sprite.8c860238.svg";
 /***/ })
 /******/ ]);
 });
-//# sourceMappingURL=static.d44aeec0.js.map
+//# sourceMappingURL=static.7d0edcbc.js.map
