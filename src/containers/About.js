@@ -50,7 +50,7 @@ class About extends Component {
     const osCached = this.expireStorage.getItem('open-source');
 
     if (osCached) {
-      this.setState({ stars: JSON.parse(osCached) });
+      this.setState({ openSource: JSON.parse(osCached) });
       return;
     }
 

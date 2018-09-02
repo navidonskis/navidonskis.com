@@ -501,7 +501,7 @@ var About = function (_Component) {
       var osCached = this.expireStorage.getItem('open-source');
 
       if (osCached) {
-        this.setState({ stars: JSON.parse(osCached) });
+        this.setState({ openSource: JSON.parse(osCached) });
         return;
       }
 
@@ -2437,4 +2437,4 @@ module.exports = __webpack_require__.p + "static/sprite.8c860238.svg";
 /***/ })
 /******/ ]);
 });
-//# sourceMappingURL=static.85487576.js.map
+//# sourceMappingURL=static.b06a9024.js.map
