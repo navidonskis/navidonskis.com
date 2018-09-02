@@ -58,7 +58,7 @@ class About extends Component {
         {convert(contents)}
 
         {this.getMapGithubProjects('Open Source Projects', this.state.openSource)}
-        {this.getMapGithubProjects('Latest Starred Projects', this.state.stars)}
+        {this.getMapGithubProjects('Recent Starred Projects', this.state.stars)}
       </Layout>
     );
   }

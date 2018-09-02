@@ -527,7 +527,7 @@ var About = function (_Component) {
         { head: { title: title, description: description }, bg: _bg2.default, className: 'layout about' },
         (0, _htmr2.default)(contents),
         this.getMapGithubProjects('Open Source Projects', this.state.openSource),
-        this.getMapGithubProjects('Latest Starred Projects', this.state.stars)
+        this.getMapGithubProjects('Recent Starred Projects', this.state.stars)
       );
     }
   }]);
@@ -2340,4 +2340,4 @@ module.exports = __webpack_require__.p + "static/sprite.8c860238.svg";
 /***/ })
 /******/ ]);
 });
-//# sourceMappingURL=static.7d0edcbc.js.map
+//# sourceMappingURL=static.6eb0d9e5.js.map
