@@ -467,8 +467,20 @@ var About = function (_Component) {
       }
 
       this.githubFetch('users/doniz/starred').then(function (result) {
+        var list = [];
+
+        for (var i = 0; i < result.length; i++) {
+          var _result$i = result[i],
+              name = _result$i.name,
+              description = _result$i.description,
+              html_url = _result$i.html_url;
+
+
+          list.push({ name: name, description: description, html_url: html_url });
+        }
+
         localStorage.setItem('stars', JSON.stringify(list));
-        _this2.setState({ stars: result });
+        _this2.setState({ stars: list });
       });
     }
   }, {
@@ -492,9 +504,20 @@ var About = function (_Component) {
           list = [].concat(_toConsumableArray(list), _toConsumableArray(result.filter(function (item) {
             return false === item.fork && item;
           })));
+          var source = [];
 
-          localStorage.setItem('open-source', JSON.stringify(list));
-          _this3.setState({ openSource: list });
+          for (var i = 0; i < list.length; i++) {
+            var _list$i = list[i],
+                name = _list$i.name,
+                description = _list$i.description,
+                html_url = _list$i.html_url;
+
+
+            source.push({ name: name, description: description, html_url: html_url });
+          }
+
+          localStorage.setItem('open-source', JSON.stringify(source));
+          _this3.setState({ openSource: source });
         });
       });
     }
@@ -2368,4 +2391,4 @@ module.exports = __webpack_require__.p + "static/sprite.8c860238.svg";
 /***/ })
 /******/ ]);
 });
-//# sourceMappingURL=static.927e0686.js.map
+//# sourceMappingURL=static.1ce4f7de.js.map

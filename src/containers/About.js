@@ -29,8 +29,16 @@ class About extends Component {
     }
 
     this.githubFetch('users/doniz/starred').then((result) => {
+      const list = [];
+
+      for (let i = 0; i < result.length; i++) {
+        const { name, description, html_url } = result[i];
+
+        list.push({ name, description, html_url });
+      }
+
       localStorage.setItem('stars', JSON.stringify(list));
-      this.setState({ stars: result })
+      this.setState({ stars: list });
     });
   }
 
@@ -47,9 +55,16 @@ class About extends Component {
       // fetch from other groups
       this.githubFetch('users/qenv/repos').then((result) => {
         list = [...list, ...result.filter((item) => false === item.fork && item)];
+        const source = [];
 
-        localStorage.setItem('open-source', JSON.stringify(list));
-        this.setState({ openSource: list });
+        for (let i = 0; i < list.length; i++) {
+          const { name, description, html_url } = list[i];
+
+          source.push({ name, description, html_url });
+        }
+
+        localStorage.setItem('open-source', JSON.stringify(source));
+        this.setState({ openSource: source });
       });
     });
   }
