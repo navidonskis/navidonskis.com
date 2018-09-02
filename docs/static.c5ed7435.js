@@ -418,6 +418,14 @@ var _bg = __webpack_require__(35);
 
 var _bg2 = _interopRequireDefault(_bg);
 
+var _expiredStorage = __webpack_require__(36);
+
+var _expiredStorage2 = _interopRequireDefault(_expiredStorage);
+
+var _localStorage = __webpack_require__(37);
+
+var _localStorage2 = _interopRequireDefault(_localStorage);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -436,6 +444,8 @@ var About = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (About.__proto__ || Object.getPrototypeOf(About)).call(this, props));
 
+    _this.expireStorage = new _expiredStorage2.default(_localStorage2.default);
+    _this.expiration = 3600; // one hour
     _this.state = {
       stars: [],
       openSource: []
@@ -459,7 +469,7 @@ var About = function (_Component) {
     value: function fetchStarredProjects() {
       var _this2 = this;
 
-      var starsCached = localStorage.getItem('stars');
+      var starsCached = this.expireStorage.getItem('stars');
 
       if (starsCached) {
         this.setState({ stars: JSON.parse(starsCached) });
@@ -479,7 +489,7 @@ var About = function (_Component) {
           list.push({ name: name, description: description, html_url: html_url });
         }
 
-        localStorage.setItem('stars', JSON.stringify(list));
+        _this2.expireStorage.setItem('stars', JSON.stringify(list), _this2.expiration);
         _this2.setState({ stars: list });
       });
     }
@@ -488,7 +498,7 @@ var About = function (_Component) {
     value: function fetchOSProjects() {
       var _this3 = this;
 
-      var osCached = localStorage.getItem('open-source');
+      var osCached = this.expireStorage.getItem('open-source');
 
       if (osCached) {
         this.setState({ stars: JSON.parse(osCached) });
@@ -516,7 +526,7 @@ var About = function (_Component) {
             source.push({ name: name, description: description, html_url: html_url });
           }
 
-          localStorage.setItem('open-source', JSON.stringify(source));
+          _this3.expireStorage.setItem('open-source', JSON.stringify(source), _this3.expiration);
           _this3.setState({ openSource: source });
         });
       });
@@ -794,7 +804,7 @@ var _reactGa = __webpack_require__(6);
 
 var _reactGa2 = _interopRequireDefault(_reactGa);
 
-__webpack_require__(36);
+__webpack_require__(38);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2259,21 +2269,59 @@ module.exports = __webpack_require__.p + "static/bg-02.108501f2.jpg";
 
 /***/ }),
 /* 36 */
+/***/ (function(module, exports) {
+
+module.exports = require("expired-storage");
+
+/***/ }),
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var escape = __webpack_require__(37);
-exports = module.exports = __webpack_require__(38)(false);
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var localStorage = {
+  _data: {},
+
+  setItem: function setItem(id, val) {
+    return undefined._data[id] = val;
+  },
+
+  getItem: function getItem(id) {
+    return undefined._data[id];
+  },
+
+  removeItem: function removeItem(id) {
+    return delete undefined._data[id];
+  },
+
+  clear: function clear() {
+    return undefined._data = {};
+  }
+};
+
+exports.default = "undefined" !== typeof window.localStorage ? window.localStorage : localStorage;
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var escape = __webpack_require__(39);
+exports = module.exports = __webpack_require__(40)(false);
 // imports
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700);", ""]);
 
 // module
-exports.push([module.i, "html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline; }\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {\n  display: block; }\n\nbody {\n  line-height: 1; }\n\nol, ul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before, blockquote:after {\n  content: '';\n  content: none; }\n\nq:before, q:after {\n  content: '';\n  content: none; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\n.icons {\n  content: ' ';\n  background-size: 256px 96px;\n  background-repeat: no-repeat;\n  display: block;\n  background: url(" + escape(__webpack_require__(39)) + ");\n  background: linear-gradient(transparent, transparent), url(" + escape(__webpack_require__(40)) + ");\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n  .icons__linkedin {\n    background-position: 0 -96px;\n    width: 32px;\n    height: 32px; }\n  .icons__twitter {\n    background-position: -32px -96px;\n    width: 32px;\n    height: 32px; }\n  .icons__googleplus {\n    background-position: -64px -96px;\n    width: 32px;\n    height: 32px; }\n  .icons__facebook {\n    background-position: -96px -96px;\n    width: 32px;\n    height: 32px; }\n  .icons__github {\n    background-position: -160px -96px;\n    width: 32px;\n    height: 32px; }\n\na:hover .icons__linkedin, a:focus .icons__linkedin {\n  background-position: 0 -32px; }\n  a:hover .icons__linkedin.icons__colored, a:focus .icons__linkedin.icons__colored {\n    background-position: 0 -64px; }\n\na:hover .icons__twitter, a:focus .icons__twitter {\n  background-position: -32px -32px; }\n  a:hover .icons__twitter.icons__colored, a:focus .icons__twitter.icons__colored {\n    background-position: -32px -64px; }\n\na:hover .icons__googleplus, a:focus .icons__googleplus {\n  background-position: -64px -32px; }\n  a:hover .icons__googleplus.icons__colored, a:focus .icons__googleplus.icons__colored {\n    background-position: -64px -64px; }\n\na:hover .icons__facebook, a:focus .icons__facebook {\n  background-position: -96px -32px; }\n  a:hover .icons__facebook.icons__colored, a:focus .icons__facebook.icons__colored {\n    background-position: -96px -64px; }\n\na:hover .icons__github, a:focus .icons__github {\n  background-position: -160px -32px; }\n  a:hover .icons__github.icons__colored, a:focus .icons__github.icons__colored {\n    background-position: -160px -64px; }\n\nhtml, body, #root {\n  -webkit-text-size-adjust: 100%;\n  height: 100%; }\n\nbody {\n  animation: fadein 1s;\n  background-color: #ffffff;\n  color: #000000;\n  font-size: 17px;\n  font-weight: 300;\n  font-family: \"Montserrat\", sans-serif;\n  min-width: 320px;\n  margin: 0;\n  line-height: 28px;\n  -moz-osx-font-smoothing: grayscale;\n  -webkit-font-smoothing: antialiased; }\n\n::-moz-selection {\n  background: #b5ffeb; }\n\n::selection {\n  background: #b5ffeb; }\n\nh1 {\n  color: #a0a0a0;\n  font-size: 32px;\n  line-height: 36px; }\n\nh2 {\n  color: #a0a0a0;\n  font-size: 18px;\n  line-height: 28px;\n  font-weight: 400;\n  text-transform: uppercase; }\n\nh3 {\n  color: #a0a0a0;\n  font-size: 16px;\n  line-height: 24px;\n  font-weight: 400;\n  text-transform: uppercase; }\n\nh1, h2, h3, h4, h5, h6 {\n  padding: 15px 0 25px 0; }\n\nstrong {\n  color: #000000;\n  font-weight: 400; }\n\na, a:visited {\n  color: #015bff;\n  transition: color .3s; }\n\na:hover, a:focus, a:active {\n  color: #3e7ff6;\n  text-decoration: none; }\n\n.vertical-center {\n  align-items: center;\n  display: flex; }\n\np {\n  margin-bottom: 20px; }\n\nhr {\n  border: 0;\n  background-color: #dedede;\n  height: 1px;\n  margin-bottom: 25px; }\n\n.tagname {\n  display: inline-flex;\n  background-color: #b5ffeb;\n  padding: 5px 10px;\n  font-weight: 300;\n  margin: 3px;\n  white-space: pre-wrap; }\n  .tagname::-moz-selection {\n    background: #ffffff; }\n  .tagname::selection {\n    background: #ffffff; }\n\n.layout {\n  width: 50%;\n  margin-left: 50%; }\n  @media screen and (max-width: 986px) {\n    .layout {\n      width: 100%;\n      margin: 0 auto; } }\n\n.header {\n  display: flex;\n  align-content: stretch; }\n  .header--logo {\n    font-size: 24px;\n    font-weight: 400; }\n    .header--logo a, .header--logo a:visited {\n      color: #000000;\n      text-decoration: none; }\n    .header--logo a:hover, .header--logo a:focus, .header--logo a:active {\n      color: #505050; }\n  @media screen and (min-width: 987px) {\n    .header--logo {\n      position: fixed;\n      left: 3rem;\n      top: 1rem;\n      height: 3rem;\n      width: 12rem;\n      z-index: 6; } }\n  @media screen and (max-width: 986px) {\n    .header {\n      background-color: #FFF;\n      z-index: 15;\n      width: calc(100% - 4rem);\n      height: 30px;\n      margin: 0;\n      padding: 1rem 2rem; } }\n\n.navigation {\n  width: 100%;\n  text-align: right; }\n  .navigation a, .navigation a:visited {\n    color: #a0a0a0;\n    text-decoration: none; }\n  .navigation a:hover, .navigation a:active, .navigation a:focus, .navigation a.active {\n    color: #000000; }\n  .navigation--link, .navigation--button {\n    margin: 0 30px; }\n  @media screen and (min-width: 987px) {\n    .navigation {\n      padding: 0.8rem 2rem 1.25rem;\n      margin-bottom: 1.5rem; }\n      .navigation--button {\n        display: none; } }\n  @media screen and (max-width: 986px) {\n    .navigation--button {\n      cursor: pointer;\n      position: absolute;\n      top: 22px;\n      right: 0; }\n    .navigation--link {\n      display: none; }\n    .navigation--open {\n      display: flex;\n      flex-direction: column;\n      justify-content: center;\n      position: fixed;\n      left: 0;\n      top: 0;\n      bottom: 0;\n      right: 0;\n      background-color: #FFFFFF;\n      z-index: 9999;\n      overflow: hidden; }\n      .navigation--open .navigation--link {\n        display: flex;\n        font-size: 200%;\n        flex-direction: row;\n        padding: 5rem 0; }\n        .navigation--open .navigation--link > span {\n          margin: 0 auto; } }\n\n@media screen and (max-width: 986px) {\n  .mobile-menu {\n    overflow: hidden; } }\n\n.landscape {\n  border: none;\n  padding: 0;\n  margin: 0; }\n  .landscape--background {\n    background-size: cover;\n    background-position-x: 50%;\n    background-repeat: no-repeat;\n    bottom: 0;\n    top: 0;\n    left: 0;\n    padding: 0;\n    position: fixed;\n    width: calc(50% - 3rem);\n    z-index: 5; }\n  .landscape__overlay {\n    width: 100%;\n    height: 100%; }\n    .landscape__overlay:after {\n      background-color: rgba(255, 255, 255, 0.56);\n      content: '';\n      position: fixed;\n      width: calc(50% - 3rem);\n      height: 100%;\n      top: 0;\n      z-index: 5;\n      left: 0; }\n  @media screen and (max-width: 986px) {\n    .landscape__overlay {\n      position: relative; }\n      .landscape__overlay:after {\n        position: absolute;\n        width: 100%; }\n    .landscape--background {\n      position: relative;\n      padding-top: 50%;\n      width: 100%;\n      background-position-y: 50%; } }\n  @media screen and (max-width: 545px) {\n    .landscape--background {\n      padding-top: 100%; } }\n\n@media screen and (max-width: 986px) {\n  .about .landscape--background {\n    background-position-y: 10%; } }\n\n.main {\n  max-width: 45em;\n  margin-left: auto;\n  margin-right: auto;\n  padding: 1rem 2rem; }\n  @media screen and (max-width: 986px) {\n    .main {\n      max-width: 100%; } }\n\n.footer {\n  display: flex;\n  justify-content: space-between;\n  padding: 0 3rem;\n  margin: 1.5rem 0;\n  width: calc(100% - 6rem); }\n  .footer__networks {\n    left: 3rem;\n    z-index: 5; }\n    .footer__networks--link {\n      display: inline-block;\n      white-space: nowrap;\n      margin: 0 10px 0 0; }\n  .footer__info {\n    color: #666666;\n    font-size: 14px;\n    font-weight: 200;\n    border-top: 1px solid #dedede;\n    padding-top: 10px;\n    width: 100%; }\n    .footer__info--col {\n      margin: 0 20px;\n      position: relative;\n      white-space: nowrap; }\n      .footer__info--col:after {\n        content: '';\n        position: absolute;\n        width: 1px;\n        height: 100%;\n        background-color: #dedede;\n        right: -20px;\n        top: 0; }\n      .footer__info--col:first-child {\n        margin-left: 0; }\n      .footer__info--col:last-child {\n        margin-right: 0; }\n        .footer__info--col:last-child:after {\n          display: none; }\n      .footer__info--col a, .footer__info--col a:visited {\n        color: #666666;\n        text-decoration: underline; }\n      .footer__info--col a:hover, .footer__info--col a:focus, .footer__info--col a:active {\n        color: #000000;\n        text-decoration: none; }\n  @media screen and (min-width: 987px) {\n    .footer__networks {\n      bottom: 1rem;\n      position: fixed; } }\n  @media screen and (max-width: 986px) {\n    .footer {\n      padding: 0 2rem;\n      width: calc(100% - 4rem); }\n      .footer__networks {\n        position: absolute;\n        margin-top: 50%;\n        top: 0; }\n      .footer__info--col:after {\n        background-color: transparent; } }\n  @media screen and (max-width: 545px) {\n    .footer__info--col {\n      display: block;\n      margin: 0 auto; }\n    .footer__networks {\n      position: absolute;\n      margin-top: 100%;\n      top: 0; } }\n\n.list-projects__item {\n  list-style-type: circle;\n  color: #000000;\n  margin: 0 20px 0; }\n", ""]);
+exports.push([module.i, "html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline; }\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {\n  display: block; }\n\nbody {\n  line-height: 1; }\n\nol, ul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before, blockquote:after {\n  content: '';\n  content: none; }\n\nq:before, q:after {\n  content: '';\n  content: none; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\n.icons {\n  content: ' ';\n  background-size: 256px 96px;\n  background-repeat: no-repeat;\n  display: block;\n  background: url(" + escape(__webpack_require__(41)) + ");\n  background: linear-gradient(transparent, transparent), url(" + escape(__webpack_require__(42)) + ");\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n  .icons__linkedin {\n    background-position: 0 -96px;\n    width: 32px;\n    height: 32px; }\n  .icons__twitter {\n    background-position: -32px -96px;\n    width: 32px;\n    height: 32px; }\n  .icons__googleplus {\n    background-position: -64px -96px;\n    width: 32px;\n    height: 32px; }\n  .icons__facebook {\n    background-position: -96px -96px;\n    width: 32px;\n    height: 32px; }\n  .icons__github {\n    background-position: -160px -96px;\n    width: 32px;\n    height: 32px; }\n\na:hover .icons__linkedin, a:focus .icons__linkedin {\n  background-position: 0 -32px; }\n  a:hover .icons__linkedin.icons__colored, a:focus .icons__linkedin.icons__colored {\n    background-position: 0 -64px; }\n\na:hover .icons__twitter, a:focus .icons__twitter {\n  background-position: -32px -32px; }\n  a:hover .icons__twitter.icons__colored, a:focus .icons__twitter.icons__colored {\n    background-position: -32px -64px; }\n\na:hover .icons__googleplus, a:focus .icons__googleplus {\n  background-position: -64px -32px; }\n  a:hover .icons__googleplus.icons__colored, a:focus .icons__googleplus.icons__colored {\n    background-position: -64px -64px; }\n\na:hover .icons__facebook, a:focus .icons__facebook {\n  background-position: -96px -32px; }\n  a:hover .icons__facebook.icons__colored, a:focus .icons__facebook.icons__colored {\n    background-position: -96px -64px; }\n\na:hover .icons__github, a:focus .icons__github {\n  background-position: -160px -32px; }\n  a:hover .icons__github.icons__colored, a:focus .icons__github.icons__colored {\n    background-position: -160px -64px; }\n\nhtml, body, #root {\n  -webkit-text-size-adjust: 100%;\n  height: 100%; }\n\nbody {\n  animation: fadein 1s;\n  background-color: #ffffff;\n  color: #000000;\n  font-size: 17px;\n  font-weight: 300;\n  font-family: \"Montserrat\", sans-serif;\n  min-width: 320px;\n  margin: 0;\n  line-height: 28px;\n  -moz-osx-font-smoothing: grayscale;\n  -webkit-font-smoothing: antialiased; }\n\n::-moz-selection {\n  background: #b5ffeb; }\n\n::selection {\n  background: #b5ffeb; }\n\nh1 {\n  color: #a0a0a0;\n  font-size: 32px;\n  line-height: 36px; }\n\nh2 {\n  color: #a0a0a0;\n  font-size: 18px;\n  line-height: 28px;\n  font-weight: 400;\n  text-transform: uppercase; }\n\nh3 {\n  color: #a0a0a0;\n  font-size: 16px;\n  line-height: 24px;\n  font-weight: 400;\n  text-transform: uppercase; }\n\nh1, h2, h3, h4, h5, h6 {\n  padding: 15px 0 25px 0; }\n\nstrong {\n  color: #000000;\n  font-weight: 400; }\n\na, a:visited {\n  color: #015bff;\n  transition: color .3s; }\n\na:hover, a:focus, a:active {\n  color: #3e7ff6;\n  text-decoration: none; }\n\n.vertical-center {\n  align-items: center;\n  display: flex; }\n\np {\n  margin-bottom: 20px; }\n\nhr {\n  border: 0;\n  background-color: #dedede;\n  height: 1px;\n  margin-bottom: 25px; }\n\n.tagname {\n  display: inline-flex;\n  background-color: #b5ffeb;\n  padding: 5px 10px;\n  font-weight: 300;\n  margin: 3px;\n  white-space: pre-wrap; }\n  .tagname::-moz-selection {\n    background: #ffffff; }\n  .tagname::selection {\n    background: #ffffff; }\n\n.layout {\n  width: 50%;\n  margin-left: 50%; }\n  @media screen and (max-width: 986px) {\n    .layout {\n      width: 100%;\n      margin: 0 auto; } }\n\n.header {\n  display: flex;\n  align-content: stretch; }\n  .header--logo {\n    font-size: 24px;\n    font-weight: 400; }\n    .header--logo a, .header--logo a:visited {\n      color: #000000;\n      text-decoration: none; }\n    .header--logo a:hover, .header--logo a:focus, .header--logo a:active {\n      color: #505050; }\n  @media screen and (min-width: 987px) {\n    .header--logo {\n      position: fixed;\n      left: 3rem;\n      top: 1rem;\n      height: 3rem;\n      width: 12rem;\n      z-index: 6; } }\n  @media screen and (max-width: 986px) {\n    .header {\n      background-color: #FFF;\n      z-index: 15;\n      width: calc(100% - 4rem);\n      height: 30px;\n      margin: 0;\n      padding: 1rem 2rem; } }\n\n.navigation {\n  width: 100%;\n  text-align: right; }\n  .navigation a, .navigation a:visited {\n    color: #a0a0a0;\n    text-decoration: none; }\n  .navigation a:hover, .navigation a:active, .navigation a:focus, .navigation a.active {\n    color: #000000; }\n  .navigation--link, .navigation--button {\n    margin: 0 30px; }\n  @media screen and (min-width: 987px) {\n    .navigation {\n      padding: 0.8rem 2rem 1.25rem;\n      margin-bottom: 1.5rem; }\n      .navigation--button {\n        display: none; } }\n  @media screen and (max-width: 986px) {\n    .navigation--button {\n      cursor: pointer;\n      position: absolute;\n      top: 22px;\n      right: 0; }\n    .navigation--link {\n      display: none; }\n    .navigation--open {\n      display: flex;\n      flex-direction: column;\n      justify-content: center;\n      position: fixed;\n      left: 0;\n      top: 0;\n      bottom: 0;\n      right: 0;\n      background-color: #FFFFFF;\n      z-index: 9999;\n      overflow: hidden; }\n      .navigation--open .navigation--link {\n        display: flex;\n        font-size: 200%;\n        flex-direction: row;\n        padding: 5rem 0; }\n        .navigation--open .navigation--link > span {\n          margin: 0 auto; } }\n\n@media screen and (max-width: 986px) {\n  .mobile-menu {\n    overflow: hidden; } }\n\n.landscape {\n  border: none;\n  padding: 0;\n  margin: 0; }\n  .landscape--background {\n    background-size: cover;\n    background-position-x: 50%;\n    background-repeat: no-repeat;\n    bottom: 0;\n    top: 0;\n    left: 0;\n    padding: 0;\n    position: fixed;\n    width: calc(50% - 3rem);\n    z-index: 5; }\n  .landscape__overlay {\n    width: 100%;\n    height: 100%; }\n    .landscape__overlay:after {\n      background-color: rgba(255, 255, 255, 0.56);\n      content: '';\n      position: fixed;\n      width: calc(50% - 3rem);\n      height: 100%;\n      top: 0;\n      z-index: 5;\n      left: 0; }\n  @media screen and (max-width: 986px) {\n    .landscape__overlay {\n      position: relative; }\n      .landscape__overlay:after {\n        position: absolute;\n        width: 100%; }\n    .landscape--background {\n      position: relative;\n      padding-top: 50%;\n      width: 100%;\n      background-position-y: 50%; } }\n  @media screen and (max-width: 545px) {\n    .landscape--background {\n      padding-top: 100%; } }\n\n@media screen and (max-width: 986px) {\n  .about .landscape--background {\n    background-position-y: 10%; } }\n\n.main {\n  max-width: 45em;\n  margin-left: auto;\n  margin-right: auto;\n  padding: 1rem 2rem; }\n  @media screen and (max-width: 986px) {\n    .main {\n      max-width: 100%; } }\n\n.footer {\n  display: flex;\n  justify-content: space-between;\n  padding: 0 3rem;\n  margin: 1.5rem 0;\n  width: calc(100% - 6rem); }\n  .footer__networks {\n    left: 3rem;\n    z-index: 5; }\n    .footer__networks--link {\n      display: inline-block;\n      white-space: nowrap;\n      margin: 0 10px 0 0; }\n  .footer__info {\n    color: #666666;\n    font-size: 14px;\n    font-weight: 200;\n    border-top: 1px solid #dedede;\n    padding-top: 10px;\n    width: 100%; }\n    .footer__info--col {\n      margin: 0 20px;\n      position: relative;\n      white-space: nowrap; }\n      .footer__info--col:after {\n        content: '';\n        position: absolute;\n        width: 1px;\n        height: 100%;\n        background-color: #dedede;\n        right: -20px;\n        top: 0; }\n      .footer__info--col:first-child {\n        margin-left: 0; }\n      .footer__info--col:last-child {\n        margin-right: 0; }\n        .footer__info--col:last-child:after {\n          display: none; }\n      .footer__info--col a, .footer__info--col a:visited {\n        color: #666666;\n        text-decoration: underline; }\n      .footer__info--col a:hover, .footer__info--col a:focus, .footer__info--col a:active {\n        color: #000000;\n        text-decoration: none; }\n  @media screen and (min-width: 987px) {\n    .footer__networks {\n      bottom: 1rem;\n      position: fixed; } }\n  @media screen and (max-width: 986px) {\n    .footer {\n      padding: 0 2rem;\n      width: calc(100% - 4rem); }\n      .footer__networks {\n        position: absolute;\n        margin-top: 50%;\n        top: 0; }\n      .footer__info--col:after {\n        background-color: transparent; } }\n  @media screen and (max-width: 545px) {\n    .footer__info--col {\n      display: block;\n      margin: 0 auto; }\n    .footer__networks {\n      position: absolute;\n      margin-top: 100%;\n      top: 0; } }\n\n.list-projects__item {\n  list-style-type: circle;\n  color: #000000;\n  margin: 0 20px 0; }\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 37 */
+/* 39 */
 /***/ (function(module, exports) {
 
 module.exports = function escape(url) {
@@ -2295,7 +2343,7 @@ module.exports = function escape(url) {
 
 
 /***/ }),
-/* 38 */
+/* 40 */
 /***/ (function(module, exports) {
 
 /*
@@ -2377,13 +2425,13 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 39 */
+/* 41 */
 /***/ (function(module, exports) {
 
 module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAACECAMAAABI+gUuAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAYBQTFRFcHBw2eDrdMjrcLnSUWCAXr/pMDAwxsrVyOj1paWl5dXWwtLYGJjKuLi4KqrhA4Sx3Us4f39/s7Ozy8vLICAgv7+/z8/P7+/v39/fenp6QEBA7OzssrKyn5+fjY2N9fX1+fn5np6e2dnZ4uLi5eXl2NjYgcHYEBAQxsbG8vLyqqqqq6ur7qWbr6+vYGBgxcXFUFBQoKCghISEztXl5nhqj4+P0tLSgICAI5O7ldTwl5eXRbXlQqPFr9/0vLy8nKvM4WJRVG6m+d3a/fTz8vr97JqP9tLN7/f68ru0oNHi3/D11+/5++jmHi1N31ZE5ury0Ojw8/X5tcHZ5PT7N6/j6IN2ollQ9MfBSYmkOHWJFVVx6o+DbyYchHuNAkJZ8LCoVmJ6iFJrvOT2E4y2421diM/ub4a109ffkMndUbHXwODrsNjno5yqd6e7zN3iUICV28nG4N7iYHisUqvJuYN8qbbSk1xVzMzMaJipfYigqX2PO1mZmJiYZ2dnAAAA////bWKF3QAAAIB0Uk5T/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////wA4BUtnAAASX0lEQVR42uxd+X/bthVnk9mN2skxJZGiKJK6LVnyJcfWbMVxnLh10yRNeqTLum5r12v30e5eZPNfHwHiBiiyJhzl8+neD1roRxB4X7wb6GdGyNB6rwyotx6qad2J+fWr4qfNn8K/DBn06+XCDFOhLM/RnDD8bf381Pk5flM3AM3tGU/bwhTlFs+3msLy5vNTx6fML36/pQsCBEC9MBOpwCpqfSTxW90UvvN9xsP5R9tOt9t1tkdZ5h/VNQLQm6moR95yWmn8kYeodZnxcH6LSlS3MoznEM4HgFp+ugInhb9ernfXFa9mHQ/mL3S5dXULGcY7mgCoz5Io3pN6a5aygkn072IzbBaxAhTKHuWnjQfzj0STbo7S52/VtQDQjO2/5ckz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"
 
 /***/ }),
-/* 40 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "static/sprite.8c860238.svg";
@@ -2391,4 +2439,4 @@ module.exports = __webpack_require__.p + "static/sprite.8c860238.svg";
 /***/ })
 /******/ ]);
 });
-//# sourceMappingURL=static.1ce4f7de.js.map
+//# sourceMappingURL=static.c5ed7435.js.map

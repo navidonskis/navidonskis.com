@@ -3,11 +3,15 @@ import { withRouteData } from 'react-static'
 import convert from 'htmr'
 import Layout from './Layout';
 import bgImage from '../assets/bg-02.jpg';
+import ExpiredStorage from 'expired-storage';
+import localStorage from './polyfill/localStorage';
 
 class About extends Component {
   constructor (props) {
     super(props);
 
+    this.expireStorage = new ExpiredStorage(localStorage);
+    this.expiration = 3600; // one hour
     this.state = {
       stars: [],
       openSource: []
@@ -21,7 +25,7 @@ class About extends Component {
   }
 
   fetchStarredProjects () {
-    const starsCached = localStorage.getItem('stars');
+    const starsCached = this.expireStorage.getItem('stars');
 
     if (starsCached) {
       this.setState({ stars: JSON.parse(starsCached) });
@@ -37,13 +41,13 @@ class About extends Component {
         list.push({ name, description, html_url });
       }
 
-      localStorage.setItem('stars', JSON.stringify(list));
+      this.expireStorage.setItem('stars', JSON.stringify(list), this.expiration);
       this.setState({ stars: list });
     });
   }
 
   fetchOSProjects () {
-    const osCached = localStorage.getItem('open-source');
+    const osCached = this.expireStorage.getItem('open-source');
 
     if (osCached) {
       this.setState({ stars: JSON.parse(osCached) });
@@ -63,7 +67,7 @@ class About extends Component {
           source.push({ name, description, html_url });
         }
 
-        localStorage.setItem('open-source', JSON.stringify(source));
+        this.expireStorage.setItem('open-source', JSON.stringify(source), this.expiration);
         this.setState({ openSource: source });
       });
     });
