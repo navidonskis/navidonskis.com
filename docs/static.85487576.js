@@ -506,14 +506,12 @@ var About = function (_Component) {
       }
 
       this.githubFetch('users/navidonskis/repos').then(function (result) {
-        var list = result.filter(function (item) {
-          return false === item.fork && item;
-        });
+        var list = result;
         // fetch from other groups
         _this3.githubFetch('users/qenv/repos').then(function (result) {
-          list = [].concat(_toConsumableArray(list), _toConsumableArray(result.filter(function (item) {
+          list = [].concat(_toConsumableArray(list), _toConsumableArray(result)).filter(function (item) {
             return false === item.fork && item;
-          })));
+          });
           var source = [];
 
           for (var i = 0; i < list.length; i++) {
@@ -2439,4 +2437,4 @@ module.exports = __webpack_require__.p + "static/sprite.8c860238.svg";
 /***/ })
 /******/ ]);
 });
-//# sourceMappingURL=static.c5ed7435.js.map
+//# sourceMappingURL=static.85487576.js.map

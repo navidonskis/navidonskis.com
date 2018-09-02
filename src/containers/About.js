@@ -55,10 +55,10 @@ class About extends Component {
     }
 
     this.githubFetch('users/navidonskis/repos').then((result) => {
-      let list = result.filter((item) => false === item.fork && item);
+      let list = result;
       // fetch from other groups
       this.githubFetch('users/qenv/repos').then((result) => {
-        list = [...list, ...result.filter((item) => false === item.fork && item)];
+        list = [...list, ...result].filter((item) => false === item.fork && item);
         const source = [];
 
         for (let i = 0; i < list.length; i++) {
