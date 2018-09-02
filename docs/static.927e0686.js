@@ -455,26 +455,54 @@ var About = function (_Component) {
       });
     }
   }, {
-    key: 'componentDidMount',
-    value: function componentDidMount() {
+    key: 'fetchStarredProjects',
+    value: function fetchStarredProjects() {
       var _this2 = this;
 
+      var starsCached = localStorage.getItem('stars');
+
+      if (starsCached) {
+        this.setState({ stars: JSON.parse(starsCached) });
+        return;
+      }
+
       this.githubFetch('users/doniz/starred').then(function (result) {
-        return _this2.setState({ stars: result });
+        localStorage.setItem('stars', JSON.stringify(list));
+        _this2.setState({ stars: result });
       });
+    }
+  }, {
+    key: 'fetchOSProjects',
+    value: function fetchOSProjects() {
+      var _this3 = this;
+
+      var osCached = localStorage.getItem('open-source');
+
+      if (osCached) {
+        this.setState({ stars: JSON.parse(osCached) });
+        return;
+      }
+
       this.githubFetch('users/navidonskis/repos').then(function (result) {
         var list = result.filter(function (item) {
           return false === item.fork && item;
         });
         // fetch from other groups
-        _this2.githubFetch('users/qenv/repos').then(function (result) {
+        _this3.githubFetch('users/qenv/repos').then(function (result) {
           list = [].concat(_toConsumableArray(list), _toConsumableArray(result.filter(function (item) {
             return false === item.fork && item;
           })));
 
-          _this2.setState({ openSource: list });
+          localStorage.setItem('open-source', JSON.stringify(list));
+          _this3.setState({ openSource: list });
         });
       });
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.fetchStarredProjects();
+      this.fetchOSProjects();
     }
   }, {
     key: 'getMapGithubProjects',
@@ -2340,4 +2368,4 @@ module.exports = __webpack_require__.p + "static/sprite.8c860238.svg";
 /***/ })
 /******/ ]);
 });
-//# sourceMappingURL=static.6eb0d9e5.js.map
+//# sourceMappingURL=static.927e0686.js.map

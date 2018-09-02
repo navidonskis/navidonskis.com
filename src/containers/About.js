@@ -20,17 +20,43 @@ class About extends Component {
     return fetch(`${uri}/${endpoint}`).then(res => res.json());
   }
 
-  componentDidMount () {
-    this.githubFetch('users/doniz/starred').then((result) => this.setState({ stars: result }));
+  fetchStarredProjects () {
+    const starsCached = localStorage.getItem('stars');
+
+    if (starsCached) {
+      this.setState({ stars: JSON.parse(starsCached) });
+      return;
+    }
+
+    this.githubFetch('users/doniz/starred').then((result) => {
+      localStorage.setItem('stars', JSON.stringify(list));
+      this.setState({ stars: result })
+    });
+  }
+
+  fetchOSProjects () {
+    const osCached = localStorage.getItem('open-source');
+
+    if (osCached) {
+      this.setState({ stars: JSON.parse(osCached) });
+      return;
+    }
+
     this.githubFetch('users/navidonskis/repos').then((result) => {
       let list = result.filter((item) => false === item.fork && item);
       // fetch from other groups
       this.githubFetch('users/qenv/repos').then((result) => {
         list = [...list, ...result.filter((item) => false === item.fork && item)];
 
+        localStorage.setItem('open-source', JSON.stringify(list));
         this.setState({ openSource: list });
       });
     });
+  }
+
+  componentDidMount () {
+    this.fetchStarredProjects();
+    this.fetchOSProjects();
   }
 
   getMapGithubProjects (title = '', list = []) {
