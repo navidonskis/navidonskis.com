@@ -51,9 +51,6 @@ class Navigation extends Component {
         <NavLink to="/about/" className="navigation--link" onClick={this.handleClick}>
           <span itemProp="name">About</span>
         </NavLink>
-        {/*<NavLink to="/blog" className="navigation--link">*/}
-        {/*<span itemProp="name">Writing</span>*/}
-        {/*</NavLink>*/}
       </nav>
     );
   }

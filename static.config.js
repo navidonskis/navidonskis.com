@@ -28,13 +28,13 @@ export default {
         }),
       },
       {
-        path: '/blog',
+        path: '/blog/',
         component: 'src/containers/Blog',
         getData: () => ({
           posts,
         }),
         children: posts.map(post => ({
-          path: `/post/${post.slug}`,
+          path: `/${post.slug}/`,
           component: 'src/containers/Post',
           getData: () => ({
             post,
