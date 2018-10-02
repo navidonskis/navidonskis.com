@@ -9,7 +9,7 @@ class Post extends Component {
   render () {
     const { post } = this.props;
     const { title, description } = post;
-    const url = false !== typeof window.location ? window.location : '/';
+    const url = "undefined" !== typeof window ? window.location : '/';
     const bg = post.bg ? post.bg : bgImage;
 
     return (
