@@ -9,14 +9,14 @@ description: Donatas is a husband, father, software/system engineer and amateur 
 
 Hi, I’m Donatas
 
-I’m a husband, father, software/system engineer and amateur runner. In 2013, we moved to Vilnius from north of Lithuania. Since then my career **officially** starts as web developer. In 2014 I’ve gained bachelor of network/administration degree at Šiauliai University. And the most special date was in 27 of October, 2016, when my son Kay was born. We’re now a family of three enjoying lifes.
+I’m a husband, father, software/system engineer and amateur runner. In 2013, we moved to Vilnius from north of Lithuania. Since then my career officially starts as a web developer. In 2014 I’ve gained the bachelor of network and system administrator degree at Šiauliai University. And the most special date was in 27 of October 2016, when my son Kay was born. We’re now a family of three enjoying life.
 
 <section role="contentinfo" id="professional-biography">
     <h2>Professional Biography</h2>
     
-    <p>Donatas currently work as Software Engineer at Boozt Fashion AB, highly motivated and result-oriented professional. He's focused on web applications and infrastructure, cloud computing, cloud architecture, automation, containerization. Certified Google Cloud Platform engineer and bachelor of network/administration.</p>
-    <p>At the breakfast he eating Docker or Kubernetes and resting with Node.js, PHP, React.js, Golang or some cookbook for whole busy day.</p>
-    <p>He lives with his wife and one children in Vilnius, Lithuania.</p>
+    <p>Donatas currently work as Software Engineer at Boozt Fashion AB, highly motivated and result-oriented professional. He's focused on web applications and infrastructure, cloud computing, cloud architecture, automation, containerization. Certified Google Cloud Platform engineer and bachelor of network and system administrator.</p>
+    <p>At the breakfast, he eating Docker or Kubernetes and resting with Node.js, PHP, React.js, Golang or some cookbook for a whole busy day.</p>
+    <p>He lives with his wife and one child in Vilnius, Lithuania.</p>
 </section>
 
 <section role="contentinfo" id="technical-skills">
@@ -64,4 +64,3 @@ I’m a husband, father, software/system engineer and amateur runner. In 2013, w
         </p>
     </div>
 </section>
-
