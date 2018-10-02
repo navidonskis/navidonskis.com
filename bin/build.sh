@@ -29,4 +29,4 @@ remove_distributions
 build_react_static ${@}
 move_dist_to_docs
 copy_assets
-generate_sitemap
+#generate_sitemap
