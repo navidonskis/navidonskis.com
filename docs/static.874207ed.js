@@ -760,7 +760,7 @@ var Post = function (_Component) {
       var title = post.title,
           description = post.description;
 
-      var url = false !== typeof window.location ? window.location : '/';
+      var url = "undefined" !== typeof window ? window.location : '/';
       var bg = post.bg ? post.bg : _bg2.default;
 
       return _react2.default.createElement(
@@ -2531,4 +2531,4 @@ module.exports = __webpack_require__.p + "static/sprite.8c860238.svg";
 /***/ })
 /******/ ]);
 });
-//# sourceMappingURL=static.a6fa1cc1.js.map
+//# sourceMappingURL=static.874207ed.js.map
