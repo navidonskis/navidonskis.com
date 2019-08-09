@@ -1,9 +1,0 @@
-.layout {
-	width: 50%;
-	margin-left: 50%;
-
-	@include tablet-and-less() {
-		width: 100%;
-		margin: 0 auto;
-	}
-}
