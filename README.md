@@ -2,6 +2,8 @@
 
 # Personal website of navidonskis.com
 
+Personal website built with node.js, sass and html to keep simple as possible :)
+
 ## License
 
 [The 3-Clause BSD License](./LICENSE)
