@@ -13,28 +13,87 @@
   <meta name="twitter:title" content="Donatas Navidonskis - Site Reliability Engineer">
   <meta name="apple-mobile-web-app-title" content="navidonskis">
   <meta name="application-name" content="navidonskis">
-  <meta name="msapplication-config" content="/assets/browserconfig.xml">
+  <meta name="msapplication-config" content="assets/browserconfig.xml">
   <meta name="theme-color" content="#ffffff">
-
-  <link rel="preload" as="script" href="/bootstrap.0de5c20c.js">
-  <link rel="preload" as="script" href="/templates/src/containers/Home.9e43ad9b.js">
-  <link rel="preload" as="script" href="/main.34e73856.js">
-  <link rel="preload" as="style" href="/styles.2131db9e.css">
-  <link rel="stylesheet" href="/styles.2131db9e.css">
-  
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
-  <link rel="manifest" href="/assets/manifest.json">
-  <link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#000000">
-  <link rel="shortcut icon" href="/assets/favicon.ico">
-  <script async="" src="https://www.google-analytics.com/analytics.js"></script>
+  <link rel="stylesheet" href="assets/css/app.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+  <link rel="manifest" href="assets/manifest.json">
+  <link rel="mask-icon" href="assets/images/safari-pinned-tab.svg" color="#000000">
+  <link rel="shortcut icon" href="assets/images/favicon.ico">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Donatas Navidonskis","url":"https://www.navidonskis.com","homeLocation":{"type":"Person","address":"Vilnius, Lithuania"},"email":"donatas@navidonskis.com","telephone":"+37067078495","givenName":"Donatas","familyName":"Navidonskis","jobTitle":"Site Reliability Engineer","sameAs":["https://www.facebook.com/donatas.navidonskis","https://twitter.com/navidonskis","https://www.linkedin.com/in/navidonskis/","https://github.com/navidonskis/","https://github.com/doniz/"]}</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
   <meta name="og:url" content="">
 </head>
 <body>
+  <div id="root">
+    <div class="layout">
+      <header class="header" role="banner">
+        <div class="header--logo">
+          <a class="active" aria-current="page" href="index.html">navidonskis</a>
+        </div>
 
+        <nav role="navigation" class="navigation false" itemscope="" itemType="https://schema.org/SiteNavigationElement">
+          <svg width="16" height="14" class="navigation--button">
+            <path d="M12 6v2H0V6zm4-6v2H0V0zm0 12v2H0v-2z" fill="currentColor" fill-rule="evenodd"></path>
+          </svg>
+
+          <a class="navigation--link active" aria-current="page" href="index.html">
+            <span itemProp="name">Home</span>
+          </a>
+          <a class="navigation--link" href="about.html">
+            <span itemProp="name">About</span>
+          </a>
+        </nav>
+      </header>
+
+      <section class="landscape">
+        <div class="landscape__overlay">
+          <div class="landscape--background" style="background-image:url(assets/images/bg-01.jpg)"></div>
+        </div>
+      </section>
+
+      <main class="main" role="main">
+        <h1>
+          <strong>Donatas Navidonskis</strong> is an Site Reliability Engineer focused on building web applications and infrastructure.
+        </h1>
+
+        <hr/>
+
+        <p>Donatas currently work as Site Reliability Engineer at Boozt Fashion AB, highly motivated and result-oriented professional. He&#x27;s focused on web applications and infrastructure, cloud computing, cloud architecture, automation, containerization. Certified Google Cloud Platform engineer and bachelor of network and system administrator.</p>
+        <p>At the breakfast, he eating Docker or Kubernetes and resting with Node.js, PHP, React.js, Golang or some cookbook for a whole busy day.</p>
+        <p>He lives with his wife and one child in Vilnius, Lithuania.</p>
+      </main>
+
+      <footer class="footer" role="contentinfo">
+        <nav class="footer__networks" itemscope="" itemType="http://schema.org/Person">
+          <a itemProp="sameAs" class="footer__networks--link" href="https://www.linkedin.com/in/navidonskis">
+            <i class="icons icons__linkedin"></i>
+          </a>
+          <a itemProp="sameAs" class="footer__networks--link" href="https://www.facebook.com/donatas.navidonskis">
+            <i class="icons icons__facebook"></i>
+          </a>
+          <a itemProp="sameAs" class="footer__networks--link" href="https://twitter.com/navidonskis">
+            <i class="icons icons__twitter"></i>
+          </a>
+          <a itemProp="sameAs" class="footer__networks--link" href="https://github.com/doniz">
+            <i class="icons icons__github"></i>
+          </a>
+        </nav>
+        
+        <div class="footer__info">
+          <span class="footer__info--col">© navidonskis.com</span>
+          <span class="footer__info--col">
+            <a href="mailto:donatas@navidonskis.com">donatas@navidonskis.com</a>
+          </span>
+          <span class="footer__info--col">
+            <a href="tel:+37067078495">+370 670 78495</a>
+          </span>
+        </div>
+      </footer>
+    </div>
+  </div>
 </body>
 </html>

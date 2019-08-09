@@ -1,0 +1,71 @@
+.navigation {
+	width: 100%;
+	text-align: right;
+
+	a, a:visited {
+		color: $text-color-grey;
+		text-decoration: none;
+	}
+
+	a:hover, a:active, a:focus, a.active {
+		color: #000000;
+	}
+
+	&--link,
+	&--button {
+		margin: 0 30px;
+	}
+
+	@include tablet-and-greater {
+		padding: 0.8rem 2rem 1.25rem;
+		margin-bottom: 1.5rem;
+
+		&--button {
+			display: none;
+		}
+	}
+
+	@include tablet-and-less {
+		&--button {
+			cursor: pointer;
+			position: absolute;
+			top: 22px;
+			right: 0;
+		}
+
+		&--link {
+			display: none;
+		}
+
+		&--open {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			position: fixed;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			background-color: #FFFFFF;
+			z-index: 9999;
+			overflow: hidden;
+
+			.navigation--link {
+				display: flex;
+				font-size: 200%;
+				flex-direction: row;
+				padding: 5rem 0;
+
+				> span {
+					margin: 0 auto;
+				}
+			}
+		}
+	}
+}
+
+.mobile-menu {
+	@include tablet-and-less {
+		overflow: hidden;
+	}
+}

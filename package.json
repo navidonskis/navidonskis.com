@@ -1,0 +1,24 @@
+{
+  "name": "navidonskis.com",
+  "version": "1.0.0",
+  "description": "<img src=\"https://upload.wikimedia.org/wikipedia/commons/1/11/Flag_of_Lithuania.svg\" width=\"100px\" align=\"right\" alt=\"Lithuania\">",
+  "dependencies": {
+    "node-sass": "^4.12.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node-sass --watch src/sass/app.scss assets/css/app.css",
+    "build": "node-sass src/sass/app.scss assets/css/app.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/navidonskis/navidonskis.com.git"
+  },
+  "author": "Donatas Navidonskis <donats@navidonskis.com>",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/navidonskis/navidonskis.com/issues"
+  },
+  "homepage": "https://github.com/navidonskis/navidonskis.com#readme"
+}
