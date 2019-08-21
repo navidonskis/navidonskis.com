@@ -9,7 +9,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node-sass --watch src/sass/app.scss assets/css/app.css",
-    "build": "node-sass src/sass/app.scss assets/css/app.css"
+    "build": "node-sass src/sass/app.scss assets/css/app.css",
+    "minify": "bin/minify.sh js && bin/minify.sh css"
   },
   "repository": {
     "type": "git",
