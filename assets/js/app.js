@@ -42,14 +42,70 @@ function removeClass (element, className) {
   }
 }
 
+/**
+ * create element by passing options
+ *
+ * @param {string} tagName
+ * @param {object} options
+ *
+ * @return {HTMLElement}
+ */
+function createElement (tagName, options = {}) {
+  const element = document.createElement(tagName);
+
+  for (let key in options) {
+    element[key] = options[key];
+  }
+
+  return element;
+}
+
+/**
+ * Render items as HTML DOM elements
+ *
+ * @param {object} item
+ * @param {int} index
+ * @param {HTMLElement} container
+ *
+ * @constructor
+ */
+function CreateListItemAndAppendToContainer (item, index, container) {
+  const listElement = createElement('li', {
+    className: 'list-projects__item',
+    id: `list-projects__item-${index}`
+  });
+
+  const linkElement = createElement('a', {
+    href: item.html_url,
+    target: '_blank',
+    text: item.name
+  });
+
+  listElement.appendChild(linkElement);
+
+  if (item.description) {
+    const descriptionElement = createElement('span', {
+      className: 'list-projects__item--desc',
+      textContent: ` - ${item.description}`
+    });
+
+    listElement.appendChild(descriptionElement);
+  }
+
+  container.appendChild(listElement);
+}
+
 function Components () {
   const { ownedProjects, recentProjects } = window.app;
 
   return {
+
     /**
      * Initialize mobile menu component
+     *
+     * @return {Element}
      */
-    mobileNavigation: function() {
+    mobileNavigation: () => {
       const activeClass = 'navigation--open';
       const container = document.querySelector('*[data-component="top-navigation"]');
 
@@ -57,7 +113,7 @@ function Components () {
         const handler = container.querySelector('.navigation--button');
 
         if (handler) {
-          handler.addEventListener('click', function () {
+          handler.addEventListener('click', () => {
             if (hasClass(container, activeClass)) {
               removeClass(container, activeClass);
             } else {
@@ -69,89 +125,38 @@ function Components () {
         return container;
       }
     },
-    openSource: function () {
+
+    /**
+     * Render Open Source Github projects to the HTML list
+     *
+     * @return {Element}
+     */
+    openSource: () => {
       const container = document.querySelector('*[data-component="fetch-open-source"]');
 
       if (container) {
-        // list-projects__item
-        ownedProjects.map(function (item, index) {
-          const listElement = document.createElement('li');
-          const linkElement = document.createElement('a');
-
-          listElement.className = 'list-projects__item';
-          listElement.id = `list-projects__item-${index}`;
-
-          linkElement.href = item.html_url;
-          linkElement.target = "_blank";
-          linkElement.text = item.name;
-
-          listElement.appendChild(linkElement);
-
-          if (item.description) {
-            const descriptionElement = document.createElement('span');
-            descriptionElement.className = 'list-projects__item--desc';
-            descriptionElement.textContent = ` - ${item.description}`;
-
-            listElement.appendChild(descriptionElement);
-          }
-
-          container.appendChild(listElement);
-        });
+        ownedProjects.map((item, index) => new CreateListItemAndAppendToContainer(item, index, container));
 
         return container;
       }
     },
-    recentProjects: function () {
+
+    /**
+     * Render Recent Starred Github projects to the HTML list
+     *
+     * @return {Element}
+     */
+    recentProjects: () => {
       const container = document.querySelector('*[data-component="fetch-recent-projects"]');
 
       if (container) {
-        // list-projects__item
-        recentProjects.map(function (item, index) {
-          const listElement = document.createElement('li');
-          const linkElement = document.createElement('a');
-
-          listElement.className = 'list-projects__item';
-          listElement.id = `list-projects__item-${index}`;
-
-          linkElement.href = item.html_url;
-          linkElement.target = "_blank";
-          linkElement.text = item.name;
-
-          listElement.appendChild(linkElement);
-
-          if (item.description) {
-            const descriptionElement = document.createElement('span');
-            descriptionElement.className = 'list-projects__item--desc';
-            descriptionElement.textContent = ` - ${item.description}`;
-
-            listElement.appendChild(descriptionElement);
-          }
-
-          container.appendChild(listElement);
-        });
+        recentProjects.map((item, index) => new CreateListItemAndAppendToContainer(item, index, container));
 
         return container;
       }
     }
   };
 }
-
-// getMapGithubProjects (title = '', list = []) {
-//   return (
-//     <section className="list-projects">
-//     <h2>{title}</h2>
-//
-//     <ul className="list-projects__container">
-//     {list.map((repo, index) => (
-//         <li className="list-projects__item" key={index}>
-//       <a href={repo.html_url} target="_blank">{repo.name}</a>
-//   {repo.description && (<span className="list-projects__item--desc"> - {repo.description}</span>)}
-//     </li>
-//   ))}
-// </ul>
-//   </section>
-// );
-// }
 
 /**
  * polyfill of localStorage
