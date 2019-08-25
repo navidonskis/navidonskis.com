@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * did element has class name
  *
@@ -225,7 +227,7 @@ async function OwnedProjects () {
   const navidonskisAccRepos = await fetchGithubAPI('users/navidonskis/repos');
   const qenvAccRepos = await fetchGithubAPI('users/qenv/repos');
   const filteredRepos = [...navidonskisAccRepos, ...qenvAccRepos].filter(function (item) {
-    return false === item.fork && item;
+    return false === item['fork'];
   });
   const list = [];
 
