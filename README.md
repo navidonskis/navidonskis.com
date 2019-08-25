@@ -4,6 +4,10 @@
 
 Personal website built with node.js, sass and html to keep simple as possible :)
 
+## Compress JS
+
+ - https://jscompress.com/
+
 ## Main focus:
 
  - Building Resilient Systems
