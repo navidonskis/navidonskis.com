@@ -194,8 +194,7 @@ async function fetchGithubAPI (endpoint) {
   return await response.json();
 }
 
-async function RecentProjects () {
-  const session = window.sessionStorage;
+async function RecentProjects (session) {
   const cachedRecentProjects = session.getItem('stars');
 
   if (cachedRecentProjects) {
@@ -216,8 +215,7 @@ async function RecentProjects () {
   return list;
 }
 
-async function OwnedProjects () {
-  const session = window.sessionStorage;
+async function OwnedProjects (session) {
   const cachedRecentProjects = session.getItem('open-source');
 
   if (cachedRecentProjects) {
@@ -244,11 +242,11 @@ async function OwnedProjects () {
 
 (async function () {
   // polyfill of localStorage
-  window.sessionStorage = typeof window.sessionStorage ? window.sessionStorage : new LocalStorage();
+  const session = typeof window.sessionStorage ? window.sessionStorage : new LocalStorage();
   // define an app object
   window.app = {};
-  window.app.recentProjects = await RecentProjects();
-  window.app.ownedProjects = await OwnedProjects();
+  window.app.recentProjects = await RecentProjects(session);
+  window.app.ownedProjects = await OwnedProjects(session);
   window.app.components = [
     new Components().mobileNavigation(),
     new Components().openSource(),
