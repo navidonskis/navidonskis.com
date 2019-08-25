@@ -10,7 +10,7 @@
 function hasClass (element, className) {
   return element.classList
     ? element.classList.contains(className)
-    : new RegExp(`\\b${className}\\b`).test(element.className);
+    : new RegExp('\\b' + className + '\\b').test(element.className);
 }
 
 /**
@@ -23,7 +23,7 @@ function addClass (element, className) {
   if (element.classList) {
     element.classList.add(className);
   } else if (!this.hasClass(element, className)) {
-    element.className += `${className}`;
+    element.className += ' ' + className;
   }
 }
 
@@ -38,7 +38,7 @@ function removeClass (element, className) {
     element.classList.remove(className);
   } else {
     element.className = element.className.replace(
-      new RegExp(`\\b${className}\\b`, 'g'),
+      new RegExp('\\b' + className + '\\b', 'g'),
       ''
     );
   }
@@ -52,10 +52,10 @@ function removeClass (element, className) {
  *
  * @return {HTMLElement}
  */
-function createElement (tagName, options = {}) {
-  const element = document.createElement(tagName);
+function createElement (tagName, options) {
+  var element = document.createElement(tagName);
 
-  for (let key in options) {
+  for (var key in options) {
     element[key] = options[key];
   }
 
@@ -68,16 +68,14 @@ function createElement (tagName, options = {}) {
  * @param {object} item
  * @param {int} index
  * @param {HTMLElement} container
- *
- * @constructor
  */
 function CreateListItemAndAppendToContainer (item, index, container) {
-  const listElement = createElement('li', {
+  var listElement = createElement('li', {
     className: 'list-projects__item',
-    id: `list-projects__item-${index}`
+    id: 'list-projects__item-' + index
   });
 
-  const linkElement = createElement('a', {
+  var linkElement = createElement('a', {
     href: item.html_url,
     target: '_blank',
     text: item.name
@@ -86,9 +84,9 @@ function CreateListItemAndAppendToContainer (item, index, container) {
   listElement.appendChild(linkElement);
 
   if (item.description) {
-    const descriptionElement = createElement('span', {
+    var descriptionElement = createElement('span', {
       className: 'list-projects__item--desc',
-      textContent: ` - ${item.description}`
+      textContent: ' - ' + item.description
     });
 
     listElement.appendChild(descriptionElement);
@@ -98,7 +96,8 @@ function CreateListItemAndAppendToContainer (item, index, container) {
 }
 
 function Components () {
-  const { ownedProjects, recentProjects } = window.app;
+  var ownedProjects = window.app.ownedProjects;
+  var recentProjects = window.app.recentProjects;
 
   return {
 
@@ -107,15 +106,15 @@ function Components () {
      *
      * @return {Element}
      */
-    mobileNavigation: () => {
-      const activeClass = 'navigation--open';
-      const container = document.querySelector('*[data-component="top-navigation"]');
+    mobileNavigation: function () {
+      var activeClass = 'navigation--open';
+      var container = document.querySelector('*[data-component="top-navigation"]');
 
       if (container) {
-        const handler = container.querySelector('.navigation--button');
+        var handler = container.querySelector('.navigation--button');
 
         if (handler) {
-          handler.addEventListener('click', () => {
+          handler.addEventListener('click', function() {
             if (hasClass(container, activeClass)) {
               removeClass(container, activeClass);
             } else {
@@ -133,11 +132,13 @@ function Components () {
      *
      * @return {Element}
      */
-    openSource: () => {
-      const container = document.querySelector('*[data-component="fetch-open-source"]');
+    openSource: function () {
+      var container = document.querySelector('*[data-component="fetch-open-source"]');
 
       if (container) {
-        ownedProjects.map((item, index) => new CreateListItemAndAppendToContainer(item, index, container));
+        ownedProjects.map(function (item, index) {
+          return new CreateListItemAndAppendToContainer(item, index, container);
+        });
 
         return container;
       }
@@ -148,11 +149,13 @@ function Components () {
      *
      * @return {Element}
      */
-    recentProjects: () => {
-      const container = document.querySelector('*[data-component="fetch-recent-projects"]');
+    recentProjects: function () {
+      var container = document.querySelector('*[data-component="fetch-recent-projects"]');
 
       if (container) {
-        recentProjects.map((item, index) => new CreateListItemAndAppendToContainer(item, index, container));
+        recentProjects.map(function (item, index) {
+          return new CreateListItemAndAppendToContainer(item, index, container);
+        });
 
         return container;
       }
@@ -164,7 +167,7 @@ function Components () {
  * polyfill of localStorage
  *
  * @return {{_data: {}, removeItem: (function(*): boolean), clear: (function(): {}), getItem: (function(*): *), setItem: (function(*, *): *)}}
- * @constructor
+ * @varructor
  */
 function LocalStorage () {
   return {
@@ -189,23 +192,23 @@ function LocalStorage () {
 }
 
 async function fetchGithubAPI (endpoint) {
-  const response = await fetch(`https://api.github.com/${endpoint}`);
+  var response = await fetch('https://api.github.com/' + endpoint);
 
   return await response.json();
 }
 
 async function RecentProjects (session) {
-  const cachedRecentProjects = session.getItem('stars');
+  var cachedRecentProjects = session.getItem('stars');
 
   if (cachedRecentProjects) {
     return JSON.parse(cachedRecentProjects);
   }
 
-  const result = await fetchGithubAPI('users/doniz/starred');
-  const list = [];
+  var result = await fetchGithubAPI('users/doniz/starred');
+  var list = [];
 
-  for (let i = 0; i < result.length; i++) {
-    const {name,description,html_url} = result[i];
+  for (var i = 0; i < result.length; i++) {
+    var {name,description,html_url} = result[i];
 
     list.push({name,description,html_url});
   }
@@ -216,21 +219,21 @@ async function RecentProjects (session) {
 }
 
 async function OwnedProjects (session) {
-  const cachedRecentProjects = session.getItem('open-source');
+  var cachedRecentProjects = session.getItem('open-source');
 
   if (cachedRecentProjects) {
     return JSON.parse(cachedRecentProjects);
   }
 
-  const navidonskisAccRepos = await fetchGithubAPI('users/navidonskis/repos');
-  const qenvAccRepos = await fetchGithubAPI('users/qenv/repos');
-  const filteredRepos = [...navidonskisAccRepos, ...qenvAccRepos].filter(function (item) {
+  var navidonskisAccRepos = await fetchGithubAPI('users/navidonskis/repos');
+  var qenvAccRepos = await fetchGithubAPI('users/qenv/repos');
+  var filteredRepos = [...navidonskisAccRepos, ...qenvAccRepos].filter(function (item) {
     return false === item['fork'];
   });
-  const list = [];
+  var list = [];
 
-  for (let i = 0; i < filteredRepos.length; i++) {
-    const {name,description,html_url} = filteredRepos[i];
+  for (var i = 0; i < filteredRepos.length; i++) {
+    var {name,description,html_url} = filteredRepos[i];
 
     list.push({name,description,html_url});
   }
@@ -242,7 +245,7 @@ async function OwnedProjects (session) {
 
 (async function () {
   // polyfill of localStorage
-  const session = typeof window.sessionStorage ? window.sessionStorage : new LocalStorage();
+  var session = typeof window.sessionStorage ? window.sessionStorage : new LocalStorage();
   // define an app object
   window.app = {};
   window.app.recentProjects = await RecentProjects(session);
