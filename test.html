@@ -1,9 +1,13 @@
 <script>
 (async function() {
-  const response = await fetch('https://strava.navidonskis.com', {
-    'method': 'GET'
-  });
+  try {
+    const response = await fetch('https://strava.navidonskis.com', {
+      'method': 'GET'
+    });
 
-  console.log(response);
+    console.log(response);
+  } catch (e) {
+    console.error(e);
+  }
 })();
 </script>
