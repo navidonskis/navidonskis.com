@@ -62,3 +62,21 @@
 		background-position-y: 10%;
 	}
 }
+
+.landscape--home {
+	background-image: url(../images/webp/bg-01.webp);
+}
+
+.landscape--about {
+	background-image: url(../images/webp/bg-02.webp);
+}
+
+.no-webp {
+	.landscape--home {
+		background-image: url(../images/compressed/bg-01.jpg);
+	}
+
+	.landscape--about {
+		background-image: url(../images/compressed/bg-02.jpg);
+	}
+}

@@ -20,6 +20,7 @@ run to optimize images:
 
 ```
 imagemin assets/images/* --out-dir=assets/images/compressed
+imagemin assets/images/* --out-dir=assets/images/webp --plugin=webp
 ```
 
 ## Main focus:

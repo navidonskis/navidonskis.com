@@ -299,6 +299,18 @@ hr {
   .about .landscape--background {
     background-position-y: 10%; } }
 
+.landscape--home {
+  background-image: url(../images/webp/bg-01.webp); }
+
+.landscape--about {
+  background-image: url(../images/webp/bg-02.webp); }
+
+.no-webp .landscape--home {
+  background-image: url(../images/compressed/bg-01.jpg); }
+
+.no-webp .landscape--about {
+  background-image: url(../images/compressed/bg-02.jpg); }
+
 .main {
   max-width: 45em;
   margin-left: auto;
