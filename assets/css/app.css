@@ -379,3 +379,15 @@ hr {
   list-style-type: circle;
   color: #000000;
   margin: 0 20px 0; }
+
+.list-blogpost__item {
+  list-style-type: none;
+  color: #000000;
+  margin: 0; }
+  .list-blogpost__item a {
+    font-weight: 400;
+    display: flex;
+    max-width: 65%; }
+
+.list-blogpost__timestamp {
+  float: right; }

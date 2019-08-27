@@ -1,0 +1,17 @@
+.list-blogpost {
+	&__item {
+		list-style-type: none;
+		color: $text-color;
+		margin: 0;
+
+		a {
+			font-weight: 400;
+			display: flex;
+			max-width: 65%;
+		}
+	}
+
+	&__timestamp {
+		float: right;
+	}
+}

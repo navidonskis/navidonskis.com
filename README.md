@@ -8,6 +8,20 @@ Personal website built with node.js, sass and html to keep simple as possible :)
 
  - https://jscompress.com/
 
+## Compress Images
+
+install imagemin:
+
+```
+npm install --global imagemin-cli
+```
+
+run to optimize images:
+
+```
+imagemin assets/images/* --out-dir=assets/images/compressed
+```
+
 ## Main focus:
 
  - Building Resilient Systems
