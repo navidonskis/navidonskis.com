@@ -1,6 +1,6 @@
 .icons {
 	content: ' ';
-	background-size: 256px 96px;
+	background-size: 256px 132px;
 	background-repeat: no-repeat;
 	display: block;
 	background: url(../images/sprite.png);
@@ -38,6 +38,12 @@
 		width: 32px;
 		height: 32px;
 	}
+
+  &__strava {
+    background-position: #{-32px * 6} #{-32px * 3};
+    width: 32px;
+    height: 32px;
+  }
 }
 
 a:hover, a:focus {
@@ -81,5 +87,13 @@ a:hover, a:focus {
 				background-position: #{-32px * 5} #{-32px * 2};
 			}
 		}
+
+    &__strava {
+      background-position: #{-32px * 6} -32px;
+
+      &.icons__colored {
+        background-position: #{-32px * 6} #{-32px * 2};
+      }
+    }
 	}
 }
