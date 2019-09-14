@@ -204,8 +204,13 @@ async function API (endpoint, storage) {
   const cachedEndpointRequest = storage.getItem(endpoint);
   const requestApi = async (endpoint) => {
     const response = await fetch(`${url}/${endpoint}`);
+    const contentJson = await response.json();
 
-    return await response.json();
+    if (contentJson.status === 200) {
+      return contentJson.body;
+    }
+
+    return {};
   };
 
   if (cachedEndpointRequest) {
