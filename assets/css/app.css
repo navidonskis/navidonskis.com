@@ -34,7 +34,7 @@ table {
 
 .icons {
   content: ' ';
-  background-size: 256px 96px;
+  background-size: 256px 132px;
   background-repeat: no-repeat;
   display: block;
   background: url(../images/sprite.png);
@@ -59,6 +59,10 @@ table {
     height: 32px; }
   .icons__github {
     background-position: -160px -96px;
+    width: 32px;
+    height: 32px; }
+  .icons__strava {
+    background-position: -192px -96px;
     width: 32px;
     height: 32px; }
 
@@ -86,6 +90,11 @@ a:hover .icons__github, a:focus .icons__github {
   background-position: -160px -32px; }
   a:hover .icons__github.icons__colored, a:focus .icons__github.icons__colored {
     background-position: -160px -64px; }
+
+a:hover .icons__strava, a:focus .icons__strava {
+  background-position: -192px -32px; }
+  a:hover .icons__strava.icons__colored, a:focus .icons__strava.icons__colored {
+    background-position: -192px -64px; }
 
 html, body, #root {
   -webkit-text-size-adjust: 100%;
