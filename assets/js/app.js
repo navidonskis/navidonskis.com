@@ -53,9 +53,9 @@ function removeClass (element, className) {
  * @return {HTMLElement}
  */
 function createElement (tagName, options) {
-  var element = document.createElement(tagName);
+  let element = document.createElement(tagName);
 
-  for (var key in options) {
+  for (let key in options) {
     element[key] = options[key];
   }
 
@@ -70,12 +70,12 @@ function createElement (tagName, options) {
  * @param {HTMLElement} container
  */
 function CreateListItemAndAppendToContainer (item, index, container) {
-  var listElement = createElement('li', {
+  let listElement = createElement('li', {
     className: 'list-projects__item',
     id: 'list-projects__item-' + index
   });
 
-  var linkElement = createElement('a', {
+  let linkElement = createElement('a', {
     href: item.html_url,
     target: '_blank',
     text: item.name
@@ -84,7 +84,7 @@ function CreateListItemAndAppendToContainer (item, index, container) {
   listElement.appendChild(linkElement);
 
   if (item.description) {
-    var descriptionElement = createElement('span', {
+    let descriptionElement = createElement('span', {
       className: 'list-projects__item--desc',
       textContent: ' - ' + item.description
     });
@@ -96,8 +96,7 @@ function CreateListItemAndAppendToContainer (item, index, container) {
 }
 
 function Components () {
-  var ownedProjects = window.app.ownedProjects;
-  var recentProjects = window.app.recentProjects;
+  const { repositories, favorites } = window.app;
 
   return {
 
@@ -107,11 +106,11 @@ function Components () {
      * @return {Element}
      */
     mobileNavigation: function () {
-      var activeClass = 'navigation--open';
-      var container = document.querySelector('*[data-component="top-navigation"]');
+      let activeClass = 'navigation--open';
+      let container = document.querySelector('*[data-component="top-navigation"]');
 
       if (container) {
-        var handler = container.querySelector('.navigation--button');
+        let handler = container.querySelector('.navigation--button');
 
         if (handler) {
           handler.addEventListener('click', function() {
@@ -132,11 +131,11 @@ function Components () {
      *
      * @return {Element}
      */
-    openSource: function () {
-      var container = document.querySelector('*[data-component="fetch-open-source"]');
+    repositories: function () {
+      let container = document.querySelector('*[data-component="repositories"]');
 
       if (container) {
-        ownedProjects.map(function (item, index) {
+        repositories.map(function (item, index) {
           return new CreateListItemAndAppendToContainer(item, index, container);
         });
 
@@ -149,11 +148,11 @@ function Components () {
      *
      * @return {Element}
      */
-    recentProjects: function () {
-      var container = document.querySelector('*[data-component="fetch-recent-projects"]');
+    favorites: function () {
+      let container = document.querySelector('*[data-component="favorites"]');
 
       if (container) {
-        recentProjects.map(function (item, index) {
+        favorites.map(function (item, index) {
           return new CreateListItemAndAppendToContainer(item, index, container);
         });
 
@@ -191,68 +190,46 @@ function LocalStorage () {
   };
 }
 
-async function fetchGithubAPI (endpoint) {
-  var response = await fetch('https://api.github.com/' + endpoint);
+/**
+ * Request an API for third-party services
+ *
+ * @param {String} endpoint
+ * @param {Object} storage
+ * @return {Promise<any>}
+ *
+ * @constructor
+ */
+async function API (endpoint, storage) {
+  const url = 'https://api.navidonskis.com';
+  const cachedEndpointRequest = storage.getItem(endpoint);
+  const requestApi = async (endpoint) => {
+    const response = await fetch(`${url}/${endpoint}`);
 
-  return await response.json();
-}
+    return await response.json();
+  };
 
-async function RecentProjects (session) {
-  var cachedRecentProjects = session.getItem('stars');
-
-  if (cachedRecentProjects) {
-    return JSON.parse(cachedRecentProjects);
+  if (cachedEndpointRequest) {
+    return JSON.parse(cachedEndpointRequest);
   }
 
-  var result = await fetchGithubAPI('users/doniz/starred');
-  var list = [];
+  const response = await requestApi(endpoint);
 
-  for (var i = 0; i < result.length; i++) {
-    var {name,description,html_url} = result[i];
+  storage.setItem(endpoint, JSON.stringify(response));
 
-    list.push({name,description,html_url});
-  }
-
-  session.setItem('stars', JSON.stringify(list));
-
-  return list;
-}
-
-async function OwnedProjects (session) {
-  var cachedRecentProjects = session.getItem('open-source');
-
-  if (cachedRecentProjects) {
-    return JSON.parse(cachedRecentProjects);
-  }
-
-  var navidonskisAccRepos = await fetchGithubAPI('users/navidonskis/repos');
-  var qenvAccRepos = await fetchGithubAPI('users/qenv/repos');
-  var filteredRepos = [...navidonskisAccRepos, ...qenvAccRepos].filter(function (item) {
-    return false === item['fork'];
-  });
-  var list = [];
-
-  for (var i = 0; i < filteredRepos.length; i++) {
-    var {name,description,html_url} = filteredRepos[i];
-
-    list.push({name,description,html_url});
-  }
-
-  session.setItem('open-source', JSON.stringify(list));
-
-  return list;
+  return response;
 }
 
 (async function () {
   // polyfill of localStorage
-  var session = typeof window.sessionStorage ? window.sessionStorage : new LocalStorage();
+  const storage = typeof window.sessionStorage ? window.sessionStorage : new LocalStorage();
   // define an app object
   window.app = {};
-  window.app.recentProjects = await RecentProjects(session);
-  window.app.ownedProjects = await OwnedProjects(session);
+  window.app.repositories = await API('github/repositories', storage);
+  window.app.favorites = await API('github/favorites', storage);
+  window.app.activities = await API('strava/activities', storage);
   window.app.components = [
     new Components().mobileNavigation(),
-    new Components().openSource(),
-    new Components().recentProjects(),
+    new Components().repositories(),
+    new Components().favorites(),
   ];
 })();
