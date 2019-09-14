@@ -53,7 +53,7 @@ function removeClass (element, className) {
  * @return {HTMLElement}
  */
 function createElement (tagName, options) {
-  let element = document.createElement(tagName);
+  const element = document.createElement(tagName);
 
   for (let key in options) {
     element[key] = options[key];
@@ -70,12 +70,12 @@ function createElement (tagName, options) {
  * @param {HTMLElement} container
  */
 function CreateListItemAndAppendToContainer (item, index, container) {
-  let listElement = createElement('li', {
+  const listElement = createElement('li', {
     className: 'list-projects__item',
     id: 'list-projects__item-' + index
   });
 
-  let linkElement = createElement('a', {
+  const linkElement = createElement('a', {
     href: item.html_url,
     target: '_blank',
     text: item.name
@@ -84,7 +84,7 @@ function CreateListItemAndAppendToContainer (item, index, container) {
   listElement.appendChild(linkElement);
 
   if (item.description) {
-    let descriptionElement = createElement('span', {
+    const descriptionElement = createElement('span', {
       className: 'list-projects__item--desc',
       textContent: ' - ' + item.description
     });
@@ -106,11 +106,11 @@ function Components () {
      * @return {Element}
      */
     mobileNavigation: function () {
-      let activeClass = 'navigation--open';
-      let container = document.querySelector('*[data-component="top-navigation"]');
+      const activeClass = 'navigation--open';
+      const container = document.querySelector('*[data-component="top-navigation"]');
 
       if (container) {
-        let handler = container.querySelector('.navigation--button');
+        const handler = container.querySelector('.navigation--button');
 
         if (handler) {
           handler.addEventListener('click', function() {
@@ -132,7 +132,7 @@ function Components () {
      * @return {Element}
      */
     repositories: function () {
-      let container = document.querySelector('*[data-component="repositories"]');
+      const container = document.querySelector('*[data-component="repositories"]');
 
       if (container) {
         repositories.map(function (item, index) {
@@ -149,7 +149,7 @@ function Components () {
      * @return {Element}
      */
     favorites: function () {
-      let container = document.querySelector('*[data-component="favorites"]');
+      const container = document.querySelector('*[data-component="favorites"]');
 
       if (container) {
         favorites.map(function (item, index) {
@@ -166,27 +166,15 @@ function Components () {
  * polyfill of localStorage
  *
  * @return {{_data: {}, removeItem: (function(*): boolean), clear: (function(): {}), getItem: (function(*): *), setItem: (function(*, *): *)}}
- * @varructor
+ * @constructor
  */
 function LocalStorage () {
   return {
     _data: {},
-
-    setItem: function (id, val) {
-      return this._data[id] = val;
-    },
-
-    getItem: function (id) {
-      return this._data[id];
-    },
-
-    removeItem: function (id) {
-      return delete this._data[id];
-    },
-
-    clear: function () {
-      return this._data = {};
-    }
+    setItem: (id, val) => this._data[id] = val,
+    getItem: (id) => this._data[id],
+    removeItem: (id) => delete this._data[id],
+    clear: () => this._data = {}
   };
 }
 
@@ -195,7 +183,7 @@ function LocalStorage () {
  *
  * @param {String} endpoint
  * @param {Object} storage
- * @return {Promise<any>}
+ * @return {Promise<*>}
  *
  * @constructor
  */
