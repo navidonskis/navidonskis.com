@@ -37,8 +37,8 @@ table {
   background-size: 256px 132px;
   background-repeat: no-repeat;
   display: block;
-  background: url(../images/sprite.png);
-  background: linear-gradient(transparent, transparent), url(../images/sprite.svg);
+  background: url(../images/sprite.png?v=6);
+  background: linear-gradient(transparent, transparent), url(../images/sprite.svg?v=6);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
   .icons__linkedin {
