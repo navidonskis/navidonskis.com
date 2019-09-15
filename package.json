@@ -6,19 +6,15 @@
     "node-fetch": "^2.6.0",
     "node-sass": "^4.12.0"
   },
-  "devDependencies": {
-    "@babel/core": "^7.6.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
-    "@babel/preset-env": "^7.6.0",
-    "babel-loader": "^8.0.6",
-    "webpack": "^4.40.2",
-    "webpack-cli": "^3.3.8"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node-sass --watch src/sass/app.scss assets/css/app.css",
+    "start_old": "node-sass --watch src/sass/app.scss assets/css/app.css",
+    "start": "npm run build:dev",
+    "build:dev": "webpack-dev-server --env dev --mode none",
+    "build:prod": "webpack --env prod --mode production",
     "build_sass": "node-sass src/sass/app.scss assets/css/app.css",
-    "build": "webpack --mode production && npm run build_sass && npm run minify-css",
+    "build_js": "webpack --mode production",
+    "build": "npm run build_js && npm run build_sass && npm run minify-css",
     "minify-css": "bin/minify.sh css",
     "imagemin": "imagemin assets/images/* --out-dir=assets/images/compressed && imagemin assets/images/* --out-dir=assets/images/webp --plugin=webp"
   },
@@ -31,5 +27,18 @@
   "bugs": {
     "url": "https://github.com/navidonskis/navidonskis.com/issues"
   },
-  "homepage": "https://github.com/navidonskis/navidonskis.com#readme"
+  "homepage": "https://github.com/navidonskis/navidonskis.com#readme",
+  "devDependencies": {
+    "autoprefixer": "^9.6.1",
+    "awesome-typescript-loader": "^5.2.1",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.6",
+    "babel-preset-env": "^1.7.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "ts-loader": "^6.1.0",
+    "typescript": "^3.6.3",
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.8",
+    "webpack-dev-server": "^3.8.0"
+  }
 }
