@@ -1,6 +1,50 @@
 'use strict';
 
 /**
+ * did element has class name
+ *
+ * @param element
+ * @param className
+ * @returns {boolean}
+ */
+function hasClass (element, className) {
+  return element.classList
+    ? element.classList.contains(className)
+    : new RegExp('\\b' + className + '\\b').test(element.className);
+}
+
+/**
+ * add class to the element
+ *
+ * @param element
+ * @param className
+ */
+function addClass (element, className) {
+  if (element.classList) {
+    element.classList.add(className);
+  } else if (!this.hasClass(element, className)) {
+    element.className += ' ' + className;
+  }
+}
+
+/**
+ * remove class from the element
+ *
+ * @param element
+ * @param className
+ */
+function removeClass (element, className) {
+  if (element.classList) {
+    element.classList.remove(className);
+  } else {
+    element.className = element.className.replace(
+      new RegExp('\\b' + className + '\\b', 'g'),
+      ''
+    );
+  }
+}
+
+/**
  * create element by passing options
  *
  * @param {string} tagName
