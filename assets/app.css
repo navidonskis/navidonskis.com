@@ -37,8 +37,8 @@ table {
   background-size: 256px 132px;
   background-repeat: no-repeat;
   display: block;
-  background: url(../images/sprite.png?v=8);
-  background: linear-gradient(transparent, transparent), url(../images/sprite.svg?v=8);
+  background: url(./images/sprite.png?v=9);
+  background: linear-gradient(transparent, transparent), url(./images/sprite.svg?v=9);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
   .icons__linkedin {
@@ -309,16 +309,16 @@ hr {
     background-position-y: 10%; } }
 
 .landscape--home {
-  background-image: url(../images/webp/bg-01.webp); }
+  background-image: url(./images/webp/bg-01.webp); }
 
 .landscape--about {
-  background-image: url(../images/webp/bg-02.webp); }
+  background-image: url(./images/webp/bg-02.webp); }
 
 .no-webp .landscape--home {
-  background-image: url(../images/compressed/bg-01.jpg); }
+  background-image: url(./images/compressed/bg-01.jpg); }
 
 .no-webp .landscape--about {
-  background-image: url(../images/compressed/bg-02.jpg); }
+  background-image: url(./images/compressed/bg-02.jpg); }
 
 .main {
   max-width: 45em;
