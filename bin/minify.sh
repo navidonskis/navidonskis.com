@@ -21,11 +21,11 @@ function minify() {
 case "${TYPE}" in
   js)
     echo "Compressing app.js to app.min.js"
-    minify "${ROOT}/assets/js/app.js" "${ROOT}/assets/js/app.min.js" "javascript-minifier"
+    minify "${ROOT}/assets/app.js" "${ROOT}/assets/app.min.js" "javascript-minifier"
   ;;
 
   css)
     echo "Compressing app.css to app.min.css"
-    minify "${ROOT}/assets/css/app.css" "${ROOT}/assets/css/app.min.css" "cssminifier"
+    minify "${ROOT}/assets/app.css" "${ROOT}/assets/app.min.css" "cssminifier"
   ;;
 esac

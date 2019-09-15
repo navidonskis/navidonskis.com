@@ -8,12 +8,13 @@ module.exports = {
     'extensions': ['.ts', '.js']
   },
   'output': {
-    'path': path.resolve(__dirname, 'assets/js'),
+    'path': path.resolve(__dirname, 'assets'),
     'filename': '[name].min.js'
   },
   'devtool': 'source-map',
   'devServer': {
     'open': true,
+    'publicPath': '/assets/'
   },
   'module': {
     'rules': [
