@@ -22,7 +22,7 @@ function hasClass (element, className) {
 function addClass (element, className) {
   if (element.classList) {
     element.classList.add(className);
-  } else if (!this.hasClass(element, className)) {
+  } else if (!hasClass(element, className)) {
     element.className += ' ' + className;
   }
 }
