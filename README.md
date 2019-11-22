@@ -2,25 +2,28 @@
 
 # Personal website of navidonskis.com
 
-Personal website built with node.js, sass and html to keep simple as possible :)
+Personal website built with TypeScript afterwards converts to ES5.js, SASS and HTML to keep simple as possible to support efficient and velocity performance. :)
 
-## Compress JS
+An API side is based through Cloudflare workers.
 
- - https://jscompress.com/
+## Images
 
-## Compress Images
+All RAW images is under `assets/raw_images` and after the `npm run img:minify` execution will prepare compressed version to `assets/images` folder. 
 
-install imagemin:
+## Development
 
-```
-npm install --global imagemin-cli
-```
-
-run to optimize images:
+To start develop just follow the command below:
 
 ```
-imagemin assets/images/* --out-dir=assets/images/compressed
-imagemin assets/images/* --out-dir=assets/images/webp --plugin=webp
+npm run start
+```
+
+> Note: GA tracking code is filtered with real domain name.
+
+## Production
+
+```
+npm run build:prod
 ```
 
 ## Main focus:
