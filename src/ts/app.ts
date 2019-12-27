@@ -3,7 +3,7 @@ import Component from "./libs/Component";
 import {FavoritesComponent} from "./libs/FavoritesComponent";
 import {NavigationComponent} from "./libs/NavigationComponent";
 // import {ActivitiesComponent} from "./libs/ActivitiesComponent";
-import {StatsComponent} from "./libs/StatsComponent";
+// import {StatsComponent} from "./libs/StatsComponent";
 
 class App {
 
@@ -12,7 +12,7 @@ class App {
     'favorites': FavoritesComponent,
     'navigation': NavigationComponent,
     // 'activities': ActivitiesComponent,
-    'stats': StatsComponent,
+    // 'stats': StatsComponent,
   };
 
   public instancesList: Component[] = [];
