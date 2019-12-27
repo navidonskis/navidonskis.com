@@ -14,6 +14,7 @@ class App {
     // 'activities': ActivitiesComponent,
     // 'stats': StatsComponent,
   };
+
   public instancesList: Component[] = [];
 
   constructor() {

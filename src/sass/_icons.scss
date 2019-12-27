@@ -3,8 +3,8 @@
 	background-size: 256px 132px;
 	background-repeat: no-repeat;
 	display: block;
-	background: url(./images/sprite.png?v=9);
-	background: linear-gradient(transparent, transparent), url(./images/sprite.svg?v=9);
+	background: url('../../assets/images/sprite.png');
+	background: linear-gradient(transparent, transparent), url('../../assets/images/sprite.svg');
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	// transition: all .3s;
