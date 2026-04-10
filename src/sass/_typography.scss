@@ -53,6 +53,16 @@ a:hover, a:focus, a:active {
   color: $color-accent-hover;
 }
 
+a.btn--primary,
+a.btn--primary:visited {
+  color: #FFFFFF;
+}
+
+a.btn--secondary,
+a.btn--secondary:visited {
+  color: $color-text;
+}
+
 strong {
   font-weight: 600;
 }

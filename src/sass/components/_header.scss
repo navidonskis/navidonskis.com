@@ -4,8 +4,7 @@
   left: 0;
   right: 0;
   z-index: 100;
-  background-color: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(8px);
+  background-color: $color-bg;
   border-bottom: 1px solid $color-border;
   height: 60px;
   display: flex;
