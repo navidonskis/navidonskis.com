@@ -9,11 +9,8 @@
   },
   "scripts": {
     "start": "npm run build:dev",
-    "build:dev": "webpack-dev-server --env dev --mode none",
-    "build:prod": "npm run img:minify && webpack --env prod --mode production",
-    "img:cmp": "imagemin assets/raw_images/* --out-dir=assets/images",
-    "img:webp": "imagemin assets/raw_images/* --out-dir=assets/images --plugin=webp",
-    "img:minify": "npm run img:cmp && npm run img:webp"
+    "build:dev": "NODE_OPTIONS=--openssl-legacy-provider webpack-dev-server --env dev --mode none",
+    "build:prod": "NODE_ENV=production NODE_OPTIONS=--openssl-legacy-provider webpack --mode production"
   },
   "repository": {
     "type": "git",

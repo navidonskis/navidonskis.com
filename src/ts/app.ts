@@ -1,71 +1,67 @@
-import {RepositoriesComponent} from "./libs/RepositoriesComponent";
-import Component from "./libs/Component";
-import {FavoritesComponent} from "./libs/FavoritesComponent";
-import {NavigationComponent} from "./libs/NavigationComponent";
-// import {ActivitiesComponent} from "./libs/ActivitiesComponent";
-// import {StatsComponent} from "./libs/StatsComponent";
+const API_BASE = 'https://api.navidonskis.com';
 
-class App {
+function initNavigation(): void {
+  const nav = document.querySelector('.nav') as HTMLElement;
+  const toggle = document.querySelector('.nav__toggle') as HTMLButtonElement;
 
-  public componentsList: any = {
-    'repositories': RepositoriesComponent,
-    'favorites': FavoritesComponent,
-    'navigation': NavigationComponent,
-    // 'activities': ActivitiesComponent,
-    // 'stats': StatsComponent,
-  };
+  if (!nav || !toggle) return;
 
-  public instancesList: Component[] = [];
+  toggle.addEventListener('click', () => {
+    nav.classList.toggle('nav--open');
+  });
 
-  constructor() {
-    this.InitComponents();
-  }
-
-  /**
-   * Render component with options if defined in element.
-   *
-   * @param {Element} element
-   * @return {Component}
-   */
-  private RenderComponentInElement(element: Element): Component | false {
-    let component: any = this.componentsList[element.getAttribute('data-component')];
-    const options: any = {};
-
-    if (!component) {
-      return false;
-    }
-
-    for (let attributeName of element.getAttributeNames()) {
-      if (/^data-/.test(attributeName)) {
-        const attributeValue: string = element.getAttribute(attributeName);
-        const camelCaseName: string = attributeName.substr(5).replace(/-(.)/g, ($0, $1) => $1.toUpperCase());
-
-        options[camelCaseName] = attributeValue;
-      }
-    }
-
-    return new component(element, options);
-  }
-
-  /**
-   * Find elements where class name contains '__app-root' selector,
-   * and render to components elements. Rendered components push to
-   * window.app.instances as ready components.
-   *
-   * @return void
-   */
-  private InitComponents(): void {
-    const elements: HTMLCollectionOf<Element> = document.getElementsByClassName('__app-root');
-
-    for (let i = 0; i < elements.length; i++) {
-      const element: Element = elements[i];
-      const component: Component | boolean = this.RenderComponentInElement(element);
-
-      if (component) {
-        this.instancesList.push(component);
-      }
-    }
-  }
+  nav.querySelectorAll('.nav__link, .nav__cta').forEach((link) => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('nav--open');
+    });
+  });
 }
 
-(<any>window).app = new App();
+function initContactForm(): void {
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const status = document.getElementById('form-status') as HTMLElement;
+
+  if (!form || !status) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const name = (form.elements.namedItem('name') as HTMLInputElement).value.trim();
+    const email = (form.elements.namedItem('email') as HTMLInputElement).value.trim();
+    const message = (form.elements.namedItem('message') as HTMLTextAreaElement).value.trim();
+
+    if (!name || !email || !message) return;
+
+    const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    status.className = 'contact-form__status';
+
+    try {
+      const response = await fetch(`${API_BASE}/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message }),
+      });
+
+      if (response.ok) {
+        status.className = 'contact-form__status contact-form__status--success';
+        status.textContent = 'Message sent. I\'ll get back to you soon.';
+        form.reset();
+      } else {
+        throw new Error('Server error');
+      }
+    } catch {
+      status.className = 'contact-form__status contact-form__status--error';
+      status.textContent = 'Something went wrong. Please try again later.';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send message';
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initNavigation();
+  initContactForm();
+});

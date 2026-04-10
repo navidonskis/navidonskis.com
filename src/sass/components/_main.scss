@@ -1,10 +1,6 @@
-.main {
-	max-width: 45em;
-	margin-left: auto;
-	margin-right: auto;
-	padding: 1rem $sides-mobile;
-
-	@include tablet-and-less {
-		max-width: 100%;
-	}
+.section-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: $color-text;
 }

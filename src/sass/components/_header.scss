@@ -1,38 +1,35 @@
 .header {
-	display: flex;
-	align-content: stretch;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid $color-border;
+  height: 60px;
+  display: flex;
+  align-items: center;
 
-	&--logo {
-		font-size: 24px;
-		font-weight: 400;
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
 
-		a, a:visited {
-			color: #000000;
-			text-decoration: none;
-		}
+  &__logo {
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
 
-		a:hover, a:focus, a:active {
-			color: #505050;
-		}
-	}
+    a, a:visited {
+      color: $color-text;
+      text-decoration: none;
+    }
 
-	@include tablet-and-greater {
-		&--logo {
-			position: fixed;
-			left: 3rem;
-			top: 1rem;
-			height: 3rem;
-			width: 12rem;
-			z-index: 6;
-		}
-	}
-
-	@include tablet-and-less {
-		background-color: #FFF;
-		z-index: 15;
-		width: calc(100% - #{$sides-mobile * 2});
-		height: 30px;
-		margin: 0;
-		padding: 1rem $sides-mobile;
-	}
+    a:hover {
+      color: $color-accent;
+    }
+  }
 }

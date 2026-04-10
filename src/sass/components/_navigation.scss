@@ -1,71 +1,75 @@
-.navigation {
-	width: 100%;
-	text-align: right;
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 
-	a, a:visited {
-		color: $text-color-grey;
-		text-decoration: none;
-	}
+  &__link {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $color-text-muted;
+    text-decoration: none;
+    transition: color 0.2s ease;
 
-	a:hover, a:active, a:focus, a.active {
-		color: #000000;
-	}
+    &:hover, &:focus, &.active {
+      color: $color-text;
+    }
+  }
 
-	&--link,
-	&--button {
-		margin: 0 30px;
-	}
+  &__cta {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $color-accent;
+    text-decoration: none;
+    transition: color 0.2s ease;
 
-	@include tablet-and-greater {
-		padding: 0.8rem 2rem 1.25rem;
-		margin-bottom: 1.5rem;
+    &:hover {
+      color: $color-accent-hover;
+    }
+  }
 
-		&--button {
-			display: none;
-		}
-	}
+  &__toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+    color: $color-text;
 
-	@include tablet-and-less {
-		&--button {
-			cursor: pointer;
-			position: absolute;
-			top: 22px;
-			right: 0;
-		}
+    svg {
+      display: block;
+    }
+  }
 
-		&--link {
-			display: none;
-		}
+  @include tablet-and-less {
+    &__link, &__cta {
+      display: none;
+    }
 
-		&--open {
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			position: fixed;
-			left: 0;
-			top: 0;
-			bottom: 0;
-			right: 0;
-			background-color: #FFFFFF;
-			z-index: 9999;
-			overflow: hidden;
+    &__toggle {
+      display: block;
+    }
 
-			.navigation--link {
-				display: flex;
-				font-size: 200%;
-				flex-direction: row;
-				padding: 5rem 0;
+    &--open {
+      position: fixed;
+      inset: 0;
+      background-color: $color-bg;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2.5rem;
+      z-index: 200;
 
-				> span {
-					margin: 0 auto;
-				}
-			}
-		}
-	}
-}
+      .nav__link, .nav__cta {
+        display: block;
+        font-size: 1.5rem;
+        text-align: center;
+      }
 
-.mobile-menu {
-	@include tablet-and-less {
-		overflow: hidden;
-	}
+      .nav__toggle {
+        position: absolute;
+        top: 1.25rem;
+        right: $sides-mobile;
+      }
+    }
+  }
 }

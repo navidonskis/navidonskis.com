@@ -1,0 +1,12 @@
+name = "navidonskis-api"
+main = "index.js"
+compatibility_date = "2024-01-01"
+account_id = "43ba8582400bbe5ebf9fc7d43b58d87d"
+
+[vars]
+# RESEND_API_KEY is set as a secret — do not put the actual value here.
+# To set it run: wrangler secret put RESEND_API_KEY
+
+[[routes]]
+pattern = "api.navidonskis.com/*"
+zone_name = "navidonskis.com"

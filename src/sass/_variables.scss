@@ -1,16 +1,28 @@
 $font-family: 'Montserrat', sans-serif;
 
-// colors
-$primary-color: #015bff;
-$primary-color-active: #3e7ff6;
-$text-color: #000000;
-$text-color-grey: #a0a0a0;
-$text-color-dark-grey: #666666; // footer
-$highlight-color: #b5ffeb;
-$background-color: #ffffff;
-$element-background-color: #dedede;
+// Colors
+$color-bg: #FFFFFF;
+$color-bg-subtle: #F8FAFC;
+$color-text: #0F172A;
+$color-text-muted: #64748B;
+$color-accent: #015bff;
+$color-accent-hover: #0040DD;
+$color-border: #E2E8F0;
+$color-card: #F8FAFC;
 
-// sizes
-$width-tablet: 986px;
-$sides-desktop: 3rem;
-$sides-mobile: 2rem;
+// Legacy aliases (used in _icons.scss, _reset.scss)
+$primary-color: $color-accent;
+$primary-color-active: $color-accent-hover;
+$text-color: $color-text;
+$text-color-grey: $color-text-muted;
+$text-color-dark-grey: $color-text-muted;
+$background-color: $color-bg;
+$element-background-color: $color-border;
+$highlight-color: #dbeafe;
+
+// Layout
+$container-width: 1100px;
+$section-v-padding: 5rem;
+$width-tablet: 768px;
+$sides-desktop: 2rem;
+$sides-mobile: 1.25rem;

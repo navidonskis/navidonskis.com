@@ -1,9 +1,26 @@
 .layout {
-	width: 50%;
-	margin-left: 50%;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
-	@include tablet-and-less() {
-		width: 100%;
-		margin: 0 auto;
-	}
+.container {
+  max-width: $container-width;
+  margin: 0 auto;
+  padding: 0 $sides-mobile;
+  width: 100%;
+  box-sizing: border-box;
+
+  @include tablet-and-greater {
+    padding: 0 $sides-desktop;
+  }
+}
+
+.section {
+  padding: $section-v-padding 0;
+
+  &--subtle {
+    background-color: $color-bg-subtle;
+  }
 }
