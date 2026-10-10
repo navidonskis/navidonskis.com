@@ -19,6 +19,13 @@ Personal site of Donatas Navidonskis: writing first, consulting later. Static As
 - `pnpm build` production build to `dist/`, drafts excluded
 - `pnpm preview` serve the build
 
+## Branches and what is live
+
+- `master` is the OLD webpack site, served live by GitHub Pages. It is locked by a ruleset: nothing may be pushed, merged or targeted there. Never open a pull request against `master`.
+- `next` is the new Astro site, the default branch, and the base for all work. Branch from `next`, open pull requests into `next`. Passing `--base next` to `gh pr create` is still good practice.
+- This arrangement is temporary. When the owner announces the cutover, `next` will be merged into `master` and this section will be rewritten. Until that announcement, assume nothing has changed.
+- Nothing goes live without the owner: no merges, no DNS, no Cloudflare dashboard, no GitHub Pages settings.
+
 # Handover notes (2026-10-10)
 
 ## Where things are
