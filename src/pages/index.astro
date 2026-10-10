@@ -1,0 +1,313 @@
+---
+import Base from '../layouts/Base.astro';
+import PostList from '../components/PostList.astro';
+import ContactBand from '../components/ContactBand.astro';
+import { getPosts } from '../lib/posts';
+import { site } from '../site.config';
+
+const posts = (await getPosts()).slice(0, 3);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  url: site.url,
+  jobTitle: 'Staff Engineer',
+  description: site.description,
+  image: new URL('/images/donatas-320.jpg', Astro.site).href,
+  address: { '@type': 'PostalAddress', addressLocality: 'Vilnius', addressCountry: 'LT' },
+  sameAs: [site.github, site.linkedin],
+};
+---
+
+<Base description={site.homeDescription} jsonLd={jsonLd}>
+  <section id="top" class="hero">
+    <div class="container hero__inner">
+      <h1 class="hero__title">
+        A second opinion on your Google Cloud setup, from someone who runs one.
+      </h1>
+      <p class="lead hero__lead">
+        Cost, platform and architecture. I run a multi-project GCP organisation in production.
+        Whether you are on Google Cloud or about to move there, bring your bill, your diagram or just
+        the question, and in thirty minutes you get the three things I would look at first. Free, no
+        pitch.
+      </p>
+      <div class="hero__actions">
+        <a href="#contact" class="btn btn--lg">Book a 30-minute call</a>
+        <a href="#help" class="hero__link">See where I can help</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="help" class="help">
+    <div class="container stack-40">
+      <h2>Where I can help</h2>
+      <div class="grid-3">
+        <div class="card">
+          <span class="card__title">Cloud cost</span>
+          <span class="text-2">
+            The bill grew faster than the business. I find where it leaks, what to commit to and what
+            to leave flexible, and hand you the list ordered by money saved per hour of work.
+          </span>
+        </div>
+        <div class="card">
+          <span class="card__title">Platform engineering</span>
+          <span class="text-2">
+            Every new project, bucket or permission waits on one team. I design the guardrails and
+            self-service that remove the queue without losing control: organisation as code, IAM
+            that scales, tenants that cannot hurt each other.
+          </span>
+        </div>
+        <div class="card">
+          <span class="card__title">Architecture and system design</span>
+          <span class="text-2">
+            A decision that is expensive to reverse: project boundaries, networking, data stores,
+            multi-region, GKE or managed services, or whether and how to move to Google Cloud at
+            all. You get a written second opinion before you commit, with the trade-offs spelled
+            out.
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="section section--surface">
+    <div class="container stack-40">
+      <h2>How the call works</h2>
+      <ol class="steps">
+        <li class="step">
+          <span class="step__number" aria-hidden="true">1</span>
+          <span class="step__label">Before</span>
+          <span class="text-2">
+            Nothing to prepare or sign. If you have a billing export or a diagram, bring it. If
+            not, just come and talk.
+          </span>
+        </li>
+        <li class="step">
+          <span class="step__number" aria-hidden="true">2</span>
+          <span class="step__label">During</span>
+          <span class="text-2">
+            We go through your situation together. My job on this call is to understand the problem
+            and help where I can, not to present.
+          </span>
+        </li>
+        <li class="step">
+          <span class="step__number" aria-hidden="true">3</span>
+          <span class="step__label">After</span>
+          <span class="text-2">
+            A short note the same day with the three things I would look at first, and an honest
+            line on whether there is more I can do. If there is, that is when we talk scope, access
+            and paperwork.
+          </span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="writing" class="section">
+    <div class="container stack-32">
+      <div class="section-head">
+        <h2>Writing</h2>
+        <a href="/writing/" class="section-head__link">All posts and RSS</a>
+      </div>
+      <PostList posts={posts} />
+    </div>
+  </section>
+
+  <section id="about" class="section section--surface">
+    <div class="container about">
+      <div class="about__intro">
+        <picture class="about__photo">
+          <source srcset="/images/donatas-160.webp 1x, /images/donatas-320.webp 2x" type="image/webp" />
+          <img
+            src="/images/donatas-160.jpg"
+            srcset="/images/donatas-160.jpg 1x, /images/donatas-320.jpg 2x"
+            width="160"
+            height="160"
+            alt="Donatas Navidonskis"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
+        <h2>About</h2>
+        <p class="text-2">
+          Donatas Navidonskis. Staff Engineer at Boozt, a Nordic e-commerce company, based in
+          Vilnius. This site and the work offered here are my own and not affiliated with my
+          employer.
+        </p>
+        <div class="chips about__chips">
+          <span class="chip">Google Cloud</span>
+          <span class="chip">GKE</span>
+          <span class="chip">Cloud SQL</span>
+          <span class="chip">Terraform / OpenTofu</span>
+          <span class="chip">Terramate</span>
+          <span class="chip">FluxCD</span>
+          <span class="chip">GitLab CI</span>
+          <span class="chip">Cloudflare</span>
+          <span class="chip">Datadog</span>
+        </div>
+      </div>
+      <ul class="rows about__facts">
+        <li>
+          15+ years of software engineering, the last 9+ running a multi-project Google Cloud organisation.
+        </li>
+        <li>
+          Leading the re-architecture of that Google Cloud setup so it is secure by default, governed, easy to reason about and self-service for every team in the company.
+        </li>
+        <li>
+          Started the SRE function in the company and built its first team and on-call process.
+        </li>
+        <li>
+          Migrated infrastructure from bare metal (Rackspace) to Google Cloud.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <ContactBand />
+</Base>
+
+<style>
+  .hero {
+    padding: var(--section-y-hero-top) 0 var(--section-y);
+  }
+
+  .hero__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .hero__title {
+    max-width: 900px;
+  }
+
+  .hero__lead {
+    max-width: 660px;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px 24px;
+    padding-top: 8px;
+  }
+
+  .hero__link {
+    color: var(--c-ink);
+    font-weight: 500;
+    padding: 14px 0;
+  }
+
+  .hero__link:hover {
+    color: var(--c-ink);
+    text-decoration: underline;
+  }
+
+  .help {
+    padding: 24px 0 var(--section-y-lg);
+  }
+
+  .stack-32 {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .stack-40 {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .section-head__link {
+    font-size: var(--fs-meta);
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 40px 48px;
+  }
+
+  .steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 32px 48px;
+  }
+
+  .step {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .step__number {
+    font-family: var(--f-display);
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 1;
+    color: var(--c-accent);
+  }
+
+  .step__label {
+    font-weight: 600;
+  }
+
+  .about {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 48px 80px;
+  }
+
+  .about__intro {
+    flex: 1 1 320px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .about__photo {
+    display: block;
+    width: 160px;
+    height: 160px;
+  }
+
+  .about__photo img {
+    width: 160px;
+    height: 160px;
+    border-radius: var(--r-box);
+    object-fit: cover;
+    background: var(--c-rule);
+  }
+
+  .about__chips {
+    padding-top: 8px;
+  }
+
+  .about__facts {
+    flex: 1 1 480px;
+    min-width: 0;
+  }
+
+  @media (max-width: 900px) {
+    .grid-3,
+    .steps {
+      grid-template-columns: 1fr;
+    }
+
+    .about {
+      flex-direction: column;
+    }
+
+    .about__intro,
+    .about__facts {
+      flex-basis: auto;
+    }
+  }
+</style>
