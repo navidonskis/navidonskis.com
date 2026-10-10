@@ -1,47 +1,18 @@
 {
   "name": "navidonskis.com",
   "version": "1.0.0",
-  "description": "<img src=\"https://upload.wikimedia.org/wikipedia/commons/1/11/Flag_of_Lithuania.svg\" width=\"100px\" align=\"right\" alt=\"Lithuania\">",
-  "dependencies": {
-    "imagemin": "^7.0.1",
-    "node-fetch": "^2.6.0",
-    "node-sass": "^4.12.0"
-  },
+  "private": true,
+  "type": "module",
   "scripts": {
-    "start": "npm run build:dev",
-    "build:dev": "NODE_OPTIONS=--openssl-legacy-provider webpack-dev-server --env dev --mode none",
-    "build:prod": "NODE_ENV=production NODE_OPTIONS=--openssl-legacy-provider webpack --mode production"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/navidonskis/navidonskis.com.git"
-  },
-  "author": "Donatas Navidonskis <donatas@navidonskis.com>",
-  "license": "BSD-3-Clause",
-  "bugs": {
-    "url": "https://github.com/navidonskis/navidonskis.com/issues"
-  },
-  "homepage": "https://github.com/navidonskis/navidonskis.com#readme",
-  "devDependencies": {
-    "autoprefixer": "^9.6.1",
-    "awesome-typescript-loader": "^5.2.1",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^8.0.6",
-    "babel-preset-env": "^1.7.0",
-    "clean-webpack-plugin": "^3.0.0",
-    "css-loader": "^3.2.0",
-    "cssnano": "^4.1.10",
-    "file-loader": "^4.2.0",
-    "html-replace-webpack-plugin": "^2.5.5",
-    "html-webpack-plugin": "^3.2.0",
-    "mini-css-extract-plugin": "^0.8.0",
-    "postcss-loader": "^3.0.0",
-    "sass": "^1.22.12",
-    "sass-loader": "^8.0.0",
-    "ts-loader": "^6.1.0",
-    "typescript": "^3.6.3",
-    "webpack": "^4.40.2",
-    "webpack-cli": "^3.3.8",
-    "webpack-dev-server": "^3.8.0"
+  "dependencies": {
+    "@astrojs/markdown-satteri": "0.4.3",
+    "@astrojs/mdx": "^8.0.3",
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.3.8"
   }
 }
