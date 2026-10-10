@@ -1,0 +1,71 @@
+---
+import { site } from '../site.config';
+---
+
+<section id="contact" class="section section--lg section--ink contact">
+  <div class="container contact__inner">
+    <div class="contact__text">
+      <h2 class="contact__title">Thirty minutes on your GCP setup. Free, no pitch.</h2>
+      <p class="contact__lead">
+        Bring the bill or the diagram, or just come and talk. You leave with the three things I
+        would look at first, in writing, the same day.
+      </p>
+      <p class="contact__trust">Vilnius, EU. Remote. Replies within one working day.</p>
+    </div>
+    <div class="contact__actions">
+      <a href={site.bookingUrl} class="btn btn--lg btn--inverse">Book a 30-minute call</a>
+      <a href={site.email.startsWith('[') ? '/#contact' : `mailto:${site.email}`} class="contact__email">
+        {site.email}
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px 48px;
+  }
+
+  .contact__text {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 620px;
+  }
+
+  .contact__title {
+    font-size: var(--fs-h2-band);
+    line-height: var(--lh-h2-band);
+  }
+
+  .contact__lead {
+    color: var(--c-on-ink-2);
+    font-size: 18px;
+  }
+
+  .contact__trust {
+    color: var(--c-on-ink-2);
+    font-size: var(--fs-small);
+  }
+
+  .contact__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .contact__email {
+    color: var(--c-on-ink);
+    font-size: var(--fs-meta);
+  }
+
+  .contact__email:hover {
+    color: var(--c-on-ink);
+    text-decoration: underline;
+  }
+</style>

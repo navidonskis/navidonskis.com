@@ -1,0 +1,61 @@
+---
+import { site } from '../site.config';
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="/" class="site-header__name">{site.name}</a>
+    <nav aria-label="Main" class="site-nav">
+      <a href="/#help" class="site-nav__link">Where I can help</a>
+      <a href="/#writing" class="site-nav__link">Writing</a>
+      <a href="/#about" class="site-nav__link">About</a>
+      <a href="/#contact" class="btn">Book a call</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: var(--rule) solid var(--c-rule);
+  }
+
+  .site-header__inner {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px 32px;
+  }
+
+  .site-header__name {
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--c-ink);
+    text-decoration: none;
+  }
+
+  .site-header__name:hover {
+    color: var(--c-ink);
+    text-decoration: underline;
+  }
+
+  .site-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 28px;
+  }
+
+  .site-nav__link {
+    color: var(--c-ink);
+    text-decoration: none;
+    padding: 10px 0;
+  }
+
+  .site-nav__link:hover {
+    color: var(--c-ink);
+    text-decoration: underline;
+  }
+</style>

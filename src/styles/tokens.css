@@ -1,0 +1,91 @@
+/* Design tokens. Source: SPEC.md section 4 and design/*.html. */
+:root {
+  /* Colors */
+  --c-bg: #ffffff;
+  --c-ink: #0e1f2f;
+  --c-text-2: #3a4854;
+  --c-muted: #5c6670;
+  --c-rule: #d9dee3;
+  --c-rule-2: #c9cfd5;
+  --c-rule-soft: #e8ecef;
+  --c-surface: #f3f5f7;
+  --c-tint: #eaf3ee;
+  --c-tint-rule: #c9dcd2;
+  --c-accent: #0b6b4f;
+  --c-accent-hover: #08523d;
+  --c-on-ink: #ffffff;
+  --c-on-ink-2: #c5ced6;
+  --c-code-bg: #0e1f2f;
+  --c-code-fg: #e6ebef;
+
+  /* Typography */
+  /* The --font-plex-* variables are emitted by Astro's <Font> component with
+     metric-matched fallbacks. The literal stacks apply if a page omits it. */
+  --f-sans: var(--font-plex-sans, 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif);
+  --f-display: var(--font-plex-condensed, 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif);
+  --f-mono: var(--font-plex-mono, 'IBM Plex Mono', Menlo, Consolas, monospace);
+
+  --fs-body: 17px;
+  --lh-body: 1.55;
+  --fs-body-post: 18px;
+  --lh-body-post: 1.6;
+  --fs-lead: 21px;
+  --lh-lead: 1.5;
+  --fs-small: 15px;
+  --fs-meta: 16px;
+  --fs-chip: 14px;
+  --fs-card-title: 20px;
+
+  --fs-h1: clamp(40px, 2.5rem + 2.7vw, 72px);
+  --lh-h1: 1.02;
+  --fs-h2: 40px;
+  --lh-h2: 1.1;
+  --fs-h2-band: 44px;
+  --lh-h2-band: 1.05;
+  --fs-h3: 34px;
+  --lh-h3: 1.1;
+  --fs-post-h1: clamp(34px, 1.6rem + 2.3vw, 54px);
+  --lh-post-h1: 1.05;
+  --fs-post-h2: 32px;
+  --lh-post-h2: 1.15;
+  --fs-code: 14px;
+  --lh-code: 1.55;
+  --ls-tight: -0.01em;
+
+  /* Layout */
+  --container: 1120px;
+  --reading: 720px;
+  --gutter: 32px;
+  --section-y: 80px;
+  --section-y-lg: 88px;
+  --section-y-hero-top: 96px;
+
+  /* Shape */
+  --r-btn: 6px;
+  --r-box: 8px;
+  --r-chip: 999px;
+  --rule: 1px;
+  --rule-card: 3px;
+
+  /* Focus */
+  --focus-ring: 2px solid var(--c-accent);
+  --focus-offset: 3px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --section-y: 56px;
+    --section-y-lg: 56px;
+    --section-y-hero-top: 64px;
+    --fs-h2: 34px;
+    --fs-h2-band: 36px;
+    --fs-h3: 30px;
+    --fs-post-h2: 28px;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --gutter: 20px;
+  }
+}

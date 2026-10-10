@@ -1,0 +1,35 @@
+---
+import { site } from '../site.config';
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <span>{site.domain}, {site.location}</span>
+    <span class="site-footer__links">
+      <a href={site.github} class="link-ink" rel="me">GitHub</a>
+      <a href={site.linkedin} class="link-ink" rel="me">LinkedIn</a>
+      <a href="/rss.xml" class="link-ink">RSS</a>
+    </span>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: var(--rule) solid var(--c-rule);
+    padding: 28px 0;
+  }
+
+  .site-footer__inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px 32px;
+    font-size: var(--fs-small);
+    color: var(--c-muted);
+  }
+
+  .site-footer__links {
+    display: flex;
+    gap: 24px;
+  }
+</style>
