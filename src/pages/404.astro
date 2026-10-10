@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Not found" description="This page does not exist.">
+  <section class="section not-found">
+    <div class="container not-found__inner">
+      <h1>Nothing here.</h1>
+      <p class="lead">
+        Go to the <a href="/">home page</a> or the <a href="/writing/">writing index</a>.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .not-found {
+    padding: 96px 0 120px;
+  }
+
+  .not-found__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+</style>

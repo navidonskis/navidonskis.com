@@ -1,0 +1,72 @@
+---
+import { formatDate, isoDate, postUrl, type Post } from '../lib/posts';
+
+interface Props {
+  posts: Post[];
+  emptyText?: string;
+}
+
+const { posts, emptyText = 'First posts are on the way.' } = Astro.props;
+---
+
+{
+  posts.length > 0 ? (
+    <ul class="rows rows--loose post-list">
+      {posts.map((post) => (
+        <li class="post-list__row">
+          <span class="post-list__text">
+            <a href={postUrl(post)} class="post-list__title">
+              {post.data.title}
+            </a>
+            <span class="text-2">{post.data.description}</span>
+          </span>
+          <time datetime={isoDate(post.data.pubDate)} class="post-list__date">
+            {formatDate(post.data.pubDate)}
+          </time>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p class="rows post-list__empty text-2">{emptyText}</p>
+  )
+}
+
+<style>
+  .post-list__row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px 32px;
+  }
+
+  .post-list__text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1 1 520px;
+    min-width: 0;
+  }
+
+  .post-list__title {
+    color: var(--c-ink);
+    font-weight: 600;
+    font-size: var(--fs-card-title);
+    text-decoration: none;
+  }
+
+  .post-list__title:hover {
+    color: var(--c-ink);
+    text-decoration: underline;
+  }
+
+  .post-list__date {
+    color: var(--c-muted);
+    white-space: nowrap;
+  }
+
+  .post-list__empty {
+    border-top: var(--rule) solid var(--c-rule-2);
+    border-bottom: var(--rule) solid var(--c-rule-2);
+    padding: 20px 0;
+  }
+</style>

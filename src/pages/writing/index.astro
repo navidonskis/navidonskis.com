@@ -1,0 +1,51 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostList from '../../components/PostList.astro';
+import ContactBand from '../../components/ContactBand.astro';
+import { getPosts } from '../../lib/posts';
+
+const posts = await getPosts();
+const description =
+  'Notes on Google Cloud cost, platform engineering and system design, written from production.';
+---
+
+<Base title="Writing" description={description}>
+  <section class="section writing">
+    <div class="container writing__inner">
+      <div class="writing__head">
+        <h1 class="writing__title">Writing</h1>
+        <p class="lead">{description}</p>
+      </div>
+      <PostList posts={posts} />
+    </div>
+  </section>
+  <ContactBand />
+</Base>
+
+<style>
+  .writing {
+    padding-top: 72px;
+    padding-bottom: 96px;
+  }
+
+  .writing__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .writing__head {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .writing__title {
+    font-size: var(--fs-post-h1);
+    line-height: var(--lh-post-h1);
+  }
+
+  .writing__head .lead {
+    max-width: 660px;
+  }
+</style>

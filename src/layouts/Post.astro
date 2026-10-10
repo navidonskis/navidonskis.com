@@ -1,0 +1,335 @@
+---
+import Base from './Base.astro';
+import { Font } from 'astro:assets';
+import { site } from '../site.config';
+import { formatDate, isoDate, readingTime, type Post } from '../lib/posts';
+
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+const { title, description, pubDate, updatedDate, cta } = post.data;
+const minutes = readingTime(post.body);
+
+const ctaCopy = {
+  talk: {
+    heading: 'Something in your GCP setup bothering you?',
+    text: 'Thirty minutes, no pitch.',
+  },
+  finops: {
+    heading: 'Want this done on your GCP?',
+    text: 'A fixed-scope FinOps audit, two weeks, read-only access.',
+  },
+  gitlab: {
+    heading: 'Want this measured on your pipelines?',
+    text: 'GitLab CI on GCP audit, fixed price agreed up front, one to two weeks.',
+  },
+} as const;
+
+const aside = cta === 'none' ? null : ctaCopy[cta];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  datePublished: pubDate.toISOString(),
+  dateModified: (updatedDate ?? pubDate).toISOString(),
+  author: { '@type': 'Person', name: site.name, url: site.url },
+  publisher: { '@type': 'Person', name: site.name, url: site.url },
+  mainEntityOfPage: new URL(Astro.url.pathname, Astro.site).href,
+  image: new URL('/og-default.png', Astro.site).href,
+  keywords: post.data.tags.join(', '),
+};
+---
+
+<Base
+  title={title}
+  description={description}
+  type="article"
+  publishedTime={pubDate}
+  modifiedTime={updatedDate}
+  jsonLd={jsonLd}
+  bodyClass="is-post"
+>
+  <Font slot="head" cssVariable="--font-plex-mono" />
+  <article class="post">
+    <div class="post__head">
+      <a href="/writing/" class="post__back">Writing</a>
+      <h1 class="post__title">{title}</h1>
+      <p class="post__meta">
+        <time datetime={isoDate(pubDate)}>{formatDate(pubDate)}</time>, {minutes} min read
+        {
+          updatedDate && (
+            <>
+              . Updated <time datetime={isoDate(updatedDate)}>{formatDate(updatedDate)}</time>
+            </>
+          )
+        }
+      </p>
+    </div>
+
+    <p class="lead post__lead">{description}</p>
+
+    <div class="post__body">
+      <slot />
+    </div>
+
+    {
+      aside && (
+        <aside class="post__cta" aria-label="Work with me">
+          <div class="post__cta-text">
+            <span class="post__cta-heading">{aside.heading}</span>
+            <span class="text-2">{aside.text}</span>
+          </div>
+          <a href={site.bookingUrl} class="btn">
+            Book a 30-minute call
+          </a>
+        </aside>
+      )
+    }
+
+    <div class="post__author">
+      <span class="post__author-name">{site.name}</span>
+      <span>{site.bio}</span>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .post {
+    max-width: calc(var(--reading) + 2 * var(--gutter));
+    margin: 0 auto;
+    padding: 72px var(--gutter) 96px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    font-size: var(--fs-body-post);
+    line-height: var(--lh-body-post);
+  }
+
+  .post__head {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding-bottom: 12px;
+  }
+
+  .post__back {
+    font-size: var(--fs-meta);
+    align-self: flex-start;
+  }
+
+  .post__title {
+    font-size: var(--fs-post-h1);
+    line-height: var(--lh-post-h1);
+    letter-spacing: var(--ls-tight);
+  }
+
+  .post__meta {
+    font-size: var(--fs-meta);
+    color: var(--c-muted);
+  }
+
+  .post__cta {
+    margin-top: 16px;
+    background: var(--c-tint);
+    border-radius: var(--r-box);
+    padding: 28px 32px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px 32px;
+  }
+
+  .post__cta-text {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1 1 360px;
+    min-width: 0;
+  }
+
+  .post__cta-heading {
+    font-weight: 600;
+    font-size: var(--fs-card-title);
+  }
+
+  .post__author {
+    margin-top: 24px;
+    border-top: var(--rule) solid var(--c-rule);
+    padding-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: var(--fs-meta);
+    color: var(--c-text-2);
+  }
+
+  .post__author-name {
+    font-weight: 600;
+    color: var(--c-ink);
+  }
+
+  @media (max-width: 640px) {
+    .post {
+      padding-top: 48px;
+      padding-bottom: 64px;
+    }
+
+    .post__cta {
+      padding: 24px 20px;
+    }
+  }
+</style>
+
+<style is:global>
+  /* Rendered Markdown inside a post. Spacing comes from the mock: 28px between blocks,
+     h2 gets an extra 24px above. */
+  .post__body {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    min-width: 0;
+  }
+
+  .post__body h2 {
+    margin-top: 24px;
+    font-size: var(--fs-post-h2);
+    line-height: var(--lh-post-h2);
+  }
+
+  .post__body h3 {
+    margin-top: 8px;
+    font-size: 24px;
+    line-height: 1.2;
+  }
+
+  .post__body ul,
+  .post__body ol {
+    padding-left: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .post__body li > ul,
+  .post__body li > ol {
+    margin-top: 8px;
+  }
+
+  /* GFM task lists: no bullet, checkbox inline with the text. */
+  .post__body ul:has(> .task-list-item) {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .post__body .task-list-item {
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+  }
+
+  .post__body .task-list-item input[type='checkbox'] {
+    margin: 0;
+    flex: none;
+    width: 16px;
+    height: 16px;
+    accent-color: var(--c-accent);
+    transform: translateY(2px);
+  }
+
+  .post__body blockquote {
+    border-left: 3px solid var(--c-rule-2);
+    padding-left: 20px;
+    color: var(--c-text-2);
+  }
+
+  .post__body code {
+    font-family: var(--f-mono);
+    font-size: 0.9em;
+    background: var(--c-surface);
+    border-radius: 4px;
+    padding: 2px 6px;
+  }
+
+  .post__body pre {
+    background: var(--c-code-bg);
+    color: var(--c-code-fg);
+    border-radius: var(--r-box);
+    padding: 20px 24px;
+    overflow-x: auto;
+    font-family: var(--f-mono);
+    font-size: var(--fs-code);
+    line-height: var(--lh-code);
+  }
+
+  .post__body pre code {
+    font-size: inherit;
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    color: inherit;
+  }
+
+  .post__body .table-wrap,
+  .post__body table {
+    font-size: var(--fs-meta);
+  }
+
+  .post__body .table-wrap {
+    overflow-x: auto;
+    border: var(--rule) solid var(--c-rule);
+    border-radius: var(--r-box);
+  }
+
+  .post__body table {
+    width: 100%;
+    min-width: 560px;
+    border-collapse: collapse;
+  }
+
+  .post__body thead tr {
+    background: var(--c-surface);
+    text-align: left;
+  }
+
+  .post__body th {
+    padding: 12px 16px;
+    font-weight: 600;
+    border-bottom: var(--rule) solid var(--c-rule);
+  }
+
+  .post__body td {
+    padding: 12px 16px;
+    border-bottom: var(--rule) solid var(--c-rule-soft);
+  }
+
+  .post__body tbody tr:last-child td {
+    border-bottom: 0;
+  }
+
+  /* A paragraph right after a table that is only emphasis renders as a caption. */
+  .post__body .table-wrap + p:has(> em:only-child) {
+    font-size: var(--fs-small);
+    color: var(--c-muted);
+    line-height: var(--lh-body);
+  }
+
+  .post__body .table-wrap + p:has(> em:only-child) > em {
+    font-style: normal;
+  }
+
+  .post__body img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--r-box);
+  }
+
+  .post__body hr {
+    border: 0;
+    border-top: var(--rule) solid var(--c-rule);
+  }
+</style>
