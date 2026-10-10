@@ -24,7 +24,7 @@ Personal site of Donatas Navidonskis: writing first, consulting later. Static As
 ## Where things are
 
 - Repo: `/Users/donnav/navidonskis.com/navidonskis.com`, GitHub `navidonskis/navidonskis.com`.
-- Branch `astro-rebuild` holds the new site, 8 commits on top of `master`, pushed to origin. `master` still holds the old webpack site and is what GitHub Pages serves today. Nothing is live from the new site yet.
+- Branch `next` holds the new site, 8 commits on top of `master`, pushed to origin. `master` still holds the old webpack site and is what GitHub Pages serves today. Nothing is live from the new site yet.
 - `/Users/donnav/navidonskis.com/navidonskis-astro` is the standalone directory the site was first built in. It is redundant now (identical content, own `.git`, no remote). Do not work there. Donatas may delete it.
 - The old webpack `node_modules` was moved, not deleted, into a session scratchpad directory. It can be forgotten.
 - `worker/.wrangler/` is an untracked cache leftover from the old Cloudflare worker. Harmless. Do not delete without asking.
@@ -48,7 +48,7 @@ Owner settings in `src/site.config.ts`: booking link `https://cal.com/navidonski
 ## Still open, owner side
 
 - Create the Cloudflare Pages project, connect the repo, custom domain, optional `PUBLIC_CF_ANALYTICS_TOKEN`. Steps are in `README.md`. Do not touch Cloudflare or DNS yourself.
-- Merge `astro-rebuild` to `master` and retire GitHub Pages (CNAME was removed on the branch).
+- Merge `next` to `master` and retire GitHub Pages (CNAME was removed on the branch).
 - Decide what happens to the 2019 blog post and the old Cloudflare worker that only exist on `master`.
 - Nothing is placeholder on the home page any more. `[email address]` and `[photo]` from the mock are filled with real values.
 
