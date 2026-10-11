@@ -30,7 +30,12 @@ const analyticsToken = import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN as string | und
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <Seo {...seo} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <meta name="theme-color" content="#0E1F2F" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" data-scheme="light" />
+    <meta name="theme-color" content="#0e1f2f" media="(prefers-color-scheme: dark)" data-scheme="dark" />
+    <!-- Blocking on purpose: it sets the theme before the first paint. is:inline keeps
+         Astro from bundling it; the file is served from /public, so script-src 'self'
+         covers it and the CSP needs no change. -->
+    <script is:inline src="/theme.js"></script>
     <Font
       cssVariable="--font-plex-sans"
       preload={[
