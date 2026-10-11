@@ -1,5 +1,7 @@
 /* Design tokens. Source: SPEC.md section 4 and design/*.html. */
 :root {
+  color-scheme: light;
+
   /* Colors */
   --c-bg: #ffffff;
   --c-ink: #0e1f2f;
@@ -70,6 +72,58 @@
   /* Focus */
   --focus-ring: 2px solid var(--c-accent);
   --focus-offset: 3px;
+}
+
+/* Dark palette. The surface is the existing ink navy (--c-code-bg) and the text
+   greys are the existing on-ink greys; the accent keeps its hue and only gains
+   lightness, as far as AA on the dark surface requires.
+
+   The declarations appear twice because CSS cannot share one block between a
+   media query and an attribute selector. The first copy is the system default
+   (and steps aside for an explicit light override), the second is the explicit
+   dark override, which wins over the media query on specificity. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+
+    --c-bg: #0e1f2f;
+    --c-ink: #e6ebef;
+    --c-text-2: #b7c2cc;
+    --c-muted: #93a1ad;
+    --c-rule: #263849;
+    --c-rule-2: #334659;
+    --c-rule-soft: #1b2d3d;
+    --c-surface: #16293a;
+    --c-tint: #102e26;
+    --c-tint-rule: #1f4a3c;
+    --c-accent: #3fbe92;
+    --c-accent-hover: #6ad3ad;
+    --c-on-ink: #0e1f2f;
+    --c-on-ink-2: #3a4854;
+    --c-code-bg: #16293a;
+    --c-code-fg: #e6ebef;
+  }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --c-bg: #0e1f2f;
+  --c-ink: #e6ebef;
+  --c-text-2: #b7c2cc;
+  --c-muted: #93a1ad;
+  --c-rule: #263849;
+  --c-rule-2: #334659;
+  --c-rule-soft: #1b2d3d;
+  --c-surface: #16293a;
+  --c-tint: #102e26;
+  --c-tint-rule: #1f4a3c;
+  --c-accent: #3fbe92;
+  --c-accent-hover: #6ad3ad;
+  --c-on-ink: #0e1f2f;
+  --c-on-ink-2: #3a4854;
+  --c-code-bg: #16293a;
+  --c-code-fg: #e6ebef;
 }
 
 @media (max-width: 768px) {
