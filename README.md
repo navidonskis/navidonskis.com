@@ -28,7 +28,13 @@ pnpm preview    # serve dist/
 
 ## Writing a post
 
-Create `src/content/writing/YYYY-MM-DD-kebab-title.md`. The URL becomes `/writing/kebab-title/` (the date prefix is dropped).
+### Where posts live
+
+Every post is one Markdown file in `src/content/writing/`. That is the only content directory in the repository; a file anywhere else is not published.
+
+Name it `YYYY-MM-DD-kebab-title.md`. The date prefix is dropped from the URL, so `2026-10-20-gcloud-session.md` becomes `/writing/gcloud-session/`.
+
+Keep `draft: true` in the frontmatter while the post is unfinished. Drafts are visible on `pnpm dev` and left out of `pnpm build`, so an unfinished post can sit in the repository without reaching the live site. Remove the line to publish.
 
 ```md
 ---
@@ -56,6 +62,67 @@ Reading time is computed from the body at build time (220 words per minute, roun
 | `none` | no aside |
 
 MDX (`.mdx`) works too and is meant for posts with interactive islands later.
+
+## Images, charts and embeds
+
+Everything below was tried on this build, not assumed.
+
+### Images
+
+Put the file in `public/images/` and link it with a path that starts at the site root:
+
+```md
+![Short description of the picture](/images/diagram.png)
+```
+
+Files in `public/` are copied to the site as they are, so that path always works.
+
+Do not use a path relative to the post file (`![...](./diagram.png)`). Astro then sends the picture through its image optimiser, which needs the `sharp` package this project does not install, and `pnpm build` fails with `MissingSharp`.
+
+Markdown's `![]()` produces a plain `<img>` with no width or height, so the page shifts a little while the picture loads. For anything large, write the tag by hand with the real pixel size:
+
+```html
+<img src="/images/diagram.png" alt="Short description" width="960" height="540" />
+```
+
+Nothing is resized or converted automatically. For a `.webp` version and a sharp copy on retina screens, export the files yourself and use the same shape as the home page photo:
+
+```html
+<picture>
+  <source srcset="/images/diagram.webp 1x, /images/diagram-2x.webp 2x" type="image/webp" />
+  <img src="/images/diagram.png" alt="Short description" width="960" height="540" />
+</picture>
+```
+
+Pictures shrink to the column on small screens on their own (`img, svg, video { max-width: 100% }` in `src/styles/global.css`), so a wide picture will not push the page sideways on a phone. The text column is 720px on a desktop and 350px on a 390px phone; exporting at twice the desktop width is enough.
+
+### Charts and graphs
+
+Paste the SVG straight into the Markdown body. It works, including a `<style>` block inside the `<svg>`, and it stays text: it scales, it stays sharp, and the colours can be edited later. This is the best option for a chart.
+
+```md
+Revenue per region:
+
+<svg viewBox="0 0 600 200" role="img" aria-label="Revenue per region">
+  <style>.bar { fill: #2f6f4f }</style>
+  <rect class="bar" x="0" y="20" width="420" height="24" />
+</svg>
+```
+
+A PNG export also works and follows the image rules above. Use it when the tool cannot give you SVG.
+
+One restriction: this holds for `.md` only. In `.mdx` a `{` is code, so the `{ fill: ... }` inside a `<style>` block fails the build. Keep charts in plain `.md`.
+
+### Embeds
+
+Third-party embeds do not work today. `public/_headers` sets `default-src 'self'` and no `frame-src`, so the browser blocks every iframe pointing anywhere but this site: YouTube, Vimeo, CodePen, a Google Sheets chart. `script-src` allows only this site and the Cloudflare analytics beacon, so script-based embeds (X posts, GitHub gists) are out as well, and `object-src 'none'` closes `<object>` and `<embed>`.
+
+What works without touching that policy: your own images and inline SVG, a `data:` URI, and an iframe pointing at a self-contained HTML file you put into `public/` yourself.
+
+Two findings, written down and not acted on:
+
+1. Allowing YouTube means adding `frame-src https://www.youtube-nocookie.com` to the CSP in `public/_headers`. That loosens the site's security policy, so it is the owner's call, in its own task.
+2. `iframe` has no styling rule at all. A stock YouTube embed is 560px wide and would stick out of the 350px column on a phone. Any embed needs a CSS change first.
 
 ## Deploying to Cloudflare Pages
 
