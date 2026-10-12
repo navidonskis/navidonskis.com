@@ -166,14 +166,26 @@ One restriction: this holds for `.md` only. In `.mdx` a `{` is code, so the `{ f
 
 ### Embeds
 
-Third-party embeds do not work today. `public/_headers` sets `default-src 'self'` and no `frame-src`, so the browser blocks every iframe pointing anywhere but this site: YouTube, Vimeo, CodePen, a Google Sheets chart. `script-src` allows only this site and the Cloudflare analytics beacon, so script-based embeds (X posts, GitHub gists) are out as well, and `object-src 'none'` closes `<object>` and `<embed>`.
+YouTube works, one URL form only. Paste this into the post, with the video id after `/embed/`:
 
-What works without touching that policy: your own images and inline SVG, a `data:` URI, and an iframe pointing at a self-contained HTML file you put into `public/` yourself.
+```html
+<iframe
+  src="https://www.youtube-nocookie.com/embed/VIDEO_ID"
+  title="What the video shows"
+  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+></iframe>
+```
 
-Two findings, written down and not acted on:
+The host has to be `www.youtube-nocookie.com`, because `public/_headers` allows `frame-src https://www.youtube-nocookie.com` and nothing else. YouTube's own Share, Embed snippet uses `https://www.youtube.com/embed/...` and the browser refuses it with a CSP error in the console. Swap the host by hand; the video id and the rest of the snippet are the same. The nocookie host also sets no cookie before the viewer presses play.
 
-1. Allowing YouTube means adding `frame-src https://www.youtube-nocookie.com` to the CSP in `public/_headers`. That loosens the site's security policy, so it is the owner's call, in its own task.
-2. `iframe` has no styling rule at all. A stock YouTube embed is 560px wide and would stick out of the 350px column on a phone. Any embed needs a CSS change first.
+Width and height attributes can stay or go, the embed is sized by the stylesheet either way. How wide it comes out is Three width levels above.
+
+Still blocked, by design: Vimeo, CodePen, Google Sheets, every other iframe host. Script-based embeds (X posts, GitHub gists) too, because `script-src` allows only this site and the Cloudflare analytics beacon, and `object-src 'none'` closes `<object>` and `<embed>`. Each new host needs its own addition to the CSP, which is the owner's call.
+
+An iframe pointing at your own HTML file in `public/` does not work either. Naming a host in `frame-src` drops the `'self'` that frames used to inherit from `default-src`. Putting `'self'` back would not help: `frame-ancestors 'none'` goes out on every path of this site, so the file refuses to be framed by the page embedding it. Both cases were tested in a browser.
+
+What works without any of that: your own images and inline SVG, and a `data:` URI.
 
 ## Deploying to Cloudflare Pages
 
