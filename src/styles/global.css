@@ -110,6 +110,25 @@ a:hover {
   color: var(--c-on-ink);
 }
 
+/* The band is the dark anchor of a light page. In dark mode the page is already
+   navy, so inverting it would put a near-white block in the middle of the page;
+   it becomes an elevated panel instead. The ink variables are re-scoped on the
+   band, which keeps the rules above and the contents (including .btn--inverse)
+   unchanged. */
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme='light']) .section--ink {
+    --c-ink: #1e374c;
+    --c-on-ink: #e6ebef;
+    --c-on-ink-2: #b7c2cc;
+  }
+}
+
+html[data-theme='dark'] .section--ink {
+  --c-ink: #1e374c;
+  --c-on-ink: #e6ebef;
+  --c-on-ink-2: #b7c2cc;
+}
+
 /* Type */
 .display {
   font-family: var(--f-display);

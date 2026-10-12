@@ -10,6 +10,19 @@ import { site } from '../site.config';
       <a href="/#writing" class="site-nav__link">Writing</a>
       <a href="/#about" class="site-nav__link">About</a>
       <a href="/#contact" class="btn">Book a call</a>
+      <button type="button" class="theme-toggle" data-theme-toggle aria-label="Theme: system default. Switch to light.">
+        <svg class="theme-toggle__icon theme-toggle__icon--system" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+          <circle cx="12" cy="12" r="8"></circle>
+          <path d="M12 4a8 8 0 0 0 0 16z" fill="currentColor" stroke="none"></path>
+        </svg>
+        <svg class="theme-toggle__icon theme-toggle__icon--light" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.5"></circle>
+          <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4"></path>
+        </svg>
+        <svg class="theme-toggle__icon theme-toggle__icon--dark" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+          <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"></path>
+        </svg>
+      </button>
     </nav>
   </div>
 </header>
@@ -57,5 +70,39 @@ import { site } from '../site.config';
   .site-nav__link:hover {
     color: var(--c-ink);
     text-decoration: underline;
+  }
+
+  /* Only shown once /theme.js has run, so the control is never dead. */
+  .theme-toggle {
+    display: none;
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: var(--r-btn);
+    background: none;
+    color: var(--c-ink);
+    cursor: pointer;
+  }
+
+  :global(html[data-theme-js]) .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .theme-toggle:hover {
+    background: var(--c-surface);
+  }
+
+  .theme-toggle__icon {
+    display: none;
+  }
+
+  :global(html:not([data-theme])) .theme-toggle__icon--system,
+  :global(html[data-theme='light']) .theme-toggle__icon--light,
+  :global(html[data-theme='dark']) .theme-toggle__icon--dark {
+    display: block;
   }
 </style>
