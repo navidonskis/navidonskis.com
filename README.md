@@ -67,6 +67,57 @@ MDX (`.mdx`) works too and is meant for posts with interactive islands later.
 
 Everything below was tried on this build, not assumed.
 
+### Three width levels
+
+A post body is 720px wide on a desktop. A picture, a table or an embed can step out of that column. There are three levels and two class names:
+
+| Level | Width on a desktop | What you write |
+|---|---|---|
+| standard | 720px, the text column | nothing, this is the default |
+| wide | 1120px, the same width as the rest of the site | `class="wide"` |
+| full | the whole window, edge to edge | `class="full"` |
+
+The class goes on the outermost tag of the block, and that tag has to sit at the top level of the post, not inside a paragraph or a list. A `<figure>`, a `<div>` or the embed itself all work; a class on something nested deeper does nothing.
+
+Narrow windows take care of themselves. Below 1184px `wide` shrinks to the window minus the page gutter (32px, 20px under 640px), so on a 390px phone it is the text column again; `full` is edge to edge at every size. Neither can push the page sideways.
+
+A picture, wide. Files live in `public/images/`, same as in the section below:
+
+```html
+<figure class="wide">
+  <img src="/images/diagram.png" alt="Short description" width="1120" height="560" />
+  <figcaption>What the picture shows.</figcaption>
+</figure>
+```
+
+A picture in a `wide` or a `full` block fills that block, so a small file is upscaled and goes soft. Export at twice the level you use: 2240px for wide, 2560px or more for full. Keep the `width` and `height` attributes at the real pixel size of the file anyway, they only set the shape of the box while the picture loads.
+
+A table, full. The table itself stays Markdown. Leave a blank line after the opening tag and before the closing one, otherwise the table comes out as literal text:
+
+```md
+<figure class="full">
+
+| Region | Instances | Commitment | Coverage |
+|---|---|---|---|
+| europe-west1 | 412 | 3 year | 78% |
+| europe-west4 | 180 | 1 year | 64% |
+
+<figcaption>What the table shows.</figcaption>
+</figure>
+```
+
+Every table is wrapped in `div.table-wrap` on its own, so a table that is still too wide scrolls inside its own box and not on the page. That holds at all three levels.
+
+An embed, standard, needs no wrapper at all; for the other two levels put the class on the `<iframe>`:
+
+```html
+<iframe class="wide" src="https://www.youtube-nocookie.com/embed/VIDEO_ID" title="What the embed shows"></iframe>
+```
+
+Any `<iframe>` fills its block and keeps a 16:9 box, so the 560x315 of a pasted snippet does not stick out on a phone. For another ratio, add `style="aspect-ratio: 4 / 3"`. Whether the browser loads a given embed at all is a separate question of the security policy, see Embeds below.
+
+`src/content/writing/2026-10-12-width-levels-fixture.md` is a draft post with every level on a figure, a table and an embed. It never reaches production; open it on `pnpm dev` after changing post styles.
+
 ### Images
 
 Put the file in `public/images/` and link it with a path that starts at the site root:
