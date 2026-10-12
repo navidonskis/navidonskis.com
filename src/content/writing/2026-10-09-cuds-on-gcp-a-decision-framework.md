@@ -27,6 +27,8 @@ Everything else is arithmetic.
 
 Rates as published by Google in October 2026. Resource-based rates differ by machine series; the pricing table for your series is the source of truth.
 
+<figure class="wide">
+
 | Instrument | Commit to | 1 year | 3 years | Locked to | Covers | Buy it when |
 | --- | --- | --- | --- | --- | --- | --- |
 | Resource-based CUD | vCPUs, memory, GPUs, local SSD | typically 30 to 40% | up to 55% (up to 70% memory-optimized) | Machine series and region | Compute Engine VMs, GKE Standard nodes | The fleet is steady on one series and will stay there for the whole term |
@@ -35,6 +37,8 @@ Rates as published by Google in October 2026. Resource-based rates differ by mac
 | Cloud SQL CUD | Spend per hour, per region | 25% | 52% | Region | vCPU and memory of all Cloud SQL instances in that region, any engine, both editions | Databases are the steadiest thing you run, and they usually are |
 | Other spend-based CUDs | Spend per hour | varies | varies | Service, often region | Spanner, Memorystore, AlloyDB, Bigtable, VMware Engine | Same logic as Cloud SQL, per service |
 | BigQuery editions commitments | Slots | varies | varies | Edition and region | Slot capacity | Only after you know your slot usage curve; different mechanics, same framework |
+
+</figure>
 
 Two things that used to exist and no longer do: GKE Autopilot CUDs cannot be bought any more (Autopilot is covered by compute flexible CUDs), and Cloud SQL sustained use discounts were folded into the list price years ago. Sustained use discounts for VMs still apply automatically on older series such as N1, N2, N2D, C2, M1 and M2, and not on E2, N4, C3 or C4.
 
@@ -130,12 +134,16 @@ Illustrative numbers. One region, one series (N2), vCPUs only; memory follows th
 
 The fleet over 90 days: peak 520 vCPUs, average 380, floor (20th percentile) 320. Of the floor, 200 vCPUs are steady on N2 for at least a year. The other 120 belong to services that will probably move to a newer series within 18 months.
 
+<figure class="wide">
+
 | Option | What you buy | Monthly cost | Saving vs on demand | If the fleet leaves N2 at month 18 |
 | --- | --- | --- | --- | --- |
 | On demand | Nothing | $9,700 | 0% | Nothing stranded |
 | B: everything, 3 years, resource-based | 380 vCPUs N2, 3 years at 55% | $5,400 | 44% | 18 months of unused commitment, about $79,000 |
 | C: the ladder | 200 vCPUs N2 resource-based 1 year at 37%, plus flexible 1 year covering the next 120 vCPUs of spend at 28%, rest on demand | $7,000 | 28% | Resource tranche already expired at month 12; the flexible tranche follows the spend. Nothing stranded |
 | D: all flexible | Flexible 1 year covering 320 vCPUs of spend at 28%, rest on demand | $7,400 | 24% | Nothing stranded |
+
+</figure>
 
 Over three years, if nothing changes, B saves about $56,000 more than C. If the fleet moves at month 18, B comes out about $50,000 worse than C. Only you know the odds of that move; the arithmetic just tells you what you are betting. In this example the bet is close to a coin flip, which is exactly when the ladder earns its keep: C gives up a third of the maximum saving and removes the whole downside.
 
