@@ -13,8 +13,13 @@ import { site } from '../site.config';
       <p class="contact__trust">Vilnius, EU. Remote. Replies within one working day.</p>
     </div>
     <div class="contact__actions">
-      <a href={site.bookingUrl} class="btn btn--lg btn--inverse">Book a 30-minute call</a>
-      <a href={site.email.startsWith('[') ? '/#contact' : `mailto:${site.email}`} class="contact__email">
+      <a href={site.bookingUrl} class="btn btn--lg btn--inverse">
+        Book a 30-minute call
+      </a>
+      <a
+        href={site.email.startsWith('[') ? '/#contact' : `mailto:${site.email}`}
+        class="contact__email"
+      >
         {site.email}
       </a>
     </div>

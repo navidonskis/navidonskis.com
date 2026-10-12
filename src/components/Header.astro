@@ -4,22 +4,66 @@ import { site } from '../site.config';
 
 <header class="site-header">
   <div class="container site-header__inner">
-    <a href="/" class="site-header__name">{site.name}</a>
+    <a href="/" class="site-header__name">
+      {site.name}
+    </a>
     <nav aria-label="Main" class="site-nav">
-      <a href="/#help" class="site-nav__link">Where I can help</a>
-      <a href="/#writing" class="site-nav__link">Writing</a>
-      <a href="/#about" class="site-nav__link">About</a>
-      <a href="/#contact" class="btn">Book a call</a>
-      <button type="button" class="theme-toggle" data-theme-toggle aria-label="Theme: system default. Switch to light.">
-        <svg class="theme-toggle__icon theme-toggle__icon--system" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+      <a href="/#help" class="site-nav__link">
+        Where I can help
+      </a>
+      <a href="/#writing" class="site-nav__link">
+        Writing
+      </a>
+      <a href="/#about" class="site-nav__link">
+        About
+      </a>
+      <a href="/#contact" class="btn">
+        Book a call
+      </a>
+      <button
+        type="button"
+        class="theme-toggle"
+        data-theme-toggle
+        aria-label="Theme: system default. Switch to light."
+      >
+        <svg
+          class="theme-toggle__icon theme-toggle__icon--system"
+          viewBox="0 0 24 24"
+          width="20"
+          height="20"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          aria-hidden="true"
+        >
           <circle cx="12" cy="12" r="8"></circle>
           <path d="M12 4a8 8 0 0 0 0 16z" fill="currentColor" stroke="none"></path>
         </svg>
-        <svg class="theme-toggle__icon theme-toggle__icon--light" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+        <svg
+          class="theme-toggle__icon theme-toggle__icon--light"
+          viewBox="0 0 24 24"
+          width="20"
+          height="20"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
           <circle cx="12" cy="12" r="4.5"></circle>
           <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4"></path>
         </svg>
-        <svg class="theme-toggle__icon theme-toggle__icon--dark" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+        <svg
+          class="theme-toggle__icon theme-toggle__icon--dark"
+          viewBox="0 0 24 24"
+          width="20"
+          height="20"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
           <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"></path>
         </svg>
       </button>

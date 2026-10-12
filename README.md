@@ -9,7 +9,7 @@ Personal site of Donatas Navidonskis. Writing first, consulting later. Static As
 - Plain CSS with custom properties (`src/styles/tokens.css`, `src/styles/global.css`)
 - IBM Plex from Google Fonts through Astro's fonts API: files are fetched at build time and served from `/_astro/fonts/` with metric-matched fallbacks, so no third-party request sits on the critical path
 - No client-side JavaScript, except the Cloudflare Web Analytics beacon when its token is set
-- pnpm, Node 22 (see `.nvmrc`)
+- pnpm, Node 24 (see `.nvmrc`)
 
 ## Commands
 
@@ -195,7 +195,7 @@ What works without any of that: your own images and inline SVG, and a `data:` UR
    - Framework preset: Astro
    - Build command: `pnpm build`
    - Build output directory: `dist`
-   - Environment variables: `NODE_VERSION` = `22` (matches `.nvmrc`), optionally `PUBLIC_CF_ANALYTICS_TOKEN`
+   - Environment variables: `NODE_VERSION` = `24` (matches `.nvmrc`), optionally `PUBLIC_CF_ANALYTICS_TOKEN`
 4. Save and deploy. The first build gives you a `*.pages.dev` URL.
 5. Custom domain: in the Pages project, Custom domains, Set up a custom domain, enter `navidonskis.com`. Cloudflare adds the DNS record if the zone is on Cloudflare. Add `www.navidonskis.com` as well so the redirect in `public/_redirects` can send it to the apex.
 6. Web Analytics (optional): Cloudflare dashboard, Analytics & Logs, Web Analytics, Add a site, copy the token into the `PUBLIC_CF_ANALYTICS_TOKEN` variable and redeploy.

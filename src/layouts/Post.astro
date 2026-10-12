@@ -56,17 +56,17 @@ const jsonLd = {
   <Font slot="head" cssVariable="--font-plex-mono" />
   <article class="post">
     <div class="post__head">
-      <a href="/writing/" class="post__back">Writing</a>
+      <a href="/writing/" class="post__back">
+        Writing
+      </a>
       <h1 class="post__title">{title}</h1>
       <p class="post__meta">
         <time datetime={isoDate(pubDate)}>{formatDate(pubDate)}</time>, {minutes} min read
-        {
-          updatedDate && (
-            <>
-              . Updated <time datetime={isoDate(updatedDate)}>{formatDate(updatedDate)}</time>
-            </>
-          )
-        }
+        {updatedDate && (
+          <>
+            . Updated <time datetime={isoDate(updatedDate)}>{formatDate(updatedDate)}</time>
+          </>
+        )}
       </p>
     </div>
 
@@ -76,19 +76,17 @@ const jsonLd = {
       <slot />
     </div>
 
-    {
-      aside && (
-        <aside class="post__cta" aria-label="Work with me">
-          <div class="post__cta-text">
-            <span class="post__cta-heading">{aside.heading}</span>
-            <span class="text-2">{aside.text}</span>
-          </div>
-          <a href={site.bookingUrl} class="btn">
-            Book a 30-minute call
-          </a>
-        </aside>
-      )
-    }
+    {aside && (
+      <aside class="post__cta" aria-label="Work with me">
+        <div class="post__cta-text">
+          <span class="post__cta-heading">{aside.heading}</span>
+          <span class="text-2">{aside.text}</span>
+        </div>
+        <a href={site.bookingUrl} class="btn">
+          Book a 30-minute call
+        </a>
+      </aside>
+    )}
 
     <div class="post__author">
       <span class="post__author-name">{site.name}</span>
