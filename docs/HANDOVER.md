@@ -15,7 +15,7 @@ Update 2026-10-10: branch astro-rebuild was renamed to next and is now the defau
 
 All six tasks from `SPEC.md` section 11 are done and accepted:
 
-1. Scaffold: Astro 7.3.8, `@astrojs/mdx`, `@astrojs/rss`, `@astrojs/sitemap`, `@astrojs/markdown-satteri`. pnpm, Node 22 (`.nvmrc`).
+1. Scaffold: Astro 7.3.8, `@astrojs/mdx`, `@astrojs/rss`, `@astrojs/sitemap`, `@astrojs/markdown-satteri`. pnpm, Node 24 (`.nvmrc`).
 2. Home page per `design/home-launch.html` (now v3 plus owner edits, see below).
 3. Content collection, post layout, writing index, RSS, 404.
 4. SEO component, JSON-LD (Person on home, Article on posts), OG image, robots, sitemap.
@@ -81,9 +81,23 @@ Dev server: `pnpm dev --port 4321`. Astro 7 runs it as a daemon; after config ch
 
 ## QA commands used
 
+CI runs the build, HTML, link and format checks on every pull request into `next` and on every push to `next`: `.github/workflows/ci.yml`, one job named `ci`. It uploads `dist/` as a workflow artifact named `dist`, kept 7 days, so a reviewer downloads that instead of building the site. Lighthouse stays manual. Tooling is pinned and never added to `package.json`.
+
 - Lighthouse: `pnpm preview --port 4322`, then `CHROME_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" pnpm dlx lighthouse <url> --preset=desktop --chrome-flags="--headless=new" --output=json --only-categories=performance,accessibility,best-practices,seo`. Drop `--preset=desktop` for mobile. To test a post page in a production build, temporarily set `draft: false` on a draft and restore it afterwards; the only published post works as is now.
-- HTML: `pnpm dlx html-validate "dist/**/*.html"` with `html-validate:recommended`, expect only `long-title` on the home and post titles.
-- Links: a small Python walk over `dist/**/*.html` checking every `href`/`src` resolves to a file or an `id` in the target page. Not saved in the repo; rewrite if needed, it is 40 lines.
+- Build: `pnpm build`. CI pipes the output through `tee` and fails the step if it contains `warn`, so a warning is as fatal as a non-zero exit.
+- HTML: `pnpm dlx html-validate@11.16.2 "dist/**/*.html"`. Settings live in `.htmlvalidate.json`: `html-validate:recommended` with `long-title` off (the home and post titles are spec-mandated) and `no-inline-style` off (Shiki writes `style` attributes on highlighted code, the same reason the CSP keeps `style-src 'unsafe-inline'`).
+- Links: `python3 scripts/check-links.py` over `dist/`. Every internal `href` and `src` must resolve to a file in `dist/` or an `id` on the target page; external URLs and other schemes are skipped. Standard library only.
+- Format: prettier 3.9.10 with `prettier-plugin-astro` 1.1.1 over `src/**/*.{astro,ts,js,mjs,css}` and `public/**/*.{css,js}`. Posts in `src/content/writing/` are never formatted. `.prettierrc` is 100 columns, single quotes, 2 spaces, which is what the TypeScript, CSS and JS already were; the `.astro` templates needed one reformat, done in its own commit. `pnpm dlx` installs the plugin, but prettier resolves plugin names from the repository, so pass it by path out of the dlx install. Swap `--check` for `--write` to fix:
+
+```bash
+pnpm dlx --package=prettier@3.9.10 --package=prettier-plugin-astro@1.1.1 --shell-mode '
+  plugin="$(dirname "$(command -v prettier)")/../prettier-plugin-astro/dist/index.js"
+  prettier --check --plugin="$plugin" \
+    "src/**/*.{astro,ts,js,mjs,css}" "public/**/*.{css,js}"
+'
+```
+
+Run it from the repository root so the globs and `.prettierrc` resolve the way CI resolves them.
 
 ## Repo map
 

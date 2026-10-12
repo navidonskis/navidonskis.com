@@ -1,6 +1,6 @@
 # navidonskis.com
 
-Personal site of Donatas Navidonskis. Astro 7, pnpm, Node 22 (`.nvmrc`). Read `SPEC.md` and `docs/HANDOVER.md` after this file.
+Personal site of Donatas Navidonskis. Astro 7, pnpm, Node 24 (`.nvmrc`). Read `SPEC.md` and `docs/HANDOVER.md` after this file.
 
 ## Branches and what is live
 
