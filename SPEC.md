@@ -41,7 +41,7 @@ A later phase adds a services section (see `design/home-with-services-later.html
 │   └── _redirects               www -> apex
 ├── src/
 │   ├── content.config.ts
-│   ├── content/writing/*.md
+│   ├── content/writing/*.md     posts, full path src/content/writing/
 │   ├── layouts/Base.astro
 │   ├── layouts/Post.astro
 │   ├── components/Header.astro
@@ -169,7 +169,7 @@ cta: z.enum(['none', 'talk', 'finops', 'gitlab']).default('talk')
 - File naming: `YYYY-MM-DD-kebab-title.md`. The URL slug drops the date prefix: `/writing/kebab-title/`.
 - `draft: true` posts build locally, never in production (`import.meta.env.PROD`).
 - Reading time is computed at build time, not stored in frontmatter.
-- One sample post is provided in `content/writing/`. Copy it into `src/content/writing/`.
+- `src/content/writing/` is the only directory posts live in.
 
 ## 7. SEO and feeds
 
