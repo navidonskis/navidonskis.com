@@ -328,6 +328,55 @@ const jsonLd = {
     border-radius: var(--r-box);
   }
 
+  /* An embed fills the block it sits in and keeps a 16:9 box at every width.
+     height: auto beats the height attribute of a pasted snippet. */
+  .post__body iframe {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border: 0;
+    border-radius: var(--r-box);
+  }
+
+  .post__body figcaption {
+    margin-top: 10px;
+    font-size: var(--fs-small);
+    line-height: var(--lh-body);
+    color: var(--c-muted);
+  }
+
+  /* Two width levels a block can opt into, written by hand in the Markdown.
+     Without a class a block stays in the reading column. .wide lines up with
+     the site container, .full goes edge to edge. Both centre on the page;
+     below their own width they shrink to the column, and body overflow-x
+     keeps the page from scrolling sideways. */
+  .post__body > .wide {
+    --block: min(var(--container), 100vw - 2 * var(--gutter));
+    width: var(--block);
+    margin-inline: calc(50% - var(--block) / 2);
+  }
+
+  .post__body > .full {
+    width: 100vw;
+    margin-inline: calc(50% - 50vw);
+  }
+
+  /* A picture in a marked block fills it, so the file has to be big enough. */
+  .post__body > .wide img,
+  .post__body > .full img {
+    width: 100%;
+  }
+
+  .post__body > .full img,
+  .post__body > .full iframe {
+    border-radius: 0;
+  }
+
+  .post__body > .full figcaption {
+    padding-inline: var(--gutter);
+  }
+
   .post__body hr {
     border: 0;
     border-top: var(--rule) solid var(--c-rule);
