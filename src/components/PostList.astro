@@ -9,27 +9,25 @@ interface Props {
 const { posts, emptyText = 'First posts are on the way.' } = Astro.props;
 ---
 
-{
-  posts.length > 0 ? (
-    <ul class="rows rows--loose post-list">
-      {posts.map((post) => (
-        <li class="post-list__row">
-          <span class="post-list__text">
-            <a href={postUrl(post)} class="post-list__title">
-              {post.data.title}
-            </a>
-            <span class="text-2">{post.data.description}</span>
-          </span>
-          <time datetime={isoDate(post.data.pubDate)} class="post-list__date">
-            {formatDate(post.data.pubDate)}
-          </time>
-        </li>
-      ))}
-    </ul>
-  ) : (
-    <p class="rows post-list__empty text-2">{emptyText}</p>
-  )
-}
+{posts.length > 0 ? (
+  <ul class="rows rows--loose post-list">
+    {posts.map((post) => (
+      <li class="post-list__row">
+        <span class="post-list__text">
+          <a href={postUrl(post)} class="post-list__title">
+            {post.data.title}
+          </a>
+          <span class="text-2">{post.data.description}</span>
+        </span>
+        <time datetime={isoDate(post.data.pubDate)} class="post-list__date">
+          {formatDate(post.data.pubDate)}
+        </time>
+      </li>
+    ))}
+  </ul>
+) : (
+  <p class="rows post-list__empty text-2">{emptyText}</p>
+)}
 
 <style>
   .post-list__row {
